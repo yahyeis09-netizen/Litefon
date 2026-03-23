@@ -1,0 +1,5 @@
+{
+  "name": "Litefon - Browser VoIP",
+  "description": "Cheap international calls directly from your browser. No apps, no contracts, pay-as-you-go.",
+  "requestFramePermissions": ["microphone"]
+}
