@@ -70,14 +70,14 @@ const HomeView = ({ isDark }: { isDark?: boolean }) => (
     <div className={cn("w-20 h-20 rounded-full flex items-center justify-center mb-6", isDark ? "bg-primary-blue/20" : "bg-primary-blue/10")}>
       <Home className="w-10 h-10 text-primary-blue" />
     </div>
-    <h2 className={cn("text-2xl font-bold mb-2", isDark ? "text-white" : "text-text-dark")}>Welcome Back</h2>
+    <h2 className={cn("text-[21px] font-bold mb-2", isDark ? "text-white" : "text-text-dark")}>Welcome Back</h2>
     <p className={isDark ? "text-slate-400" : "text-text-light"}>Your global communication hub is ready.</p>
   </div>
 );
 
 const ContactsView = ({ isDark }: { isDark?: boolean }) => (
   <div className="flex-grow p-6 overflow-y-auto">
-    <h2 className={cn("text-2xl font-bold mb-6", isDark ? "text-white" : "text-text-dark")}>Contacts</h2>
+    <h2 className={cn("text-[21px] font-bold mb-6", isDark ? "text-white" : "text-text-dark")}>Contacts</h2>
     <div className="space-y-4">
       {[1, 2, 3, 4, 5].map(i => (
         <div key={i} className={cn("flex items-center gap-4 p-3 rounded-2xl transition-colors cursor-pointer", isDark ? "hover:bg-slate-800" : "hover:bg-soft-gray")}>
@@ -210,7 +210,7 @@ const ActivityView = ({ isDark }: { isDark?: boolean }) => {
 
   return (
     <div className="flex-grow min-h-0 overflow-y-auto custom-scrollbar">
-      <div className="p-6 max-w-7xl mx-auto w-full py-12">
+      <div className="p-6 max-w-6xl mx-auto w-full py-12">
         <div className="mb-12">
           <h1 className={cn("text-3xl font-bold mb-2", isDark ? "text-white" : "text-text-dark")}>Call History</h1>
           <p className="text-text-light">Review your recent international calls and costs.</p>
@@ -221,14 +221,14 @@ const ActivityView = ({ isDark }: { isDark?: boolean }) => {
             <div 
               key={call.id} 
               className={cn(
-                "rounded-3xl p-6 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 transition-all border",
+                "rounded-3xl p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 transition-all border",
                 call.special 
                   ? (isDark ? "bg-slate-800 border-slate-700" : "bg-white border-gray-200 shadow-sm")
                   : (isDark ? "bg-slate-900/50 border-slate-800" : "bg-gray-50 border-gray-100")
               )}
             >
               {/* Left Column */}
-              <div className="flex flex-col gap-4 flex-grow w-full lg:w-auto">
+              <div className="flex flex-col gap-4 flex-grow w-full md:w-auto">
                 <div className="flex items-center gap-4 flex-wrap">
                   <span className={cn("text-xl font-bold", isDark ? "text-white" : "text-text-dark")}>
                     {call.number}
@@ -263,7 +263,7 @@ const ActivityView = ({ isDark }: { isDark?: boolean }) => {
               </div>
 
               {/* Right Column */}
-              <div className="flex flex-row lg:flex-col items-center lg:items-end justify-between lg:justify-center gap-3 text-right w-full lg:w-auto border-t lg:border-t-0 pt-4 lg:pt-0">
+              <div className="flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-3 text-right w-full md:w-auto border-t md:border-t-0 pt-4 md:pt-0">
                 <span className={cn(
                   "px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest",
                   call.status === 'Completed' 
@@ -301,8 +301,8 @@ const BillingView = ({ isDark, balance, onTopUp }: { isDark?: boolean; balance: 
 
   return (
     <div className="flex-grow min-h-0 overflow-y-auto custom-scrollbar">
-      <div className="p-6 max-w-7xl mx-auto w-full py-12">
-        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 items-start">
+      <div className="p-6 max-w-6xl mx-auto w-full py-12">
+        <div className="grid md:grid-cols-[1.2fr_1fr] gap-12 items-start">
           
           {/* Left Pane: Credit Package */}
           <div className="space-y-8">
@@ -391,7 +391,7 @@ const BillingView = ({ isDark, balance, onTopUp }: { isDark?: boolean; balance: 
             isDark ? "bg-slate-800 border-slate-700" : "bg-white border-gray-200"
           )}>
             <div className="mb-8">
-              <h2 className={cn("text-xl font-bold mb-2", isDark ? "text-white" : "text-text-dark")}>Payment Detail</h2>
+              <h2 className={cn("text-[17px] font-bold mb-2", isDark ? "text-white" : "text-text-dark")}>Payment Detail</h2>
               <p className="text-sm text-text-light">Complete your purchase by filling your payment detail</p>
             </div>
 
@@ -561,10 +561,10 @@ const BuyNumberView = ({ isDark }: { isDark?: boolean }) => {
 
   return (
     <div className="flex-grow flex flex-col min-h-0 overflow-y-auto custom-scrollbar">
-      <div className="p-6 max-w-7xl mx-auto w-full py-12 flex-grow flex flex-col">
+      <div className="p-6 max-w-6xl mx-auto w-full py-12 flex-grow flex flex-col">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-12">
           <div>
-            <h2 className={cn("text-3xl font-bold mb-2", isDark ? "text-white" : "text-text-dark")}>Buy a Number</h2>
+            <h2 className={cn("text-[27px] font-bold mb-2", isDark ? "text-white" : "text-text-dark")}>Buy a Number</h2>
             <p className="text-text-light">Get a virtual number for your business communications.</p>
           </div>
           <div className={cn("px-6 py-3 rounded-2xl border flex items-center gap-4 cursor-pointer hover:border-primary-blue transition-all group w-full md:w-auto", isDark ? "bg-slate-800 border-slate-700" : "bg-white border-border-gray shadow-sm")}>
@@ -788,7 +788,7 @@ export default function DialerApp({ onBack }: DialerAppProps) {
           isDarkMode ? "bg-slate-900/80 border-slate-800" : "bg-white/80 border-border-gray",
           "backdrop-blur-lg sticky top-0 z-50"
         )}>
-          <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="max-w-6xl mx-auto flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 bg-primary-blue rounded-full flex items-center justify-center">
@@ -800,7 +800,7 @@ export default function DialerApp({ onBack }: DialerAppProps) {
             </div>
 
             {/* Desktop Links */}
-            <div className="hidden md:flex items-center gap-6">
+            <div className="hidden md:flex items-center md:gap-3 lg:gap-6">
               {navLinks.map((link) => (
                 <button 
                   key={link.id} 
@@ -959,15 +959,15 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                 initial={{ opacity: 0 }} 
                 animate={{ opacity: 1 }} 
                 exit={{ opacity: 0 }}
-                className="flex-grow flex flex-col p-6 pt-2 max-w-md mx-auto w-full overflow-y-auto custom-scrollbar"
+                className="flex-grow flex flex-col p-6 pt-2 max-w-[447px] mx-auto w-full overflow-y-auto custom-scrollbar"
               >
                 {/* Number Display */}
                 <div className="flex flex-col items-center mb-4 mt-6">
                   <div className="w-full text-center">
                     <span className={cn(
-                      "text-[42px] font-bold tracking-tight break-all",
+                      "text-[41px] font-bold tracking-tight break-all",
                       isDarkMode ? "text-white" : "text-text-dark",
-                      dialedNumber.length > 10 ? "text-2xl" : "text-[42px]"
+                      dialedNumber.length > 10 ? "text-2xl" : "text-[41px]"
                     )}>
                       {dialedNumber || ' '}
                     </span>
@@ -986,11 +986,11 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                       key={key.n}
                       onClick={() => handleKeyPress(key.n)}
                       className={cn(
-                        "w-16 h-16 rounded-full flex flex-col items-center justify-center active:scale-95 transition-all mx-auto",
+                        "w-[63px] h-[63px] rounded-full flex flex-col items-center justify-center active:scale-95 transition-all mx-auto",
                         isDarkMode ? "bg-slate-800 hover:bg-slate-700" : "bg-soft-gray hover:bg-border-gray"
                       )}
                     >
-                      <span className={cn("text-2xl font-bold leading-none", isDarkMode ? "text-white" : "text-text-dark")}>{key.n}</span>
+                      <span className={cn("text-[23px] font-bold leading-none", isDarkMode ? "text-white" : "text-text-dark")}>{key.n}</span>
                       <span className="text-[8px] font-bold text-text-light uppercase tracking-tighter mt-0.5">{key.l}</span>
                     </button>
                   ))}
@@ -1001,11 +1001,11 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                   <button 
                     onClick={toggleCall}
                     className={cn(
-                      "w-16 h-16 rounded-full flex items-center justify-center shadow-xl transition-all active:scale-90 z-10",
+                      "w-[63px] h-[63px] rounded-full flex items-center justify-center shadow-xl transition-all active:scale-90 z-10",
                       isCalling ? "bg-red-500 shadow-red-500/30" : "bg-[#22C55E] shadow-emerald-500/30"
                     )}
                   >
-                    <Phone className={cn("w-7 h-7 text-white fill-current", isCalling && "rotate-[135deg]")} />
+                    <Phone className={cn("w-[27px] h-[27px] text-white fill-current", isCalling && "rotate-[135deg]")} />
                   </button>
 
                   <button 
@@ -1024,13 +1024,13 @@ export default function DialerApp({ onBack }: DialerAppProps) {
             {/* Rates View */}
             {activeTab === 'rates' && (
               <motion.div key="rates" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex-grow min-h-0 overflow-y-auto custom-scrollbar">
-                <div className="p-6 max-w-7xl mx-auto w-full py-12">
+                <div className="p-6 max-w-6xl mx-auto w-full py-12">
                   <div className="mb-12">
-                    <h2 className={cn("text-3xl font-bold mb-2", isDarkMode ? "text-white" : "text-text-dark")}>International Rates</h2>
+                    <h2 className={cn("text-[27px] font-bold mb-2", isDarkMode ? "text-white" : "text-text-dark")}>International Rates</h2>
                     <p className="text-text-light">Check our competitive rates for calling any country in the world.</p>
                   </div>
 
-                  <div className="grid lg:grid-cols-[1fr_380px] gap-12 mb-20">
+                  <div className="grid md:grid-cols-[1fr_320px] gap-12 mb-20">
                     <div className="space-y-6">
                       <div className="relative">
                         <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-text-light w-5 h-5" />

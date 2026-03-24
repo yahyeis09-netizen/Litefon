@@ -107,7 +107,7 @@ export default function BlogPage({
                 But how does Litefon stack up against the rest of the market? Let’s dive into the top alternatives and see how they compare.
               </p>
 
-              <h2 className="text-3xl font-bold text-text-dark dark:text-white mt-16 mb-6">The App-Dependent Consumer Tools: Toolani, Viber Out, & Yolla</h2>
+              <h2 className="text-[27px] font-bold text-text-dark dark:text-white mt-16 mb-6">The App-Dependent Consumer Tools: Toolani, Viber Out, & Yolla</h2>
               <p className="text-lg text-text-light dark:text-zinc-400 leading-relaxed mb-8">
                 Many popular solutions in the market are built strictly around mobile applications. <strong>Toolani</strong>, for example, offers a solid prepaid credit model (€5, €10, €25) without forced subscriptions, making it a decent choice for individual users. However, unlike Litefon's browser-native approach, Toolani strictly requires you to download their iOS or Android app and offers no features for teams.
               </p>
@@ -115,7 +115,7 @@ export default function BlogPage({
                 Similarly, <strong>Viber Out</strong> and <strong>Yolla</strong> allow you to call real phone numbers worldwide. While Viber Out is great for existing Viber users, it forces you into their specific app ecosystem, can suffer from mixed call quality on weak mobile data, and occasionally carries higher connection fees. Yolla provides a simple consumer experience for expats, but again, it traps you in a mobile app and lacks the business flexibility and ultra-low $0.02/min starting rates of Litefon.
               </p>
 
-              <h2 className="text-3xl font-bold text-text-dark dark:text-white mt-16 mb-6">The Heavyweight Ecosystems: Google Voice & Zoom Phone</h2>
+              <h2 className="text-[27px] font-bold text-text-dark dark:text-white mt-16 mb-6">The Heavyweight Ecosystems: Google Voice & Zoom Phone</h2>
               <p className="text-lg text-text-light dark:text-zinc-400 leading-relaxed mb-8">
                 If your business is deeply entrenched in a specific software ecosystem, you might look toward the giants. <strong>Google Voice</strong> offers low-cost international calls and deep Workspace integration, but it comes with strict geographic limitations (primarily US-focused) and requires a US phone number just to set up.
               </p>
@@ -123,7 +123,7 @@ export default function BlogPage({
                 <strong>Zoom Phone</strong> transforms your video meeting app into a full cloud PBX with HD voice and analytics. However, for an individual traveler, expat, or lean startup looking for a simple pay-per-minute model, Zoom Phone's enterprise-level SaaS pricing and complex admin setup make it massive overkill compared to Litefon's instant, frictionless browser model.
               </p>
 
-              <h2 className="text-3xl font-bold text-text-dark dark:text-white mt-16 mb-6">The Migrant & Calling Card Apps: Rebtel, Talk360, & KeepCalling</h2>
+              <h2 className="text-[27px] font-bold text-text-dark dark:text-white mt-16 mb-6">The Migrant & Calling Card Apps: Rebtel, Talk360, & KeepCalling</h2>
               <p className="text-lg text-text-light dark:text-zinc-400 leading-relaxed mb-8">
                 There is a dedicated market of apps built specifically for calling family abroad in regions like Africa, Latin America, and Asia. <strong>Rebtel</strong> shines with local access numbers that allow calls even without internet data. <strong>Talk360</strong> offers a straightforward "install and call" UI for non-technical users, while <strong>KeepCalling</strong> acts as a virtual calling card with destination-specific plans.
               </p>
@@ -131,7 +131,7 @@ export default function BlogPage({
                 The catch? All three are strictly consumer-focused app experiences. They lack the sleek, device-agnostic browser calling that Litefon provides, offer no team collaboration features, and often have confusing pricing structures across different countries.
               </p>
 
-              <h2 className="text-3xl font-bold text-text-dark dark:text-white mt-16 mb-6">Budget and Legacy Options: TextNow & Localphone</h2>
+              <h2 className="text-[27px] font-bold text-text-dark dark:text-white mt-16 mb-6">Budget and Legacy Options: TextNow & Localphone</h2>
               <p className="text-lg text-text-light dark:text-zinc-400 leading-relaxed mb-8">
                 For the hyper-budget-conscious, <strong>TextNow</strong> offers ad-supported free domestic calls in the US and Canada, with paid international add-ons. However, the presence of ads, limited global coverage, and heavy US-centric focus make it less appealing for true global communicators.
               </p>
@@ -139,12 +139,12 @@ export default function BlogPage({
                 <strong>Localphone</strong> takes a much older approach, utilizing local access numbers to bridge international calls. While their pricing is highly transparent, the user interface feels incredibly dated. The setup can be complex, lacking the modern, seamless browser experience you get by simply logging into Litefon.
               </p>
 
-              <h2 className="text-3xl font-bold text-text-dark dark:text-white mt-16 mb-6">The Traditional Telco Route: Lebara</h2>
+              <h2 className="text-[27px] font-bold text-text-dark dark:text-white mt-16 mb-6">The Traditional Telco Route: Lebara</h2>
               <p className="text-lg text-text-light dark:text-zinc-400 leading-relaxed mb-12">
                 Finally, some services stick to the traditional telecom model. <strong>Lebara</strong> requires you to purchase a physical SIM or eSIM plan that includes domestic data alongside international minutes. While this is a great solution for long-term immigrants settling in a specific European country, you are entirely tied to that operator. It completely lacks the global, hardware-free flexibility of logging into Litefon from any laptop or device in the world.
               </p>
 
-              <h2 className="text-3xl font-bold text-text-dark dark:text-white mt-16 mb-6">The Verdict</h2>
+              <h2 className="text-[27px] font-bold text-text-dark dark:text-white mt-16 mb-6">The Verdict</h2>
               <p className="text-lg text-text-light dark:text-zinc-400 leading-relaxed mb-12">
                 While there is a tool for every specific niche—from heavy enterprise PBX systems to ad-supported US phone numbers—the future of flexible communication is in the browser. By eliminating the need for downloads, apps, and subscriptions, <strong>Litefon</strong> remains the most accessible, high-quality, and cost-effective solution for both individuals and teams who just want to log in and make the call.
               </p>

@@ -151,7 +151,7 @@ export default function EnterpriseCheckout({ onBack, onDialerClick }: Enterprise
           {/* Right Pane: Payment Form */}
           <div className="bg-white rounded-3xl border border-gray-200 p-8 shadow-lg">
             <div className="mb-8">
-              <h2 className="text-xl font-bold text-text-dark mb-2">Payment Detail</h2>
+              <h2 className="text-[17px] font-bold text-text-dark mb-2">Payment Detail</h2>
               <p className="text-sm text-text-light">Complete your purchase by filling your payment detail</p>
             </div>
 

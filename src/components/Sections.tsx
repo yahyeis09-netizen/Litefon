@@ -43,8 +43,8 @@ export function Hero({ onDialerClick, onRatesClick, onContactClick }: HeroProps)
           animate={{ opacity: 1, y: 0 }}
           className="inline-flex items-center p-1 rounded-full bg-[#F1F0FB] dark:bg-zinc-800/80 backdrop-blur-sm border border-black/[0.05] dark:border-white/[0.05] mb-8 shadow-sm"
         >
-          <span className="text-[11px] font-bold text-text-dark bg-white px-2.5 py-0.5 rounded-full shadow-sm">New</span>
-          <span className="text-[11px] font-semibold text-text-medium dark:text-zinc-400 px-3">payless . call more</span>
+          <span className="text-[9px] font-bold text-text-dark bg-white px-2.5 py-0.5 rounded-full shadow-sm">New</span>
+          <span className="text-[9px] font-semibold text-text-medium dark:text-zinc-400 px-3">payless . call more</span>
         </motion.div>
  
         {/* H1 Headline */}
@@ -52,12 +52,12 @@ export function Hero({ onDialerClick, onRatesClick, onContactClick }: HeroProps)
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="text-[28px] sm:text-[40px] md:text-[48px] font-bold tracking-[-0.04em] text-[#000000] dark:text-white mb-5 max-w-[600px] mx-auto leading-[1.1] md:leading-[1.05] font-display"
+          className="text-[34px] sm:text-[46px] md:text-[58px] font-bold tracking-[-0.04em] text-[#000000] dark:text-white mb-5 max-w-[800px] mx-auto leading-[1.1] md:leading-[1.05] font-display"
         >
           Cheap International Calls
           <br className="hidden md:block" />
           <span className="inline-flex items-center flex-wrap justify-center gap-x-3 mt-2 md:mt-3">
-            <span>Right in</span>
+            <span className="text-[#64748B] dark:text-zinc-400">Right in</span>
             <span className="relative inline-flex items-center gap-1.5 p-2 border border-dashed border-[#E2E8F0] bg-transparent dark:bg-zinc-900/50 rounded-[10px] text-[#64748B] dark:text-zinc-400 lowercase tracking-[-0.02em] font-bold">
               {/* Corner Handles */}
               <div className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-white border border-[#E2E8F0] rounded-full" />
@@ -76,7 +76,7 @@ export function Hero({ onDialerClick, onRatesClick, onContactClick }: HeroProps)
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="text-[14px] md:text-[16px] text-[#64748B] dark:text-zinc-400 mb-[32px] max-w-[500px] mx-auto leading-[1.6] px-4 md:px-0"
+          className="text-[12px] md:text-[14px] text-[#64748B] dark:text-zinc-400 mb-[32px] max-w-[500px] mx-auto leading-[1.6] px-4 md:px-0"
         >
           Call any number worldwide directly from your browser. No apps, no contracts, just simple pay-as-you-go calling. <span className="font-bold text-[#000000] dark:text-white">0.02/min.</span>
         </motion.p>
@@ -90,14 +90,14 @@ export function Hero({ onDialerClick, onRatesClick, onContactClick }: HeroProps)
         >
           <button 
             onClick={onDialerClick}
-            className="bg-[#3B63F6] hover:bg-[#2D4ED3] text-white px-6 py-3 text-sm font-bold rounded-full flex items-center gap-2 group shadow-xl shadow-[#3B63F6]/20 transition-all w-full md:w-auto justify-center"
+            className="bg-[#3B63F6] hover:bg-[#2D4ED3] text-white px-6 py-3 text-[12px] font-bold rounded-full flex items-center gap-2 group shadow-xl shadow-[#3B63F6]/20 transition-all w-full md:w-auto justify-center"
           >
             Start calling now
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-white" />
           </button>
           <button 
             onClick={onRatesClick}
-            className="bg-white hover:bg-gray-50 text-text-dark px-6 py-3 text-sm font-bold rounded-full border border-border-gray transition-all dark:bg-zinc-800 dark:border-zinc-700 dark:text-white dark:hover:bg-zinc-700 w-full md:w-auto justify-center"
+            className="bg-white hover:bg-gray-50 text-text-dark px-6 py-3 text-[12px] font-bold rounded-full border border-border-gray transition-all dark:bg-zinc-800 dark:border-zinc-700 dark:text-white dark:hover:bg-zinc-700 w-full md:w-auto justify-center"
           >
             See Rates
           </button>
@@ -108,7 +108,7 @@ export function Hero({ onDialerClick, onRatesClick, onContactClick }: HeroProps)
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="text-xs text-[#64748B] dark:text-zinc-500 font-medium"
+          className="text-[10px] text-[#64748B] dark:text-zinc-500 font-medium"
         >
           Pay once, Use forever
         </motion.p>
