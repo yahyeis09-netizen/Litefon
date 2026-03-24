@@ -143,7 +143,7 @@ export default function RatesPage({ onBack, onAuthClick }: { onBack: () => void;
                   <div className="w-10 h-10 rounded-xl bg-primary-blue/5 dark:bg-slate-900 flex items-center justify-center">
                     <Calculator className="w-6 h-6 text-primary-blue" />
                   </div>
-                  <h2 className="text-[17px] font-bold text-text-dark dark:text-white">Rate Calculator</h2>
+                  <h2 className="text-xl font-bold text-text-dark dark:text-white">Rate Calculator</h2>
                 </div>
 
                 <div className="space-y-6">
