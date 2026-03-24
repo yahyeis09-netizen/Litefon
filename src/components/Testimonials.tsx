@@ -81,7 +81,7 @@ export default function Testimonials({ onShowMoreClick }: TestimonialsProps) {
             <span className="text-xs font-semibold text-gray-600 dark:text-slate-400 uppercase tracking-wider">Testimonials</span>
           </div>
           
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-6">
+          <h2 className="text-[27px] sm:text-[33px] md:text-[45px] font-bold tracking-tight text-gray-900 dark:text-white mb-6">
             Have questions, <span className="font-medium text-gray-400 dark:text-slate-500">We got answers.</span>
           </h2>
           

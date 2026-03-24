@@ -24,7 +24,7 @@ export default function AffiliateBanner({ onAffiliateClick }: AffiliateBannerPro
             {/* Left Column: Text Content */}
             <div className="p-8 lg:pl-16 lg:pr-8 py-10">
               <span className="text-text-light dark:text-slate-500 text-sm font-medium mb-2 block tracking-wide">Become an Affiliate</span>
-              <h2 className="text-3xl lg:text-4xl font-bold text-text-dark dark:text-white mb-3 tracking-tight">
+              <h2 className="text-[27px] lg:text-[33px] font-bold text-text-dark dark:text-white mb-3 tracking-tight">
                 Join our Affiliate Program
               </h2>
               <p className="text-text-medium dark:text-slate-400 text-base mb-6 leading-relaxed max-w-md">

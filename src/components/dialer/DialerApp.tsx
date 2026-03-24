@@ -70,14 +70,14 @@ const HomeView = ({ isDark }: { isDark?: boolean }) => (
     <div className={cn("w-20 h-20 rounded-full flex items-center justify-center mb-6", isDark ? "bg-primary-blue/20" : "bg-primary-blue/10")}>
       <Home className="w-10 h-10 text-primary-blue" />
     </div>
-    <h2 className={cn("text-2xl font-bold mb-2", isDark ? "text-white" : "text-text-dark")}>Welcome Back</h2>
+    <h2 className={cn("text-[21px] font-bold mb-2", isDark ? "text-white" : "text-text-dark")}>Welcome Back</h2>
     <p className={isDark ? "text-slate-400" : "text-text-light"}>Your global communication hub is ready.</p>
   </div>
 );
 
 const ContactsView = ({ isDark }: { isDark?: boolean }) => (
   <div className="flex-grow p-6 overflow-y-auto">
-    <h2 className={cn("text-2xl font-bold mb-6", isDark ? "text-white" : "text-text-dark")}>Contacts</h2>
+    <h2 className={cn("text-[21px] font-bold mb-6", isDark ? "text-white" : "text-text-dark")}>Contacts</h2>
     <div className="space-y-4">
       {[1, 2, 3, 4, 5].map(i => (
         <div key={i} className={cn("flex items-center gap-4 p-3 rounded-2xl transition-colors cursor-pointer", isDark ? "hover:bg-slate-800" : "hover:bg-soft-gray")}>
@@ -391,7 +391,7 @@ const BillingView = ({ isDark, balance, onTopUp }: { isDark?: boolean; balance: 
             isDark ? "bg-slate-800 border-slate-700" : "bg-white border-gray-200"
           )}>
             <div className="mb-8">
-              <h2 className={cn("text-xl font-bold mb-2", isDark ? "text-white" : "text-text-dark")}>Payment Detail</h2>
+              <h2 className={cn("text-[17px] font-bold mb-2", isDark ? "text-white" : "text-text-dark")}>Payment Detail</h2>
               <p className="text-sm text-text-light">Complete your purchase by filling your payment detail</p>
             </div>
 
@@ -564,7 +564,7 @@ const BuyNumberView = ({ isDark }: { isDark?: boolean }) => {
       <div className="p-6 max-w-7xl mx-auto w-full py-12 flex-grow flex flex-col">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-12">
           <div>
-            <h2 className={cn("text-3xl font-bold mb-2", isDark ? "text-white" : "text-text-dark")}>Buy a Number</h2>
+            <h2 className={cn("text-[27px] font-bold mb-2", isDark ? "text-white" : "text-text-dark")}>Buy a Number</h2>
             <p className="text-text-light">Get a virtual number for your business communications.</p>
           </div>
           <div className={cn("px-6 py-3 rounded-2xl border flex items-center gap-4 cursor-pointer hover:border-primary-blue transition-all group w-full md:w-auto", isDark ? "bg-slate-800 border-slate-700" : "bg-white border-border-gray shadow-sm")}>
@@ -1026,7 +1026,7 @@ export default function DialerApp({ onBack }: DialerAppProps) {
               <motion.div key="rates" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex-grow min-h-0 overflow-y-auto custom-scrollbar">
                 <div className="p-6 max-w-7xl mx-auto w-full py-12">
                   <div className="mb-12">
-                    <h2 className={cn("text-3xl font-bold mb-2", isDarkMode ? "text-white" : "text-text-dark")}>International Rates</h2>
+                    <h2 className={cn("text-[27px] font-bold mb-2", isDarkMode ? "text-white" : "text-text-dark")}>International Rates</h2>
                     <p className="text-text-light">Check our competitive rates for calling any country in the world.</p>
                   </div>
 

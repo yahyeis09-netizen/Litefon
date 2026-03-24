@@ -81,7 +81,7 @@ export default function CountryRates({ onRatesClick }: CountryRatesProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl md:text-5xl font-bold text-black dark:text-white mb-8 tracking-tight leading-[1.1]"
+            className="text-[27px] md:text-[45px] font-bold text-black dark:text-white mb-8 tracking-tight leading-[1.1]"
           >
             Popular Country
           </motion.h2>

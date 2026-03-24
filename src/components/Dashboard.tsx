@@ -113,7 +113,7 @@ const BillingView = ({ balance, onTopUp }: { balance: number; onTopUp: (amount: 
         {/* Right Pane: Payment Detail */}
         <div className="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
           <div className="mb-8">
-            <h2 className="text-xl font-bold text-slate-900 mb-2">Payment Detail</h2>
+            <h2 className="text-[17px] font-bold text-slate-900 mb-2">Payment Detail</h2>
             <p className="text-sm text-slate-500">Complete your purchase by filling your payment detail</p>
           </div>
 
@@ -789,7 +789,7 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
                 <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mb-6">
                   <LayoutDashboard className="w-10 h-10 text-slate-300" />
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900 mb-2 capitalize">{activeTab} View</h2>
+                <h2 className="text-[21px] font-bold text-slate-900 mb-2 capitalize">{activeTab} View</h2>
                 <p className="text-slate-500 max-w-md">This section is currently under development. Check back soon for more features!</p>
               </motion.div>
             )}

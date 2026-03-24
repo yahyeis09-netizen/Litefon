@@ -91,7 +91,7 @@ export default function FAQSection({ onContactClick }: FAQSectionProps) {
             <span className="text-[10px] font-bold uppercase tracking-widest text-text-medium dark:text-zinc-400">Support</span>
           </div>
           
-          <h2 className="text-3xl sm:text-4xl md:text-5xl tracking-tight mb-6">
+          <h2 className="text-[27px] sm:text-[33px] md:text-[45px] tracking-tight mb-6">
             <span className="block font-light text-text-light dark:text-zinc-400">Got Questions?</span>
             <span className="block font-bold text-text-dark dark:text-white">Global Connectivity Explained</span>
           </h2>
