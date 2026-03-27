@@ -26,7 +26,7 @@ import {
   Globe2,
   Wallet
 } from 'lucide-react';
-import { cn } from '@/src/lib/utils';
+import { cn, getFlagUrl } from '@/src/lib/utils';
 import FAQSection from '@/src/components/FAQSection';
 import Testimonials from '@/src/components/Testimonials';
 import { Footer } from '@/src/components/Sections';
@@ -36,72 +36,43 @@ import { Footer } from '@/src/components/Sections';
 interface Country {
   name: string;
   code: string;
-  flag: string;
+  iso: string;
   rate: number;
 }
 
 const countries: Country[] = [
-  { name: 'United States', code: '+1', flag: '🇺🇸', rate: 0.02 },
-  { name: 'United Kingdom', code: '+44', flag: '🇬🇧', rate: 0.03 },
-  { name: 'Canada', code: '+1', flag: '🇨🇦', rate: 0.02 },
-  { name: 'Germany', code: '+49', flag: '🇩🇪', rate: 0.04 },
-  { name: 'France', code: '+33', flag: '🇫🇷', rate: 0.04 },
-  { name: 'Australia', code: '+61', flag: '🇦🇺', rate: 0.05 },
-  { name: 'India', code: '+91', flag: '🇮🇳', rate: 0.01 },
-  { name: 'China', code: '+86', flag: '🇨🇳', rate: 0.02 },
-  { name: 'Japan', code: '+81', flag: '🇯🇵', rate: 0.06 },
-  { name: 'Brazil', code: '+55', flag: '🇧🇷', rate: 0.08 },
-  { name: 'Mexico', code: '+52', flag: '🇲🇽', rate: 0.03 },
-  { name: 'Italy', code: '+39', flag: '🇮🇹', rate: 0.04 },
-  { name: 'Spain', code: '+34', flag: '🇪🇸', rate: 0.04 },
-  { name: 'Netherlands', code: '+31', flag: '🇳🇱', rate: 0.03 },
-  { name: 'Switzerland', code: '+41', flag: '🇨🇭', rate: 0.05 },
-  { name: 'Sweden', code: '+46', flag: '🇸🇪', rate: 0.04 },
-  { name: 'Norway', code: '+47', flag: '🇳🇴', rate: 0.04 },
-  { name: 'Denmark', code: '+45', flag: '🇩🇰', rate: 0.04 },
-  { name: 'Singapore', code: '+65', flag: '🇸🇬', rate: 0.02 },
-  { name: 'South Korea', code: '+82', flag: '🇰🇷', rate: 0.03 },
+  { name: 'United States', code: '+1', iso: 'us', rate: 0.02 },
+  { name: 'United Kingdom', code: '+44', iso: 'gb', rate: 0.03 },
+  { name: 'Canada', code: '+1', iso: 'ca', rate: 0.02 },
+  { name: 'Germany', code: '+49', iso: 'de', rate: 0.04 },
+  { name: 'France', code: '+33', iso: 'fr', rate: 0.04 },
+  { name: 'Australia', code: '+61', iso: 'au', rate: 0.05 },
+  { name: 'India', code: '+91', iso: 'in', rate: 0.01 },
+  { name: 'China', code: '+86', iso: 'cn', rate: 0.02 },
+  { name: 'Japan', code: '+81', iso: 'jp', rate: 0.06 },
+  { name: 'Brazil', code: '+55', iso: 'br', rate: 0.08 },
+  { name: 'Mexico', code: '+52', iso: 'mx', rate: 0.03 },
+  { name: 'Italy', code: '+39', iso: 'it', rate: 0.04 },
+  { name: 'Spain', code: '+34', iso: 'es', rate: 0.04 },
+  { name: 'Netherlands', code: '+31', iso: 'nl', rate: 0.03 },
+  { name: 'Switzerland', code: '+41', iso: 'ch', rate: 0.05 },
+  { name: 'Sweden', code: '+46', iso: 'se', rate: 0.04 },
+  { name: 'Norway', code: '+47', iso: 'no', rate: 0.04 },
+  { name: 'Denmark', code: '+45', iso: 'dk', rate: 0.04 },
+  { name: 'Singapore', code: '+65', iso: 'sg', rate: 0.02 },
+  { name: 'South Korea', code: '+82', iso: 'kr', rate: 0.03 },
 ];
 
 // --- Sub-Views ---
 
-const HomeView = ({ isDark }: { isDark?: boolean }) => (
-  <div className="flex-grow flex flex-col items-center justify-center p-8 text-center">
-    <div className={cn("w-20 h-20 rounded-full flex items-center justify-center mb-6", isDark ? "bg-primary-blue/20" : "bg-primary-blue/10")}>
-      <Home className="w-10 h-10 text-primary-blue" />
-    </div>
-    <h2 className={cn("text-[21px] font-bold mb-2", isDark ? "text-white" : "text-text-dark")}>Welcome Back</h2>
-    <p className={isDark ? "text-slate-400" : "text-text-light"}>Your global communication hub is ready.</p>
-  </div>
-);
-
-const ContactsView = ({ isDark }: { isDark?: boolean }) => (
-  <div className="flex-grow p-6 overflow-y-auto">
-    <h2 className={cn("text-[21px] font-bold mb-6", isDark ? "text-white" : "text-text-dark")}>Contacts</h2>
-    <div className="space-y-4">
-      {[1, 2, 3, 4, 5].map(i => (
-        <div key={i} className={cn("flex items-center gap-4 p-3 rounded-2xl transition-colors cursor-pointer", isDark ? "hover:bg-slate-800" : "hover:bg-soft-gray")}>
-          <div className={cn("w-12 h-12 rounded-full flex items-center justify-center font-bold", isDark ? "bg-slate-700 text-slate-300" : "bg-border-gray text-text-medium")}>
-            {String.fromCharCode(64 + i)}
-          </div>
-          <div>
-            <p className={cn("font-bold", isDark ? "text-white" : "text-text-dark")}>Contact {i}</p>
-            <p className="text-sm text-text-light">+1 555-010{i}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-);
-
-const ActivityView = ({ isDark }: { isDark?: boolean }) => {
+const ActivityView = () => {
   const history = [
     {
       id: 1,
       number: "+43 444 44444444",
       date: "5/31/2025",
       time: "11:36 AM",
-      from: { name: "Austria", flag: "🇦🇹", number: "+43 1 2345678" },
+      from: { name: "Austria", iso: "at", number: "+43 1 2345678" },
       status: "Completed",
       duration: "5:24 min",
       cost: "$1.25",
@@ -112,7 +83,7 @@ const ActivityView = ({ isDark }: { isDark?: boolean }) => {
       number: "+44 20 7946 0123",
       date: "5/30/2025",
       time: "09:15 AM",
-      from: { name: "United Kingdom", flag: "🇬🇧" },
+      from: { name: "United Kingdom", iso: "gb" },
       status: "No answer",
       duration: "0:00 min",
       cost: "$0.00",
@@ -123,7 +94,7 @@ const ActivityView = ({ isDark }: { isDark?: boolean }) => {
       number: "+1 (212) 555-0198",
       date: "5/29/2025",
       time: "10:45 PM",
-      from: { name: "United States", flag: "🇺🇸" },
+      from: { name: "United States", iso: "us" },
       status: "Completed",
       duration: "12:10 min",
       cost: "$0.60",
@@ -134,7 +105,7 @@ const ActivityView = ({ isDark }: { isDark?: boolean }) => {
       number: "+49 30 123456",
       date: "5/28/2025",
       time: "02:20 PM",
-      from: { name: "Germany", flag: "🇩🇪" },
+      from: { name: "Germany", iso: "de" },
       status: "Completed",
       duration: "3:45 min",
       cost: "$0.45",
@@ -145,7 +116,7 @@ const ActivityView = ({ isDark }: { isDark?: boolean }) => {
       number: "+33 1 42 68 53 00",
       date: "5/27/2025",
       time: "08:10 AM",
-      from: { name: "France", flag: "🇫🇷" },
+      from: { name: "France", iso: "fr" },
       status: "No answer",
       duration: "0:00 min",
       cost: "$0.00",
@@ -156,7 +127,7 @@ const ActivityView = ({ isDark }: { isDark?: boolean }) => {
       number: "+34 91 123 4567",
       date: "5/26/2025",
       time: "03:45 PM",
-      from: { name: "Spain", flag: "🇪🇸" },
+      from: { name: "Spain", iso: "es" },
       status: "Completed",
       duration: "8:20 min",
       cost: "$0.95",
@@ -167,7 +138,7 @@ const ActivityView = ({ isDark }: { isDark?: boolean }) => {
       number: "+39 06 1234 5678",
       date: "5/25/2025",
       time: "11:20 AM",
-      from: { name: "Italy", flag: "🇮🇹" },
+      from: { name: "Italy", iso: "it" },
       status: "Completed",
       duration: "4:15 min",
       cost: "$0.50",
@@ -178,7 +149,7 @@ const ActivityView = ({ isDark }: { isDark?: boolean }) => {
       number: "+81 3 1234 5678",
       date: "5/24/2025",
       time: "09:30 PM",
-      from: { name: "Japan", flag: "🇯🇵" },
+      from: { name: "Japan", iso: "jp" },
       status: "Completed",
       duration: "15:45 min",
       cost: "$1.80",
@@ -189,7 +160,7 @@ const ActivityView = ({ isDark }: { isDark?: boolean }) => {
       number: "+61 2 9876 5432",
       date: "5/23/2025",
       time: "02:15 PM",
-      from: { name: "Australia", flag: "🇦🇺" },
+      from: { name: "Australia", iso: "au" },
       status: "Completed",
       duration: "6:12 min",
       cost: "$0.75",
@@ -200,7 +171,7 @@ const ActivityView = ({ isDark }: { isDark?: boolean }) => {
       number: "+1 (416) 555-0123",
       date: "5/22/2025",
       time: "10:00 AM",
-      from: { name: "Canada", flag: "🇨🇦" },
+      from: { name: "Canada", iso: "ca" },
       status: "Completed",
       duration: "2:30 min",
       cost: "$0.30",
@@ -209,10 +180,10 @@ const ActivityView = ({ isDark }: { isDark?: boolean }) => {
   ];
 
   return (
-    <div className="flex-grow min-h-0 overflow-y-auto custom-scrollbar">
-      <div className="p-6 max-w-6xl mx-auto w-full py-12">
+    <div className="flex-grow min-h-0 overflow-y-auto no-scrollbar">
+      <div className="p-4 max-w-6xl mx-auto w-full py-8">
         <div className="mb-12">
-          <h1 className={cn("text-3xl font-bold mb-2", isDark ? "text-white" : "text-text-dark")}>Call History</h1>
+          <h1 className="text-3xl font-bold mb-2 text-text-dark">Call History</h1>
           <p className="text-text-light">Review your recent international calls and costs.</p>
         </div>
 
@@ -223,20 +194,17 @@ const ActivityView = ({ isDark }: { isDark?: boolean }) => {
               className={cn(
                 "rounded-3xl p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 transition-all border",
                 call.special 
-                  ? (isDark ? "bg-slate-800 border-slate-700" : "bg-white border-gray-200 shadow-sm")
-                  : (isDark ? "bg-slate-900/50 border-slate-800" : "bg-gray-50 border-gray-100")
+                  ? "bg-white border-gray-200 shadow-sm"
+                  : "bg-gray-50 border-gray-100"
               )}
             >
               {/* Left Column */}
               <div className="flex flex-col gap-4 flex-grow w-full md:w-auto">
                 <div className="flex items-center gap-4 flex-wrap">
-                  <span className={cn("text-xl font-bold", isDark ? "text-white" : "text-text-dark")}>
+                  <span className="text-xl font-bold text-text-dark">
                     {call.number}
                   </span>
-                  <button className={cn(
-                    "flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-colors",
-                    isDark ? "bg-slate-700 text-slate-300 hover:bg-slate-600" : "bg-gray-200 text-text-dark hover:bg-gray-300"
-                  )}>
+                  <button className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-colors bg-gray-200 text-text-dark hover:bg-gray-300">
                     <Phone className="w-3 h-3" />
                     Call again
                   </button>
@@ -255,8 +223,12 @@ const ActivityView = ({ isDark }: { isDark?: boolean }) => {
 
                 <div className="flex items-center gap-2 text-sm">
                   <span className="text-text-light">From:</span>
-                  <span className="text-xl leading-none">{call.from.flag}</span>
-                  <span className={cn("font-semibold", isDark ? "text-slate-300" : "text-text-dark")}>
+                  <img 
+                    src={getFlagUrl(call.from.iso)} 
+                    alt={call.from.name}
+                    className="w-5 h-auto rounded-sm shadow-sm"
+                  />
+                  <span className="font-semibold text-text-dark">
                     {call.from.name} {call.from.number && <span className="text-text-light font-normal ml-1">({call.from.number})</span>}
                   </span>
                 </div>
@@ -273,8 +245,8 @@ const ActivityView = ({ isDark }: { isDark?: boolean }) => {
                   {call.status}
                 </span>
                 <div className="space-y-1">
-                  <p className="text-sm text-text-light">Duration: <span className={cn("font-bold", isDark ? "text-slate-300" : "text-text-dark")}>{call.duration}</span></p>
-                  <p className="text-sm text-text-light">Cost: <span className={cn("font-bold text-lg", isDark ? "text-primary-blue" : "text-primary-blue")}>{call.cost}</span></p>
+                  <p className="text-sm text-text-light">Duration: <span className="font-bold text-text-dark">{call.duration}</span></p>
+                  <p className="text-sm text-text-light">Cost: <span className="font-bold text-lg text-primary-blue">{call.cost}</span></p>
                 </div>
               </div>
             </div>
@@ -289,7 +261,7 @@ const ActivityView = ({ isDark }: { isDark?: boolean }) => {
   );
 };
 
-const BillingView = ({ isDark, balance, onTopUp }: { isDark?: boolean; balance: number; onTopUp: (amount: number) => void }) => {
+const BillingView = ({ balance, onTopUp }: { balance: number; onTopUp: (amount: number) => void }) => {
   const packages = [
     { amount: 5, bonus: null, popular: false },
     { amount: 10, bonus: null, popular: false },
@@ -300,36 +272,33 @@ const BillingView = ({ isDark, balance, onTopUp }: { isDark?: boolean; balance: 
   const [selected, setSelected] = useState(20);
 
   return (
-    <div className="flex-grow min-h-0 overflow-y-auto custom-scrollbar">
-      <div className="p-6 max-w-6xl mx-auto w-full py-12">
+    <div className="flex-grow min-h-0 overflow-y-auto no-scrollbar">
+      <div className="p-4 max-w-6xl mx-auto w-full py-8">
         <div className="grid md:grid-cols-[1.2fr_1fr] gap-12 items-start">
           
           {/* Left Pane: Credit Package */}
           <div className="space-y-8">
-            <div className={cn(
-              "rounded-3xl border p-6 sm:p-8 shadow-sm",
-              isDark ? "bg-slate-800 border-slate-700" : "bg-white border-gray-200"
-            )}>
+            <div className="bg-white border-gray-200 rounded-3xl border p-6 sm:p-8 shadow-sm">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-6">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center shrink-0">
                     <Calculator className="w-6 h-6 text-emerald-600" />
                   </div>
-                  <h1 className={cn("text-2xl font-bold", isDark ? "text-white" : "text-text-dark")}>Select Your Credit Package</h1>
+                  <h1 className="text-2xl font-bold text-text-dark">Select Your Credit Package</h1>
                 </div>
                 <div className="text-left sm:text-right">
-                  <p className={cn("text-xs uppercase tracking-widest font-bold opacity-60 mb-1", isDark ? "text-slate-400" : "text-text-light")}>Current Balance</p>
+                  <p className="text-xs uppercase tracking-widest font-bold opacity-60 mb-1 text-text-light">Current Balance</p>
                   <p className="text-2xl font-bold text-primary-blue">${balance.toFixed(2)}</p>
                 </div>
               </div>
               
-              <p className={cn("mb-8", isDark ? "text-slate-400" : "text-text-light")}>
+              <p className="mb-8 text-text-light">
                 Top up your credits to continue making international calls at our best rates.
               </p>
 
               <div className="space-y-6">
                 <div>
-                  <label className={cn("block text-sm font-bold mb-6", isDark ? "text-slate-300" : "text-text-dark")}>
+                  <label className="block text-sm font-bold mb-6 text-text-dark">
                     Select Top-up Amount (USD)*
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
@@ -341,9 +310,7 @@ const BillingView = ({ isDark, balance, onTopUp }: { isDark?: boolean; balance: 
                           "relative h-24 rounded-2xl border-2 transition-all flex flex-col items-center justify-center",
                           selected === pkg.amount
                             ? "bg-emerald-50 border-emerald-500 text-emerald-700"
-                            : isDark 
-                              ? "bg-slate-800 border-slate-700 text-slate-400 hover:border-slate-600" 
-                              : "bg-white border-gray-100 hover:border-gray-200 text-text-dark",
+                            : "bg-white border-gray-100 hover:border-gray-200 text-text-dark",
                           pkg.popular && "border-emerald-500 ring-1 ring-emerald-500/20"
                         )}
                       >
@@ -363,17 +330,14 @@ const BillingView = ({ isDark, balance, onTopUp }: { isDark?: boolean; balance: 
                   </div>
                 </div>
 
-                <div className={cn(
-                  "flex items-center justify-between p-4 rounded-2xl border",
-                  isDark ? "bg-slate-900/50 border-slate-800" : "bg-gray-50 border-gray-100"
-                )}>
+                <div className="flex items-center justify-between p-4 rounded-2xl border bg-gray-50 border-gray-100">
                   <div className="flex items-center gap-3">
                     <input 
                       type="checkbox" 
                       id="auto-topup-dialer"
                       className="w-5 h-5 rounded border-gray-300 text-primary-blue focus:ring-primary-blue"
                     />
-                    <label htmlFor="auto-topup-dialer" className={cn("text-sm font-bold", isDark ? "text-slate-300" : "text-text-dark")}>
+                    <label htmlFor="auto-topup-dialer" className="text-sm font-bold text-text-dark">
                       Enable Auto Top-up
                     </label>
                     <span className="hidden md:inline-flex px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-bold uppercase tracking-wider">
@@ -386,12 +350,9 @@ const BillingView = ({ isDark, balance, onTopUp }: { isDark?: boolean; balance: 
           </div>
 
           {/* Right Pane: Payment Form */}
-          <div className={cn(
-            "rounded-3xl border p-6 sm:p-8 shadow-lg",
-            isDark ? "bg-slate-800 border-slate-700" : "bg-white border-gray-200"
-          )}>
+          <div className="bg-white border-gray-200 rounded-3xl border p-6 sm:p-8 shadow-lg">
             <div className="mb-8">
-              <h2 className={cn("text-[17px] font-bold mb-2", isDark ? "text-white" : "text-text-dark")}>Payment Detail</h2>
+              <h2 className="text-[17px] font-bold mb-2 text-text-dark">Payment Detail</h2>
               <p className="text-sm text-text-light">Complete your purchase by filling your payment detail</p>
             </div>
 
@@ -401,10 +362,7 @@ const BillingView = ({ isDark, balance, onTopUp }: { isDark?: boolean; balance: 
                 <label className="block text-xs font-bold text-text-medium uppercase tracking-wider mb-2">Email address</label>
                 <input 
                   type="email" 
-                  className={cn(
-                    "w-full px-4 py-3 rounded-xl border outline-none transition-all",
-                    isDark ? "bg-slate-900 border-slate-700 focus:border-primary-blue text-white" : "bg-white border-gray-200 focus:border-primary-blue"
-                  )}
+                  className="w-full px-4 py-3 rounded-xl border outline-none transition-all bg-white border-gray-200 focus:border-primary-blue"
                   placeholder="hello@squareui.com"
                 />
               </div>
@@ -414,10 +372,7 @@ const BillingView = ({ isDark, balance, onTopUp }: { isDark?: boolean; balance: 
                 <div className="relative">
                   <input 
                     type="text" 
-                    className={cn(
-                      "w-full px-4 py-3 rounded-xl border outline-none transition-all",
-                      isDark ? "bg-slate-900 border-slate-700 focus:border-primary-blue text-white" : "bg-white border-gray-200 focus:border-primary-blue"
-                    )}
+                    className="w-full px-4 py-3 rounded-xl border outline-none transition-all bg-white border-gray-200 focus:border-primary-blue"
                     placeholder="42 35 65 64 67"
                   />
                   <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
@@ -431,10 +386,7 @@ const BillingView = ({ isDark, balance, onTopUp }: { isDark?: boolean; balance: 
                   <label className="block text-xs font-bold text-text-medium uppercase tracking-wider mb-2">Expiration Date</label>
                   <input 
                     type="text" 
-                    className={cn(
-                      "w-full px-4 py-3 rounded-xl border outline-none transition-all",
-                      isDark ? "bg-slate-900 border-slate-700 focus:border-primary-blue text-white" : "bg-white border-gray-200 focus:border-primary-blue"
-                    )}
+                    className="w-full px-4 py-3 rounded-xl border outline-none transition-all bg-white border-gray-200 focus:border-primary-blue"
                     placeholder="MM / YY"
                   />
                 </div>
@@ -444,10 +396,7 @@ const BillingView = ({ isDark, balance, onTopUp }: { isDark?: boolean; balance: 
                   </label>
                   <input 
                     type="text" 
-                    className={cn(
-                      "w-full px-4 py-3 rounded-xl border outline-none transition-all",
-                      isDark ? "bg-slate-900 border-slate-700 focus:border-primary-blue text-white" : "bg-white border-gray-200 focus:border-primary-blue"
-                    )}
+                    className="w-full px-4 py-3 rounded-xl border outline-none transition-all bg-white border-gray-200 focus:border-primary-blue"
                     placeholder="CVC"
                   />
                 </div>
@@ -457,10 +406,7 @@ const BillingView = ({ isDark, balance, onTopUp }: { isDark?: boolean; balance: 
                 <label className="block text-xs font-bold text-text-medium uppercase tracking-wider mb-2">Cardholder Name</label>
                 <input 
                   type="text" 
-                  className={cn(
-                    "w-full px-4 py-3 rounded-xl border outline-none transition-all",
-                    isDark ? "bg-slate-900 border-slate-700 focus:border-primary-blue text-white" : "bg-white border-gray-200 focus:border-primary-blue"
-                  )}
+                  className="w-full px-4 py-3 rounded-xl border outline-none transition-all bg-white border-gray-200 focus:border-primary-blue"
                   placeholder="William Ashford"
                 />
               </div>
@@ -468,10 +414,7 @@ const BillingView = ({ isDark, balance, onTopUp }: { isDark?: boolean; balance: 
               <div className="pt-4">
                 <label className="block text-xs font-bold text-text-medium uppercase tracking-wider mb-4">Billing Address</label>
                 <div className="space-y-3">
-                  <select className={cn(
-                    "w-full px-4 py-3 rounded-xl border outline-none transition-all",
-                    isDark ? "bg-slate-900 border-slate-700 focus:border-primary-blue text-white" : "bg-white border-gray-200 focus:border-primary-blue"
-                  )}>
+                  <select className="w-full px-4 py-3 rounded-xl border outline-none transition-all bg-white border-gray-200 focus:border-primary-blue">
                     <option>United States</option>
                     <option>United Kingdom</option>
                     <option>Canada</option>
@@ -479,18 +422,12 @@ const BillingView = ({ isDark, balance, onTopUp }: { isDark?: boolean; balance: 
                   <div className="grid grid-cols-2 gap-3">
                     <input 
                       type="text" 
-                      className={cn(
-                        "w-full px-4 py-3 rounded-xl border outline-none transition-all",
-                        isDark ? "bg-slate-900 border-slate-700 focus:border-primary-blue text-white" : "bg-white border-gray-200 focus:border-primary-blue"
-                      )}
+                      className="w-full px-4 py-3 rounded-xl border outline-none transition-all bg-white border-gray-200 focus:border-primary-blue"
                       placeholder="Zip code"
                     />
                     <input 
                       type="text" 
-                      className={cn(
-                        "w-full px-4 py-3 rounded-xl border outline-none transition-all",
-                        isDark ? "bg-slate-900 border-slate-700 focus:border-primary-blue text-white" : "bg-white border-gray-200 focus:border-primary-blue"
-                      )}
+                      className="w-full px-4 py-3 rounded-xl border outline-none transition-all bg-white border-gray-200 focus:border-primary-blue"
                       placeholder="City"
                     />
                   </div>
@@ -498,9 +435,9 @@ const BillingView = ({ isDark, balance, onTopUp }: { isDark?: boolean; balance: 
               </div>
 
               {/* Summary */}
-              <div className={cn("pt-8 border-t border-dashed space-y-3", isDark ? "border-slate-700" : "border-gray-200")}>
+              <div className="pt-8 border-t border-dashed space-y-3 border-gray-200">
                 <div className="flex justify-between text-lg pt-2">
-                  <span className={cn("font-bold", isDark ? "text-white" : "text-text-dark")}>Total</span>
+                  <span className="font-bold text-text-dark">Total</span>
                   <span className="font-bold text-primary-blue">${selected}.00</span>
                 </div>
               </div>
@@ -529,51 +466,55 @@ const BillingView = ({ isDark, balance, onTopUp }: { isDark?: boolean; balance: 
   );
 };
 
-const BuyNumberView = ({ isDark }: { isDark?: boolean }) => {
+const BuyNumberView = () => {
   const numbers = [
-    { number: '+1 (234) 995-958', country: 'United States', code: 'US', flag: '🇺🇸', isPrimary: true },
-    { number: '+1 (234) 995-959', country: 'United States', code: 'US', flag: '🇺🇸', isPrimary: false },
-    { number: '+1 (234) 995-960', country: 'United States', code: 'US', flag: '🇺🇸', isPrimary: false },
-    { number: '+1 (416) 555-0987', country: 'Canada', code: 'CA', flag: '🇨🇦', isPrimary: false },
-    { number: '+1 (604) 555-0111', country: 'Canada', code: 'CA', flag: '🇨🇦', isPrimary: false },
-    { number: '+1 (514) 555-0222', country: 'Canada', code: 'CA', flag: '🇨🇦', isPrimary: false },
-    { number: '+1 (780) 555-0333', country: 'Canada', code: 'CA', flag: '🇨🇦', isPrimary: false },
-    { number: '+1 (902) 555-0444', country: 'Canada', code: 'CA', flag: '🇨🇦', isPrimary: false },
-    { number: '+1 (204) 555-0555', country: 'Canada', code: 'CA', flag: '🇨🇦', isPrimary: false },
-    { number: '+1 (306) 555-0666', country: 'Canada', code: 'CA', flag: '🇨🇦', isPrimary: false },
-    { number: '+1 (250) 555-0777', country: 'Canada', code: 'CA', flag: '🇨🇦', isPrimary: false },
-    { number: '+1 (819) 555-0888', country: 'Canada', code: 'CA', flag: '🇨🇦', isPrimary: false },
-    { number: '+1 (705) 555-0999', country: 'Canada', code: 'CA', flag: '🇨🇦', isPrimary: false },
-    { number: '+1 (403) 555-0123', country: 'Canada', code: 'CA', flag: '🇨🇦', isPrimary: false },
-    { number: '+1 (506) 555-0456', country: 'Canada', code: 'CA', flag: '🇨🇦', isPrimary: false },
-    { number: '+1 (709) 555-0789', country: 'Canada', code: 'CA', flag: '🇨🇦', isPrimary: false },
-    { number: '+1 (867) 555-0000', country: 'Canada', code: 'CA', flag: '🇨🇦', isPrimary: false },
-    { number: '+1 (212) 555-0198', country: 'United States', code: 'US', flag: '🇺🇸', isPrimary: false },
-    { number: '+44 20 7946 0123', country: 'United Kingdom', code: 'GB', flag: '🇬🇧', isPrimary: false },
-    { number: '+44 161 123 4567', country: 'United Kingdom', code: 'GB', flag: '🇬🇧', isPrimary: false },
-    { number: '+49 30 123456', country: 'Germany', code: 'DE', flag: '🇩🇪', isPrimary: false },
-    { number: '+33 1 42 68 53 00', country: 'France', code: 'FR', flag: '🇫🇷', isPrimary: false },
-    { number: '+34 91 123 4567', country: 'Spain', code: 'ES', flag: '🇪🇸', isPrimary: false },
-    { number: '+39 06 1234 5678', country: 'Italy', code: 'IT', flag: '🇮🇹', isPrimary: false },
-    { number: '+81 3 1234 5678', country: 'Japan', code: 'JP', flag: '🇯🇵', isPrimary: false },
-    { number: '+61 2 9876 5432', country: 'Australia', code: 'AU', flag: '🇦🇺', isPrimary: false },
+    { number: '+1 (234) 995-958', country: 'United States', code: 'US', isPrimary: true },
+    { number: '+1 (234) 995-959', country: 'United States', code: 'US', isPrimary: false },
+    { number: '+1 (234) 995-960', country: 'United States', code: 'US', isPrimary: false },
+    { number: '+1 (416) 555-0987', country: 'Canada', code: 'CA', isPrimary: false },
+    { number: '+1 (604) 555-0111', country: 'Canada', code: 'CA', isPrimary: false },
+    { number: '+1 (514) 555-0222', country: 'Canada', code: 'CA', isPrimary: false },
+    { number: '+1 (780) 555-0333', country: 'Canada', code: 'CA', isPrimary: false },
+    { number: '+1 (902) 555-0444', country: 'Canada', code: 'CA', isPrimary: false },
+    { number: '+1 (204) 555-0555', country: 'Canada', code: 'CA', isPrimary: false },
+    { number: '+1 (306) 555-0666', country: 'Canada', code: 'CA', isPrimary: false },
+    { number: '+1 (250) 555-0777', country: 'Canada', code: 'CA', isPrimary: false },
+    { number: '+1 (819) 555-0888', country: 'Canada', code: 'CA', isPrimary: false },
+    { number: '+1 (705) 555-0999', country: 'Canada', code: 'CA', isPrimary: false },
+    { number: '+1 (403) 555-0123', country: 'Canada', code: 'CA', isPrimary: false },
+    { number: '+1 (506) 555-0456', country: 'Canada', code: 'CA', isPrimary: false },
+    { number: '+1 (709) 555-0789', country: 'Canada', code: 'CA', isPrimary: false },
+    { number: '+1 (867) 555-0000', country: 'Canada', code: 'CA', isPrimary: false },
+    { number: '+1 (212) 555-0198', country: 'United States', code: 'US', isPrimary: false },
+    { number: '+44 20 7946 0123', country: 'United Kingdom', code: 'GB', isPrimary: false },
+    { number: '+44 161 123 4567', country: 'United Kingdom', code: 'GB', isPrimary: false },
+    { number: '+49 30 123456', country: 'Germany', code: 'DE', isPrimary: false },
+    { number: '+33 1 42 68 53 00', country: 'France', code: 'FR', isPrimary: false },
+    { number: '+34 91 123 4567', country: 'Spain', code: 'ES', isPrimary: false },
+    { number: '+39 06 1234 5678', country: 'Italy', code: 'IT', isPrimary: false },
+    { number: '+81 3 1234 5678', country: 'Japan', code: 'JP', isPrimary: false },
+    { number: '+61 2 9876 5432', country: 'Australia', code: 'AU', isPrimary: false },
   ];
 
   return (
-    <div className="flex-grow flex flex-col min-h-0 overflow-y-auto custom-scrollbar">
-      <div className="p-6 max-w-6xl mx-auto w-full py-12 flex-grow flex flex-col">
+    <div className="flex-grow flex flex-col min-h-0 overflow-y-auto no-scrollbar">
+      <div className="p-4 max-w-6xl mx-auto w-full py-8 flex-grow flex flex-col">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-12">
           <div>
-            <h2 className={cn("text-[27px] font-bold mb-2", isDark ? "text-white" : "text-text-dark")}>Buy a Number</h2>
+            <h2 className="text-[27px] font-bold mb-2 text-text-dark">Buy a Number</h2>
             <p className="text-text-light">Get a virtual number for your business communications.</p>
           </div>
-          <div className={cn("px-6 py-3 rounded-2xl border flex items-center gap-4 cursor-pointer hover:border-primary-blue transition-all group w-full md:w-auto", isDark ? "bg-slate-800 border-slate-700" : "bg-white border-border-gray shadow-sm")}>
+          <div className="px-6 py-3 rounded-2xl border flex items-center gap-4 cursor-pointer hover:border-primary-blue transition-all group w-full md:w-auto bg-white border-border-gray shadow-sm">
             <div className="flex items-center gap-3">
-              <span className="text-xl grayscale group-hover:grayscale-0 transition-all">🇺🇸</span>
+              <img 
+                src={getFlagUrl('us')} 
+                alt="US" 
+                className="w-5 h-auto rounded-sm grayscale group-hover:grayscale-0 transition-all" 
+              />
               <div>
                 <p className="text-[10px] font-bold uppercase tracking-widest text-text-light">Primary No</p>
                 <div className="flex items-center gap-2">
-                  <p className={cn("font-mono font-bold", isDark ? "text-white" : "text-text-dark")}>+1 234 995 958</p>
+                  <p className="font-mono font-bold text-text-dark">+1 234 995 958</p>
                   <ChevronDown className="w-3.5 h-3.5 text-text-light group-hover:text-primary-blue transition-colors" />
                 </div>
               </div>
@@ -587,8 +528,7 @@ const BuyNumberView = ({ isDark }: { isDark?: boolean }) => {
             type="text" 
             placeholder="Search area code or city"
             className={cn(
-              "w-full pl-12 pr-4 py-4 rounded-2xl border-none focus:ring-2 focus:ring-primary-blue/20 transition-all shadow-sm",
-              isDark ? "bg-slate-800 text-white" : "bg-soft-gray text-text-dark"
+              "w-full pl-12 pr-4 py-4 rounded-2xl border-none focus:ring-2 focus:ring-primary-blue/20 transition-all shadow-sm bg-soft-gray text-text-dark"
             )}
           />
         </div>
@@ -598,8 +538,7 @@ const BuyNumberView = ({ isDark }: { isDark?: boolean }) => {
             <div 
               key={idx} 
               className={cn(
-                "rounded-2xl p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 transition-all border w-full group hover:shadow-md",
-                isDark ? "bg-slate-800 border-slate-700" : "bg-white border-gray-200"
+                "rounded-2xl p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 transition-all border w-full group hover:shadow-md bg-white border-gray-200"
               )}
             >
               {/* Left Section */}
@@ -610,10 +549,16 @@ const BuyNumberView = ({ isDark }: { isDark?: boolean }) => {
                       <Plus className="w-4 h-4 text-primary-blue" />
                     </div>
                   )}
-                  <span className={cn("text-2xl font-bold tracking-tight", isDark ? "text-white" : "text-text-dark")}>
+                  <span className="text-2xl font-bold tracking-tight text-text-dark">
                     {item.number}
                   </span>
-                  {item.isPrimary && <span className="text-2xl">{item.flag}</span>}
+                  {item.isPrimary && (
+                    <img 
+                      src={getFlagUrl(item.code)} 
+                      alt={item.country}
+                      className="w-6 h-auto rounded-sm shadow-sm"
+                    />
+                  )}
                 </div>
                 
                 <div className="flex items-center gap-6 text-sm text-gray-500 flex-wrap">
@@ -629,7 +574,7 @@ const BuyNumberView = ({ isDark }: { isDark?: boolean }) => {
 
                 <div className="flex items-center gap-2 text-sm">
                   <span className="text-gray-500">From:</span>
-                  <span className={cn("font-bold", isDark ? "text-slate-300" : "text-text-dark")}>
+                  <span className="font-bold text-text-dark">
                     {item.code} {item.country}
                   </span>
                 </div>
@@ -684,39 +629,14 @@ export default function DialerApp({ onBack }: DialerAppProps) {
   const [isCalling, setIsCalling] = useState(false);
   const [callDuration, setCallDuration] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return document.documentElement.classList.contains('dark') || localStorage.getItem('theme') === 'dark';
-    }
-    return false;
-  });
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showPrimaryNoMenu, setShowPrimaryNoMenu] = useState(false);
+  const [creditMessage, setCreditMessage] = useState<string | null>(null);
 
-  // Sync dark mode with document class
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [isDarkMode]);
-
-  // Listen for external theme changes (e.g. from Navbar)
-  useEffect(() => {
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.attributeName === 'class') {
-          const isDark = document.documentElement.classList.contains('dark');
-          setIsDarkMode(isDark);
-        }
-      });
-    });
-
-    observer.observe(document.documentElement, { attributes: true });
-    return () => observer.disconnect();
-  }, []);
+  // Handle Primary No Click
+  const handlePrimaryNoClick = () => {
+    setDialedNumber('+1 234 995 958');
+  };
 
   const callInterval = useRef<NodeJS.Timeout | null>(null);
 
@@ -753,6 +673,11 @@ export default function DialerApp({ onBack }: DialerAppProps) {
   };
 
   const toggleCall = () => {
+    if (balance <= 0) {
+      setCreditMessage("Insufficient funds. Please add credit.");
+      setTimeout(() => setCreditMessage(null), 3000);
+      return;
+    }
     if (dialedNumber.length > 0) {
       setIsCalling(!isCalling);
     }
@@ -780,12 +705,12 @@ export default function DialerApp({ onBack }: DialerAppProps) {
   return (
     <div className={cn(
       "fixed inset-0 z-[100] flex flex-col font-sans transition-colors duration-300",
-      isDarkMode ? "bg-slate-900 text-white" : "bg-white text-text-dark"
+      "bg-bg-main text-text-dark"
     )}>
       {/* Landing Page Style Navbar */}
       <nav className={cn(
         "w-full border-b px-6 py-4 transition-colors",
-          isDarkMode ? "bg-slate-900/80 border-slate-800" : "bg-white/80 border-border-gray",
+          "bg-white/80 border-border-gray",
           "backdrop-blur-lg sticky top-0 z-50"
         )}>
           <div className="max-w-6xl mx-auto flex items-center justify-between">
@@ -794,7 +719,7 @@ export default function DialerApp({ onBack }: DialerAppProps) {
               <div className="w-8 h-8 bg-primary-blue rounded-full flex items-center justify-center">
                 <Phone className="text-white w-4 h-4 fill-current" />
               </div>
-              <span className={cn("brand-litefon text-text-dark", isDarkMode ? "text-white" : "text-text-dark")}>
+              <span className="brand-litefon text-text-dark">
                 Litefon
               </span>
             </div>
@@ -809,7 +734,7 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                     "px-4 py-2 rounded-2xl transition-all flex items-center gap-2",
                     activeTab === link.id 
                       ? "bg-primary-blue/10 text-primary-blue" 
-                      : isDarkMode ? "text-slate-400 hover:text-white hover:bg-slate-800" : "text-text-light hover:text-text-dark hover:bg-soft-gray"
+                      : "text-text-light hover:text-text-dark hover:bg-soft-gray"
                   )}
                 >
                   <span className="text-sm font-medium capitalize">{link.name}</span>
@@ -821,12 +746,7 @@ export default function DialerApp({ onBack }: DialerAppProps) {
             <div className="hidden md:flex items-center gap-4">
               <button 
                 onClick={onBack}
-                className={cn(
-                  "flex items-center gap-2 text-sm font-semibold px-5 py-2.5 border rounded-full transition-all",
-                  isDarkMode 
-                    ? "border-slate-700 bg-slate-800 text-white hover:bg-slate-700" 
-                    : "border-border-gray bg-white text-text-medium hover:text-text-dark"
-                )}
+                className="flex items-center gap-2 text-sm font-semibold px-5 py-2.5 border rounded-full transition-all border-border-gray bg-white text-text-medium hover:text-text-dark"
               >
                 <LogOut className="w-4 h-4" />
                 Sign Out
@@ -835,7 +755,7 @@ export default function DialerApp({ onBack }: DialerAppProps) {
 
             {/* Mobile Toggle */}
             <button 
-              className={cn("md:hidden", isDarkMode ? "text-white" : "text-text-dark")}
+              className="md:hidden text-text-dark"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <X /> : <Menu />}
@@ -850,8 +770,7 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
                 className={cn(
-                  "md:hidden overflow-y-auto max-h-[80vh] mt-4 custom-scrollbar",
-                  isDarkMode ? "bg-slate-900 border-t border-slate-800" : "bg-white border-t border-border-gray"
+                  "md:hidden overflow-y-auto max-h-[80vh] mt-4 no-scrollbar bg-white border-t border-border-gray"
                 )}
               >
                 <div className="flex flex-col py-6 gap-6">
@@ -866,7 +785,7 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                         "flex items-center gap-2 text-lg font-medium text-left p-2 rounded-xl transition-all",
                         activeTab === link.id 
                           ? "text-primary-blue font-bold bg-primary-blue/5" 
-                          : isDarkMode ? "text-slate-400" : "text-text-light"
+                          : "text-text-light"
                       )}
                     >
                       <span className="capitalize">{link.name}</span>
@@ -874,12 +793,7 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                   ))}
                   <button 
                     onClick={onBack}
-                    className={cn(
-                      "flex items-center justify-center gap-2 text-lg font-semibold py-4 border rounded-2xl transition-all",
-                      isDarkMode 
-                        ? "border-slate-700 bg-slate-800 text-white" 
-                        : "border-border-gray bg-white text-text-dark"
-                    )}
+                    className="flex items-center justify-center gap-2 text-lg font-semibold py-4 border rounded-2xl transition-all border-border-gray bg-white text-text-dark"
                   >
                     <LogOut className="w-5 h-5" />
                     Sign Out
@@ -891,86 +805,123 @@ export default function DialerApp({ onBack }: DialerAppProps) {
         </nav>
       <div className={cn(
         "flex-grow flex flex-col overflow-hidden relative w-full",
-        isDarkMode ? "bg-slate-900" : "bg-white"
+        "bg-bg-main"
       )}>
         {/* Balance Header (Compact) - Only show on Dialpad */}
         {activeTab === 'dialpad' && (
           <div className={cn(
-            "px-6 py-6 flex items-center justify-between border-b transition-colors max-w-md mx-auto w-full relative",
-            isDarkMode ? "bg-slate-900 border-slate-800" : "bg-white border-border-gray"
+            "px-4 sm:px-6 py-3 flex items-center justify-between border transition-colors max-w-md mx-auto w-full relative mt-2 rounded-2xl shadow-sm",
+            "bg-white border-border-gray"
           )}>
             {/* Left: Country Selector */}
             <button 
               onClick={() => setIsCountryMenuOpen(true)}
               className={cn(
-                "flex items-center gap-2 px-4 py-2 border rounded-full text-xs font-bold hover:border-primary-blue transition-all z-10",
-                isDarkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-soft-gray border-border-gray text-text-dark"
+                "flex items-center gap-1.5 px-3 py-1.5 border rounded-full text-[11px] font-bold hover:border-primary-blue transition-all z-10",
+                "bg-soft-gray border-border-gray text-text-dark"
               )}
             >
-              <span>{selectedCountry.flag}</span>
+              <img 
+                src={getFlagUrl(selectedCountry.iso)}
+                alt={selectedCountry.name}
+                className="w-4 h-auto rounded-sm shadow-sm"
+              />
               <span>{selectedCountry.code}</span>
               <ChevronDown className="w-3 h-3 text-text-light" />
             </button>
 
             {/* Center: Vertical Stack (Name + Rate) */}
             <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none">
-              <span className={cn("text-xs font-medium", isDarkMode ? "text-white" : "text-text-dark")}>
+              <span className="text-xs font-medium text-text-dark">
                 {selectedCountry.name}
               </span>
-              <span className={cn("text-[10px] font-normal", isDarkMode ? "text-slate-400" : "text-text-light")}>
+              <span className="text-[10px] font-normal text-text-light">
                 ${selectedCountry.rate.toFixed(2)}/min
               </span>
             </div>
             
             {/* Right: Balance */}
             <div className={cn(
-              "flex items-center gap-2 px-4 py-2 border rounded-full transition-all z-10",
-              isDarkMode 
-                ? "border-slate-700 bg-slate-800 text-white" 
-                : "border-border-gray bg-white text-text-medium"
+              "flex items-center gap-1.5 px-3 py-1.5 border rounded-full transition-all z-10",
+                "border-border-gray bg-white text-text-medium"
             )}>
-              <Wallet className="w-4 h-4 text-primary-blue" />
-              <span className="text-xs font-bold">${balance.toFixed(2)}</span>
+              <Wallet className="w-3.5 h-3.5 text-primary-blue" />
+              <span className="text-[11px] font-bold">${balance.toFixed(2)}</span>
             </div>
           </div>
         )}
 
+
+
         <div className="flex-grow flex flex-col overflow-hidden relative">
           <AnimatePresence mode="wait">
-            {activeTab === 'history' && (
-              <motion.div key="history" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex-grow flex flex-col min-h-0">
-                <ActivityView isDark={isDarkMode} />
-              </motion.div>
-            )}
-            {activeTab === 'billing' && (
-              <motion.div key="billing" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex-grow flex flex-col min-h-0">
-                <BillingView 
-                  isDark={isDarkMode} 
-                  balance={balance} 
-                  onTopUp={(amt) => setBalance(prev => prev + amt)} 
-                />
-              </motion.div>
-            )}
-            {activeTab === 'buy' && <motion.div key="buy" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex-grow flex flex-col min-h-0"><BuyNumberView isDark={isDarkMode} /></motion.div>}
-            
             {activeTab === 'dialpad' && (
               <motion.div 
                 key="dialpad" 
                 initial={{ opacity: 0 }} 
                 animate={{ opacity: 1 }} 
                 exit={{ opacity: 0 }}
-                className="flex-grow flex flex-col p-6 pt-2 max-w-[447px] mx-auto w-full overflow-y-auto custom-scrollbar"
+                className="flex-grow flex flex-col p-4 pt-2 max-w-[447px] mx-auto w-full overflow-y-auto no-scrollbar"
               >
                 {/* Number Display */}
-                <div className="flex flex-col items-center mb-4 mt-6">
+                <div className="flex flex-col items-center justify-end min-h-[100px] mb-4 md:mb-4 mt-2">
                   <div className="w-full text-center">
                     <span className={cn(
-                      "text-[41px] font-bold tracking-tight break-all",
-                      isDarkMode ? "text-white" : "text-text-dark",
-                      dialedNumber.length > 10 ? "text-2xl" : "text-[41px]"
+                      "text-[32px] sm:text-[41px] font-bold tracking-tight break-all",
+                      "text-text-dark",
+                      dialedNumber.length > 10 ? "text-2xl sm:text-[32px]" : "text-[32px] sm:text-[41px]"
                     )}>
-                      {dialedNumber || ' '}
+                      {dialedNumber || ''}
                     </span>
+                  </div>
+                  <div className="flex justify-center mt-2 mb-2 relative">
+                    <button 
+                      onClick={() => setShowPrimaryNoMenu(!showPrimaryNoMenu)}
+                      className={cn(
+                        "flex items-center gap-1.5 px-3 py-1 rounded-full border shadow-sm cursor-pointer transition-colors active:scale-95",
+                        "bg-black/5 border-black/10 hover:bg-black/10"
+                      )}
+                    >
+                      <div className="relative flex items-center justify-center w-2 h-2">
+                        <div className="absolute inset-0 rounded-full animate-ping bg-primary-blue/40" />
+                        <div className="relative w-1.5 h-1.5 rounded-full shadow-sm bg-primary-blue" />
+                      </div>
+                      <span className="text-[10px] sm:text-xs font-semibold tracking-wide uppercase text-text-dark/80">
+                        Primary No
+                      </span>
+                      <ChevronDown className={cn("w-3 h-3 text-text-light transition-transform", showPrimaryNoMenu && "rotate-180")} />
+                    </button>
+
+                    <AnimatePresence>
+                      {showPrimaryNoMenu && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-48 bg-white border border-border-gray rounded-2xl shadow-xl overflow-hidden z-[60]"
+                        >
+                          <div className="p-3 border-b border-border-gray bg-soft-gray/30">
+                            <p className="text-[10px] font-bold uppercase tracking-widest text-text-light mb-1">Actual Number</p>
+                            <p className="text-sm font-mono font-bold text-text-dark">+1 234 995 958</p>
+                          </div>
+                          <button 
+                            onClick={() => {
+                              if (balance <= 0) {
+                                setCreditMessage("Insufficient funds. Please add credit.");
+                                setTimeout(() => setCreditMessage(null), 3000);
+                              } else {
+                                setActiveTab('buy');
+                              }
+                              setShowPrimaryNoMenu(false);
+                            }}
+                            className="w-full text-left p-3 hover:bg-soft-gray transition-colors flex items-center gap-2"
+                          >
+                            <Plus className="w-4 h-4 text-primary-blue" />
+                            <span className="text-sm font-semibold text-text-dark">Add Caller ID</span>
+                          </button>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 </div>
 
@@ -986,11 +937,11 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                       key={key.n}
                       onClick={() => handleKeyPress(key.n)}
                       className={cn(
-                        "w-[63px] h-[63px] rounded-full flex flex-col items-center justify-center active:scale-95 transition-all mx-auto",
-                        isDarkMode ? "bg-slate-800 hover:bg-slate-700" : "bg-soft-gray hover:bg-border-gray"
+                        "w-[60px] h-[60px] sm:w-[63px] sm:h-[63px] md:w-[54px] md:h-[54px] rounded-full flex flex-col items-center justify-center active:scale-95 transition-all mx-auto shadow-sm",
+                        "bg-white border border-border-gray hover:bg-soft-gray"
                       )}
                     >
-                      <span className={cn("text-[23px] font-bold leading-none", isDarkMode ? "text-white" : "text-text-dark")}>{key.n}</span>
+                      <span className="text-[20px] sm:text-[23px] md:text-[20px] font-bold leading-none text-text-dark">{key.n}</span>
                       <span className="text-[8px] font-bold text-text-light uppercase tracking-tighter mt-0.5">{key.l}</span>
                     </button>
                   ))}
@@ -1012,7 +963,7 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                     onClick={handleBackspace}
                     className={cn(
                       "absolute right-12 w-12 h-12 flex items-center justify-center transition-colors",
-                      isDarkMode ? "text-slate-500 hover:text-white" : "text-text-light hover:text-text-dark"
+                      "text-text-light hover:text-text-dark"
                     )}
                   >
                     <Delete className="w-6 h-6" />
@@ -1020,13 +971,12 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                 </div>
               </motion.div>
             )}
-            
-            {/* Rates View */}
+
             {activeTab === 'rates' && (
-              <motion.div key="rates" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex-grow min-h-0 overflow-y-auto custom-scrollbar">
-                <div className="p-6 max-w-6xl mx-auto w-full py-12">
+              <motion.div key="rates" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex-grow min-h-0 overflow-y-auto no-scrollbar">
+                <div className="p-4 max-w-6xl mx-auto w-full py-8">
                   <div className="mb-12">
-                    <h2 className={cn("text-[27px] font-bold mb-2", isDarkMode ? "text-white" : "text-text-dark")}>International Rates</h2>
+                    <h2 className="text-[27px] font-bold mb-2 text-text-dark">International Rates</h2>
                     <p className="text-text-light">Check our competitive rates for calling any country in the world.</p>
                   </div>
 
@@ -1041,7 +991,7 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                           onChange={(e) => setSearchQuery(e.target.value)}
                           className={cn(
                             "w-full pl-12 pr-4 py-4 rounded-2xl border-none focus:ring-2 focus:ring-primary-blue/20 transition-all shadow-sm",
-                            isDarkMode ? "bg-slate-800 text-white" : "bg-soft-gray text-text-dark"
+                            "bg-soft-gray text-text-dark"
                           )}
                         />
                       </div>
@@ -1052,16 +1002,20 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                             key={idx}
                             className={cn(
                               "rounded-2xl p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 transition-all border group hover:shadow-md",
-                              isDarkMode ? "bg-slate-800 border-slate-700" : "bg-white border-gray-200"
+                              "bg-white border-gray-200"
                             )}
                           >
                             <div className="flex flex-col gap-3">
                               <div className="flex items-center gap-4">
-                                <div className={cn("w-12 h-12 rounded-full flex items-center justify-center text-2xl", isDarkMode ? "bg-slate-700" : "bg-gray-100")}>
-                                  {c.flag}
+                                <div className="w-12 h-12 rounded-full overflow-hidden border border-gray-100 flex items-center justify-center bg-gray-50 p-1">
+                                  <img 
+                                    src={getFlagUrl(c.iso)}
+                                    alt={c.name}
+                                    className="w-full h-auto object-cover"
+                                  />
                                 </div>
                                 <div>
-                                  <h3 className={cn("text-xl font-bold", isDarkMode ? "text-white" : "text-text-dark")}>{c.name}</h3>
+                                  <h3 className="text-xl font-bold text-text-dark">{c.name}</h3>
                                   <p className="text-sm text-text-light">{c.code}</p>
                                 </div>
                               </div>
@@ -1089,7 +1043,7 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                                 onClick={() => setSelectedCountry(c)}
                                 className={cn(
                                   "px-6 py-2 rounded-lg font-bold transition-all",
-                                  isDarkMode ? "bg-slate-700 text-white hover:bg-slate-600" : "bg-gray-100 text-text-dark hover:bg-gray-200"
+                                  "bg-gray-100 text-text-dark hover:bg-gray-200"
                                 )}
                               >
                                 Calculate
@@ -1101,19 +1055,23 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                     </div>
 
                     <div className="space-y-8 sticky top-8">
-                      <div className={cn("p-8 rounded-3xl border shadow-lg", isDarkMode ? "bg-slate-800 border-slate-700" : "bg-white border-gray-200")}>
+                      <div className="p-8 rounded-3xl border shadow-lg bg-white border-gray-200">
                         <div className="flex items-center gap-3 mb-6">
                           <div className="w-10 h-10 rounded-xl bg-primary-blue/10 flex items-center justify-center">
                             <Calculator className="w-6 h-6 text-primary-blue" />
                           </div>
-                          <h3 className={cn("text-xl font-bold", isDarkMode ? "text-white" : "text-text-dark")}>Rate Calculator</h3>
+                          <h3 className="text-xl font-bold text-text-dark">Rate Calculator</h3>
                         </div>
                         <div className="space-y-6">
                           <div>
                             <label className="block text-xs font-bold text-text-light uppercase tracking-wider mb-2">Selected Country</label>
-                            <div className={cn("flex items-center gap-3 p-3 border rounded-xl", isDarkMode ? "bg-slate-900 border-slate-700" : "bg-gray-50 border-gray-100")}>
-                              <span className="text-2xl">{selectedCountry.flag}</span>
-                              <span className={cn("font-semibold", isDarkMode ? "text-white" : "text-text-dark")}>{selectedCountry.name}</span>
+                            <div className="flex items-center gap-3 p-3 border rounded-xl bg-gray-50 border-gray-100">
+                              <img 
+                                src={getFlagUrl(selectedCountry.iso)}
+                                alt={selectedCountry.name}
+                                className="w-6 h-auto rounded-sm shadow-sm"
+                              />
+                              <span className="font-semibold text-text-dark">{selectedCountry.name}</span>
                             </div>
                           </div>
                           <div>
@@ -1122,10 +1080,10 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                               type="number" 
                               value={minutes}
                               onChange={(e) => setMinutes(Number(e.target.value))}
-                              className={cn("w-full px-4 py-3 rounded-xl border outline-none transition-all", isDarkMode ? "bg-slate-900 border-slate-700 text-white focus:border-primary-blue" : "bg-white border-gray-200 focus:border-primary-blue")}
+                              className="w-full px-4 py-3 rounded-xl border outline-none transition-all bg-white border-gray-200 focus:border-primary-blue"
                             />
                           </div>
-                          <div className={cn("pt-6 border-t border-dashed", isDarkMode ? "border-slate-700" : "border-gray-100")}>
+                          <div className="pt-6 border-t border-dashed border-gray-100">
                             <div className="flex justify-between items-center mb-2">
                               <span className="text-text-light text-sm">Estimated Cost</span>
                               <span className="text-3xl font-bold text-primary-blue">
@@ -1139,8 +1097,8 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                         </div>
                       </div>
 
-                      <div className={cn("p-8 rounded-3xl border", isDarkMode ? "bg-slate-800 border-slate-700" : "bg-soft-gray border-gray-200")}>
-                        <h4 className={cn("font-bold mb-4", isDarkMode ? "text-white" : "text-text-dark")}>Need Help?</h4>
+                      <div className="p-8 rounded-3xl border bg-soft-gray border-gray-200">
+                        <h4 className="font-bold mb-4 text-text-dark">Need Help?</h4>
                         <p className="text-sm text-text-light mb-6">Our support team is available 24/7 to help you with any questions about our global rates.</p>
                         <button className="text-primary-blue font-bold text-sm flex items-center gap-2 hover:gap-3 transition-all">
                           Contact Support <ArrowRight className="w-4 h-4" />
@@ -1148,12 +1106,46 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                       </div>
                     </div>
                   </div>
-
-                  <div className="-mx-6 pt-12">
-                    <FAQSection />
-                    <Footer />
                   </div>
-                </div>
+              </motion.div>
+            )}
+
+            {activeTab === 'buy' && (
+              <motion.div 
+                key="buy" 
+                initial={{ opacity: 0 }} 
+                animate={{ opacity: 1 }} 
+                exit={{ opacity: 0 }} 
+                className="flex-grow flex flex-col min-h-0"
+              >
+                <BuyNumberView />
+              </motion.div>
+            )}
+
+            {activeTab === 'billing' && (
+              <motion.div 
+                key="billing" 
+                initial={{ opacity: 0 }} 
+                animate={{ opacity: 1 }} 
+                exit={{ opacity: 0 }} 
+                className="flex-grow flex flex-col min-h-0"
+              >
+                <BillingView 
+                  balance={balance} 
+                  onTopUp={(amt) => setBalance(prev => prev + amt)} 
+                />
+              </motion.div>
+            )}
+
+            {activeTab === 'history' && (
+              <motion.div 
+                key="history" 
+                initial={{ opacity: 0 }} 
+                animate={{ opacity: 1 }} 
+                exit={{ opacity: 0 }} 
+                className="flex-grow flex flex-col min-h-0"
+              >
+                <ActivityView />
               </motion.div>
             )}
           </AnimatePresence>
@@ -1168,7 +1160,7 @@ export default function DialerApp({ onBack }: DialerAppProps) {
               exit={{ opacity: 0, scale: 0.9 }}
               className={cn(
                 "absolute inset-0 z-[70] flex flex-col items-center justify-center p-12 text-center",
-                isDarkMode ? "bg-slate-900" : "bg-white"
+                "bg-white"
               )}
             >
               <div className="w-40 h-40 bg-emerald-500/10 rounded-full flex items-center justify-center mb-10 relative">
@@ -1180,7 +1172,7 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                 <Phone className="w-16 h-16 text-emerald-500 fill-current" />
               </div>
               
-              <h3 className={cn("text-4xl font-bold mb-3 tracking-tight", isDarkMode ? "text-white" : "text-text-dark")}>{dialedNumber}</h3>
+              <h3 className="text-4xl font-bold mb-3 tracking-tight text-text-dark">{dialedNumber}</h3>
               <p className="text-text-light mb-10 uppercase tracking-[0.2em] text-[10px] font-black">Calling {selectedCountry.name}...</p>
               
               <div className="text-5xl font-mono font-bold text-primary-blue mb-16 tabular-nums">
@@ -1213,14 +1205,14 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                 exit={{ y: '100%' }}
                 className={cn(
                   "w-full rounded-t-[2.5rem] p-6 max-h-[80%] overflow-hidden flex flex-col",
-                  isDarkMode ? "bg-slate-900" : "bg-white"
+                  "bg-white"
                 )}
                 onClick={e => e.stopPropagation()}
               >
                 <div className="flex items-center justify-between mb-6">
-                  <h3 className={cn("text-xl font-bold", isDarkMode ? "text-white" : "text-text-dark")}>Select Country</h3>
-                  <button onClick={() => setIsCountryMenuOpen(false)} className={cn("p-2 rounded-full", isDarkMode ? "bg-slate-800" : "bg-soft-gray")}>
-                    <X className={cn("w-5 h-5", isDarkMode ? "text-white" : "text-text-dark")} />
+                  <h3 className="text-xl font-bold text-text-dark">Select Country</h3>
+                  <button onClick={() => setIsCountryMenuOpen(false)} className="p-2 rounded-full bg-soft-gray">
+                    <X className="w-5 h-5 text-text-dark" />
                   </button>
                 </div>
 
@@ -1231,10 +1223,7 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                     placeholder="Search country or code"
                     value={searchQuery}
                     onChange={e => setSearchQuery(e.target.value)}
-                    className={cn(
-                      "w-full pl-12 pr-4 py-4 rounded-2xl border-none focus:ring-2 focus:ring-primary-blue/20 transition-all",
-                      isDarkMode ? "bg-slate-800 text-white" : "bg-soft-gray text-text-dark"
-                    )}
+                    className="w-full pl-12 pr-4 py-4 rounded-2xl border-none focus:ring-2 focus:ring-primary-blue/20 transition-all bg-soft-gray text-text-dark"
                   />
                 </div>
 
@@ -1249,13 +1238,17 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                       }}
                       className={cn(
                         "w-full flex items-center justify-between p-4 rounded-2xl transition-colors",
-                        isDarkMode ? "hover:bg-slate-800" : "hover:bg-soft-gray"
+                        "hover:bg-soft-gray"
                       )}
                     >
                       <div className="flex items-center gap-4">
-                        <span className="text-2xl">{country.flag}</span>
+                        <img 
+                          src={getFlagUrl(country.iso)}
+                          alt={country.name}
+                          className="w-6 h-auto rounded-sm shadow-sm"
+                        />
                         <div className="text-left">
-                          <p className={cn("font-bold", isDarkMode ? "text-white" : "text-text-dark")}>{country.name}</p>
+                          <p className="font-bold text-text-dark">{country.name}</p>
                           <p className="text-xs text-text-light">{country.code}</p>
                         </div>
                       </div>
@@ -1264,6 +1257,21 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                   ))}
                 </div>
               </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Credit Message Toast */}
+        <AnimatePresence>
+          {creditMessage && (
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 50 }}
+              className="absolute bottom-24 left-1/2 -translate-x-1/2 z-[80] bg-red-500 text-white px-6 py-3 rounded-full shadow-2xl font-bold flex items-center gap-2"
+            >
+              <Info className="w-5 h-5" />
+              {creditMessage}
             </motion.div>
           )}
         </AnimatePresence>

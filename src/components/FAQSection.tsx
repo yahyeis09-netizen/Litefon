@@ -13,15 +13,15 @@ interface FAQItemProps {
 
 function FAQItem({ question, answer, isOpen, onClick }: FAQItemProps) {
   return (
-    <div className="border border-black/10 dark:border-white/10 rounded-2xl overflow-hidden transition-all duration-300">
+    <div className="border border-black/10  rounded-2xl overflow-hidden transition-all duration-300">
       <button
         onClick={onClick}
-        className="w-full px-8 py-6 flex items-center justify-between text-left hover:bg-black/[0.02] dark:hover:bg-white/[0.02] transition-colors"
+        className="w-full px-5 py-5 sm:px-8 sm:py-6 flex items-center justify-between text-left hover:bg-black/[0.02] transition-colors"
       >
-        <span className="text-lg font-medium text-text-dark dark:text-white">{question}</span>
+        <span className="text-base sm:text-lg font-medium text-text-dark pr-4">{question}</span>
         <div className={cn(
           "w-6 h-6 rounded-full flex items-center justify-center transition-transform duration-300",
-          isOpen ? "rotate-180 bg-primary-blue text-white" : "bg-soft-gray dark:bg-zinc-800 text-text-light dark:text-zinc-400"
+          isOpen ? "rotate-180 bg-primary-blue text-white" : "bg-soft-gray  text-text-light "
         )}>
           {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
         </div>
@@ -34,7 +34,7 @@ function FAQItem({ question, answer, isOpen, onClick }: FAQItemProps) {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
-            <div className="px-8 pb-6 text-text-light dark:text-zinc-400 leading-relaxed">
+            <div className="px-5 pb-5 sm:px-8 sm:pb-6 text-text-light leading-relaxed">
               {answer}
             </div>
           </motion.div>
@@ -82,28 +82,28 @@ export default function FAQSection({ onContactClick }: FAQSectionProps) {
   ];
 
   return (
-    <section id="faq" className="py-24 bg-white dark:bg-bg-dark transition-colors duration-300">
-      <div className="max-w-3xl mx-auto px-6">
+    <section id="faq" className="py-16 md:py-24 bg-white transition-colors duration-300">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6">
         {/* 1. Header Area */}
         <div className="flex flex-col items-center text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10 shadow-sm mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white  border border-black/10  shadow-sm mb-6">
             <HelpCircle className="w-3.5 h-3.5 text-primary-blue" />
-            <span className="text-[10px] font-bold uppercase tracking-widest text-text-medium dark:text-zinc-400">Support</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-text-medium ">Support</span>
           </div>
           
           <h2 className="text-[27px] sm:text-[33px] md:text-[45px] tracking-tight mb-6">
-            <span className="block font-light text-text-light dark:text-zinc-400">Got Questions?</span>
-            <span className="block font-bold text-text-dark dark:text-white">Global Connectivity Explained</span>
+            <span className="block font-light text-text-light ">Got Questions?</span>
+            <span className="block font-bold text-text-dark ">Global Connectivity Explained</span>
           </h2>
           
-          <p className="text-text-light dark:text-zinc-400 max-w-md mx-auto leading-relaxed">
+          <p className="text-text-light  max-w-md mx-auto leading-relaxed">
             Everything you need to know about virtual SIMs, international numbers, and our global talking areas.
           </p>
         </div>
 
         {/* 2. Segmented Control / Tab Navigation */}
         <div className="flex justify-center mb-12">
-          <div className="inline-flex p-1.5 bg-soft-gray dark:bg-zinc-800 rounded-full border border-black/5 dark:border-white/5">
+          <div className="inline-flex p-1.5 bg-soft-gray  rounded-full border border-black/5 ">
             {tabs.map((tab, i) => (
               <button
                 key={tab}
@@ -111,8 +111,8 @@ export default function FAQSection({ onContactClick }: FAQSectionProps) {
                 className={cn(
                   "px-6 py-2 text-sm font-medium rounded-full transition-all duration-200",
                   activeTab === i 
-                    ? "bg-white dark:bg-zinc-700 text-text-dark dark:text-white shadow-sm" 
-                    : "text-text-light dark:text-zinc-400 hover:text-text-medium dark:hover:text-zinc-200"
+                    ? "bg-white  text-text-dark  shadow-sm" 
+                    : "text-text-light  hover:text-text-medium "
                 )}
               >
                 {tab}
@@ -135,16 +135,16 @@ export default function FAQSection({ onContactClick }: FAQSectionProps) {
         </div>
 
         {/* 4. Call-to-Action (CTA) Footer Card */}
-        <div className="bg-soft-gray dark:bg-zinc-800 rounded-[32px] p-8 md:p-12 border border-black/5 dark:border-white/5">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="flex flex-col text-center md:text-left">
-              <h3 className="text-2xl font-bold text-text-dark dark:text-white mb-2">Still have questions?</h3>
-              <p className="text-text-light dark:text-zinc-400">We're here to help you get started with your global communication.</p>
+        <div className="bg-soft-gray rounded-[24px] sm:rounded-[32px] p-6 sm:p-8 md:p-12 border border-black/5">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <div className="flex flex-col">
+              <h3 className="text-xl sm:text-2xl font-bold text-text-dark mb-2">Still have questions?</h3>
+              <p className="text-text-light">We're here to help you get started with your global communication.</p>
             </div>
             
             <button 
               onClick={onContactClick}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-primary-blue text-white rounded-full font-bold shadow-lg shadow-primary-blue/20 hover:bg-secondary-blue transition-all group whitespace-nowrap"
+              className="w-full md:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-blue text-white rounded-full font-bold shadow-lg shadow-primary-blue/20 hover:bg-secondary-blue transition-all group whitespace-nowrap"
             >
               <MessageCircle className="w-5 h-5" />
               Contact Support

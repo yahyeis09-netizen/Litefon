@@ -397,9 +397,9 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
   );
 
   return (
-    <div className="fixed inset-0 z-[100] flex flex-col bg-[#F9FAFB] font-sans overflow-hidden">
+    <div className="fixed inset-0 z-[100] flex flex-col bg-bg-main font-sans overflow-hidden">
       {/* Horizontal Navigation Bar */}
-      <header className="h-20 bg-white border-b border-slate-200 px-4 md:px-8 flex items-center justify-between shrink-0 z-50">
+      <header className="h-16 md:h-20 bg-white border-b border-slate-200 px-4 md:px-8 flex items-center justify-between shrink-0 z-50">
         <div className="flex items-center gap-4 md:gap-8">
           <div className="flex items-center gap-2 mr-2 md:mr-4">
             <div className="w-8 h-8 bg-[#3B82F6] rounded-lg flex items-center justify-center">
@@ -553,7 +553,7 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
       {/* Main Content */}
       <main className="flex-grow flex flex-col min-w-0 overflow-hidden">
         {/* Content Area */}
-        <div className="flex-grow p-8 overflow-y-auto custom-scrollbar">
+        <div className="flex-grow p-4 md:p-8 overflow-y-auto custom-scrollbar">
           <AnimatePresence mode="wait">
             {activeTab === 'team' && (
               <motion.div
@@ -563,25 +563,27 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
                 exit={{ opacity: 0, y: -10 }}
                 className="space-y-8"
               >
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-4">
                   <div>
-                    <h1 className="text-3xl font-bold text-slate-900 mb-2">Employee</h1>
-                    <p className="text-slate-500">Manage your team members, view roles and departments, and keep employee information up to date.</p>
+                    <h1 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">Employee</h1>
+                    <p className="text-xs md:text-sm text-slate-500">Manage your team members and roles.</p>
                   </div>
-                  <div className="flex items-center gap-4">
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
                     {/* Balance Widget */}
-                    <div className="relative">
+                    <div className="relative w-full sm:w-auto">
                       <button 
                         onClick={() => setIsBalanceMenuOpen(!isBalanceMenuOpen)}
                         className={cn(
-                          "flex items-center gap-3 px-4 py-2.5 rounded-xl border transition-all",
+                          "flex items-center justify-between sm:justify-center gap-3 w-full sm:w-auto px-4 py-2.5 rounded-xl border transition-all",
                           balance === 0 
                             ? "bg-red-50 border-red-200 text-red-600" 
                             : "bg-blue-50 border-blue-200 text-blue-600"
                         )}
                       >
-                        <Wallet className="w-5 h-5" />
-                        <span className="font-bold">${balance.toFixed(2)}</span>
+                        <div className="flex items-center gap-3">
+                          <Wallet className="w-5 h-5" />
+                          <span className="font-bold">${balance.toFixed(2)}</span>
+                        </div>
                         <ChevronDown className={cn("w-4 h-4 transition-transform", isBalanceMenuOpen && "rotate-180")} />
                       </button>
                       
@@ -591,7 +593,7 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 10 }}
-                            className="absolute right-0 mt-2 w-48 bg-white rounded-xl border border-slate-200 shadow-xl z-50 overflow-hidden"
+                            className="absolute sm:right-0 mt-2 w-full sm:w-48 bg-white rounded-xl border border-slate-200 shadow-xl z-50 overflow-hidden"
                           >
                             <button 
                               onClick={() => {
@@ -610,7 +612,7 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
 
                     <button 
                       onClick={() => setIsAddTeamMenuOpen(!isAddTeamMenuOpen)}
-                      className="relative flex items-center gap-2 px-6 py-2.5 bg-[#3B82F6] text-white rounded-xl font-bold hover:bg-[#2563EB] transition-all shadow-lg shadow-[#3B82F6]/20"
+                      className="relative flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-2.5 bg-[#3B82F6] text-white rounded-xl font-bold hover:bg-[#2563EB] transition-all shadow-lg shadow-[#3B82F6]/20"
                     >
                       <Plus className="w-5 h-5" />
                       Add team
@@ -629,7 +631,7 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
                             initial={{ opacity: 0, scale: 0.95, y: 10 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.95, y: 10 }}
-                            className="absolute top-full right-0 mt-2 w-48 bg-white rounded-xl border border-slate-200 shadow-xl z-50 overflow-hidden"
+                            className="absolute top-full sm:right-0 mt-2 w-full sm:w-48 bg-white rounded-xl border border-slate-200 shadow-xl z-50 overflow-hidden"
                           >
                             <button 
                               onClick={(e) => { e.stopPropagation(); fileInputRef.current?.click(); setIsAddTeamMenuOpen(false); }}
@@ -647,15 +649,15 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
 
                 <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
                   <div className="p-4 border-b border-slate-100 flex items-center justify-between">
-                    <div className="relative">
+                    <div className="relative w-full sm:w-auto">
                       <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                       <input 
-                        type="text" 
-                        placeholder="Search employees..." 
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-[#3B82F6] transition-all w-64"
-                      />
+                         type="text" 
+                         placeholder="Search..." 
+                         value={searchQuery}
+                         onChange={(e) => setSearchQuery(e.target.value)}
+                         className="pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-[#3B82F6] transition-all w-full md:w-64"
+                       />
                     </div>
                     <div className="flex items-center gap-2">
                       <button className="px-4 py-2 text-sm font-bold text-slate-600 border border-slate-200 rounded-xl hover:bg-slate-50 transition-all flex items-center gap-2">
@@ -730,20 +732,7 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
                     </table>
                   </div>
 
-                  <div className="p-4 bg-slate-50/50 flex items-center justify-between">
-                    <button className="px-4 py-2 text-sm font-bold text-slate-600 border border-slate-200 rounded-xl hover:bg-slate-50 transition-all">Previous</button>
-                    <div className="flex items-center gap-1">
-                      {[1, 2, 3, '...', 8, 9, 10].map((n, i) => (
-                        <button key={i} className={cn(
-                          "w-8 h-8 rounded-lg text-xs font-bold flex items-center justify-center transition-all",
-                          n === 1 ? "bg-[#3B82F6] text-white" : "text-slate-400 hover:bg-slate-100 hover:text-slate-600"
-                        )}>
-                          {n}
-                        </button>
-                      ))}
-                    </div>
-                    <button className="px-4 py-2 text-sm font-bold text-slate-600 border border-slate-200 rounded-xl hover:bg-slate-50 transition-all">Next</button>
-                  </div>
+
                 </div>
               </motion.div>
             )}

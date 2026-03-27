@@ -127,6 +127,8 @@ export default function App() {
     return <DialerApp onBack={() => setView('landing')} />;
   }
 
+
+
   if (view === 'enterprise') {
     return <EnterpriseCheckout onBack={() => setView('team')} onDialerClick={handleDialer} />;
   }
@@ -140,26 +142,26 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-bg-light dark:bg-slate-950 font-sans selection:bg-primary-blue/20 selection:text-primary-blue transition-colors duration-300">
+    <div className="min-h-screen flex flex-col bg-bg-main font-sans selection:bg-primary-blue/20 selection:text-primary-blue transition-colors duration-300">
       <Navbar 
         onAuthClick={handleAuth} 
         onContactClick={handleContact} 
         onBlogClick={handleBlog} 
-        onDialerClick={handleDialer} 
+        onDialerClick={() => setView('dialer')} 
         onRatesClick={handleRates}
         onTeamClick={handleTeam}
         isLoggedIn={isLoggedIn}
       />
       <main className="flex-grow">
         <Hero 
-          onDialerClick={handleDialer} 
+          onDialerClick={() => setView('dialer')} 
           onRatesClick={handleRates}
           onContactClick={handleContact}
         />
         <HowItWorks />
         <Features />
         <ComparisonSection />
-        <RateTableSection onDialerClick={handleDialer} />
+        <RateTableSection onDialerClick={() => setView('dialer')} />
         <CountryRates onRatesClick={handleRates} />
         <BuiltForBusiness onGetStarted={() => setView('team')} />
         <Testimonials onShowMoreClick={handleShowMoreReviews} />
@@ -168,7 +170,7 @@ export default function App() {
       </main>
       <Footer 
         onRatesClick={handleRates}
-        onDialerClick={handleDialer}
+        onDialerClick={() => setView('dialer')}
         onBlogClick={handleBlog}
         onContactClick={handleContact}
       />

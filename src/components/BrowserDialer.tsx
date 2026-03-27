@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Phone, History, Globe, DollarSign, Delete, X, ChevronDown, Trash2, Search } from 'lucide-react';
-import { cn } from '@/src/lib/utils';
+import { cn, getFlagUrl } from '@/src/lib/utils';
 
 interface CallRecord {
   id: string;
@@ -12,46 +12,46 @@ interface CallRecord {
 }
 
 const COUNTRIES = [
-  { code: 'US', name: 'United States', prefix: '+1', flag: '🇺🇸' },
-  { code: 'GB', name: 'United Kingdom', prefix: '+44', flag: '🇬🇧' },
-  { code: 'CA', name: 'Canada', prefix: '+1', flag: '🇨🇦' },
-  { code: 'AU', name: 'Australia', prefix: '+61', flag: '🇦🇺' },
-  { code: 'DE', name: 'Germany', prefix: '+49', flag: '🇩🇪' },
-  { code: 'FR', name: 'France', prefix: '+33', flag: '🇫🇷' },
-  { code: 'IN', name: 'India', prefix: '+91', flag: '🇮🇳' },
-  { code: 'JP', name: 'Japan', prefix: '+81', flag: '🇯🇵' },
-  { code: 'BR', name: 'Brazil', prefix: '+55', flag: '🇧🇷' },
-  { code: 'CN', name: 'China', prefix: '+86', flag: '🇨🇳' },
-  { code: 'IT', name: 'Italy', prefix: '+39', flag: '🇮🇹' },
-  { code: 'ES', name: 'Spain', prefix: '+34', flag: '🇪🇸' },
-  { code: 'MX', name: 'Mexico', prefix: '+52', flag: '🇲🇽' },
-  { code: 'RU', name: 'Russia', prefix: '+7', flag: '🇷🇺' },
-  { code: 'KR', name: 'South Korea', prefix: '+82', flag: '🇰🇷' },
-  { code: 'ZA', name: 'South Africa', prefix: '+27', flag: '🇿🇦' },
-  { code: 'NG', name: 'Nigeria', prefix: '+234', flag: '🇳🇬' },
-  { code: 'EG', name: 'Egypt', prefix: '+20', flag: '🇪🇬' },
-  { code: 'AE', name: 'United Arab Emirates', prefix: '+971', flag: '🇦🇪' },
-  { code: 'SG', name: 'Singapore', prefix: '+65', flag: '🇸🇬' },
-  { code: 'TR', name: 'Turkey', prefix: '+90', flag: '🇹🇷' },
-  { code: 'SA', name: 'Saudi Arabia', prefix: '+966', flag: '🇸🇦' },
-  { code: 'NL', name: 'Netherlands', prefix: '+31', flag: '🇳🇱' },
-  { code: 'CH', name: 'Switzerland', prefix: '+41', flag: '🇨🇭' },
-  { code: 'SE', name: 'Sweden', prefix: '+46', flag: '🇸🇪' },
-  { code: 'NO', name: 'Norway', prefix: '+47', flag: '🇳🇴' },
-  { code: 'PL', name: 'Poland', prefix: '+48', flag: '🇵🇱' },
-  { code: 'AR', name: 'Argentina', prefix: '+54', flag: '🇦🇷' },
-  { code: 'CO', name: 'Colombia', prefix: '+57', flag: '🇨🇴' },
-  { code: 'MY', name: 'Malaysia', prefix: '+60', flag: '🇲🇾' },
-  { code: 'ID', name: 'Indonesia', prefix: '+62', flag: '🇮🇩' },
-  { code: 'PH', name: 'Philippines', prefix: '+63', flag: '🇵🇭' },
-  { code: 'NZ', name: 'New Zealand', prefix: '+64', flag: '🇳🇿' },
-  { code: 'TH', name: 'Thailand', prefix: '+66', flag: '🇹🇭' },
-  { code: 'VN', name: 'Vietnam', prefix: '+84', flag: '🇻🇳' },
-  { code: 'PK', name: 'Pakistan', prefix: '+92', flag: '🇵🇰' },
-  { code: 'BD', name: 'Bangladesh', prefix: '+880', flag: '🇧🇩' },
-  { code: 'IE', name: 'Ireland', prefix: '+353', flag: '🇮🇪' },
-  { code: 'BE', name: 'Belgium', prefix: '+32', flag: '🇧🇪' },
-  { code: 'AT', name: 'Austria', prefix: '+43', flag: '🇦🇹' },
+  { code: 'US', name: 'United States', prefix: '+1' },
+  { code: 'GB', name: 'United Kingdom', prefix: '+44' },
+  { code: 'CA', name: 'Canada', prefix: '+1' },
+  { code: 'AU', name: 'Australia', prefix: '+61' },
+  { code: 'DE', name: 'Germany', prefix: '+49' },
+  { code: 'FR', name: 'France', prefix: '+33' },
+  { code: 'IN', name: 'India', prefix: '+91' },
+  { code: 'JP', name: 'Japan', prefix: '+81' },
+  { code: 'BR', name: 'Brazil', prefix: '+55' },
+  { code: 'CN', name: 'China', prefix: '+86' },
+  { code: 'IT', name: 'Italy', prefix: '+39' },
+  { code: 'ES', name: 'Spain', prefix: '+34' },
+  { code: 'MX', name: 'Mexico', prefix: '+52' },
+  { code: 'RU', name: 'Russia', prefix: '+7' },
+  { code: 'KR', name: 'South Korea', prefix: '+82' },
+  { code: 'ZA', name: 'South Africa', prefix: '+27' },
+  { code: 'NG', name: 'Nigeria', prefix: '+234' },
+  { code: 'EG', name: 'Egypt', prefix: '+20' },
+  { code: 'AE', name: 'United Arab Emirates', prefix: '+971' },
+  { code: 'SG', name: 'Singapore', prefix: '+65' },
+  { code: 'TR', name: 'Turkey', prefix: '+90' },
+  { code: 'SA', name: 'Saudi Arabia', prefix: '+966' },
+  { code: 'NL', name: 'Netherlands', prefix: '+31' },
+  { code: 'CH', name: 'Switzerland', prefix: '+41' },
+  { code: 'SE', name: 'Sweden', prefix: '+46' },
+  { code: 'NO', name: 'Norway', prefix: '+47' },
+  { code: 'PL', name: 'Poland', prefix: '+48' },
+  { code: 'AR', name: 'Argentina', prefix: '+54' },
+  { code: 'CO', name: 'Colombia', prefix: '+57' },
+  { code: 'MY', name: 'Malaysia', prefix: '+60' },
+  { code: 'ID', name: 'Indonesia', prefix: '+62' },
+  { code: 'PH', name: 'Philippines', prefix: '+63' },
+  { code: 'NZ', name: 'New Zealand', prefix: '+64' },
+  { code: 'TH', name: 'Thailand', prefix: '+66' },
+  { code: 'VN', name: 'Vietnam', prefix: '+84' },
+  { code: 'PK', name: 'Pakistan', prefix: '+92' },
+  { code: 'BD', name: 'Bangladesh', prefix: '+880' },
+  { code: 'IE', name: 'Ireland', prefix: '+353' },
+  { code: 'BE', name: 'Belgium', prefix: '+32' },
+  { code: 'AT', name: 'Austria', prefix: '+43' },
 ];
 
 export default function BrowserDialer() {
@@ -119,26 +119,26 @@ export default function BrowserDialer() {
   );
 
   return (
-    <div className="w-full max-w-md mx-auto glass rounded-3xl overflow-hidden shadow-2xl border border-white/5">
+    <div className="w-full max-w-md mx-auto bg-white rounded-[40px] overflow-hidden shadow-2xl border border-slate-100">
       {/* Header */}
-      <div className="p-6 border-bottom border-white/10 flex justify-between items-center bg-white/5">
+      <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
         <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-          <span className="text-sm font-medium text-text-secondary uppercase tracking-wider">Live Browser Dialer</span>
+          <div className="w-2 h-2 rounded-full bg-primary-blue animate-pulse" />
+          <span className="text-[10px] font-bold text-text-light uppercase tracking-[0.2em]">Browser Dialer</span>
         </div>
         <div className="flex items-center gap-3">
           <motion.div 
             key={balance}
-            initial={{ scale: 1.2, color: '#BBFF00' }}
-            animate={{ scale: 1, color: '#BBFF00' }}
-            className="flex items-center gap-1 bg-black/40 px-3 py-1 rounded-full border border-primary/20 shadow-[0_0_10px_rgba(187,255,0,0.1)]"
+            initial={{ scale: 1.1 }}
+            animate={{ scale: 1 }}
+            className="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-full border border-slate-200 shadow-sm"
           >
-            <DollarSign className="w-3 h-3" />
-            <span className="text-sm font-bold">{balance.toFixed(2)}</span>
+            <DollarSign className="w-3.5 h-3.5 text-emerald-500" />
+            <span className="text-sm font-bold text-text-dark">{balance.toFixed(2)}</span>
           </motion.div>
           <button 
             onClick={handleTopUp}
-            className="text-[10px] font-bold uppercase tracking-wider bg-white/5 hover:bg-white/10 px-2 py-1 rounded-md border border-white/10 transition-colors"
+            className="text-[10px] font-extrabold uppercase tracking-widest bg-primary-blue text-white px-3 py-1.5 rounded-full shadow-lg shadow-primary-blue/20 hover:bg-primary-blue-hover transition-all"
           >
             Top Up
           </button>
@@ -146,142 +146,137 @@ export default function BrowserDialer() {
       </div>
 
       {/* Display */}
-      <div className="p-8 text-center min-h-[140px] flex flex-col justify-center relative">
+      <div className="px-8 py-6 text-center min-h-[140px] flex flex-col justify-end relative">
         <AnimatePresence mode="wait">
           {!showHistory ? (
             <motion.div
               key="dialer"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="space-y-3"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="flex flex-col h-full justify-between"
             >
-              <div className="flex items-center justify-center gap-2 mb-2">
+              <div className="flex items-center justify-center gap-2 mb-6">
                 <div className="relative">
                   <button 
                     onClick={() => setShowCountrySelect(!showCountrySelect)}
-                    className="flex items-center gap-1 bg-white/5 hover:bg-white/10 px-2 py-1 rounded-lg border border-white/10 transition-colors"
+                    className="flex items-center gap-1.5 bg-slate-50 hover:bg-slate-100 px-3 py-1.5 rounded-full border border-slate-200 transition-all group"
                   >
-                    <span className="text-lg">{selectedCountry.flag}</span>
-                    <span className="text-xs font-bold">{selectedCountry.prefix}</span>
-                    <ChevronDown className="w-3 h-3 opacity-50" />
+                    <img 
+                      src={getFlagUrl(selectedCountry.code)}
+                      alt={selectedCountry.name}
+                      className="w-4 h-auto rounded-sm shadow-sm"
+                    />
+                    <span className="text-xs font-bold text-text-dark">{selectedCountry.prefix}</span>
+                    <ChevronDown className="w-3.5 h-3.5 text-text-light" />
                   </button>
                   
                   <AnimatePresence>
                     {showCountrySelect && (
                       <motion.div 
-                        initial={{ opacity: 0, y: 5, scale: 0.95 }}
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 5, scale: 0.95 }}
-                        className="absolute top-full left-0 mt-2 w-64 bg-[#1A1A1A] border border-white/10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-50 overflow-hidden backdrop-blur-xl"
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        className="absolute top-full left-0 mt-3 w-72 bg-white border border-slate-200 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] z-50 overflow-hidden"
                       >
-                        <div className="p-3 border-b border-white/10 bg-white/5">
+                        <div className="p-4 border-b border-slate-100">
                           <div className="relative">
-                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-text-secondary" />
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-light" />
                             <input
                               type="text"
-                              placeholder="Search country or code..."
+                              placeholder="Search countries..."
                               value={countrySearch}
                               onChange={(e) => setCountrySearch(e.target.value)}
-                              className="w-full bg-black/40 border border-white/10 rounded-xl pl-9 pr-8 py-2 text-xs focus:outline-none focus:border-primary/50 transition-all placeholder:text-text-secondary/50"
+                              className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-xs focus:outline-none focus:border-primary-blue transition-all"
                               autoFocus
                             />
-                            {countrySearch && (
-                              <button 
-                                onClick={() => setCountrySearch('')}
-                                className="absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary hover:text-white transition-colors"
-                              >
-                                <X className="w-3.5 h-3.5" />
-                              </button>
-                            )}
                           </div>
                         </div>
-                        <div className="max-h-64 overflow-y-auto custom-scrollbar py-1">
-                          {filteredCountries.length > 0 ? (
-                            filteredCountries.map(c => (
-                              <button
-                                key={c.code}
-                                onClick={() => {
-                                  setSelectedCountry(c);
-                                  setShowCountrySelect(false);
-                                  setCountrySearch('');
-                                }}
-                                className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-primary/10 hover:text-primary transition-all text-left group"
-                              >
-                                <span className="text-xl group-hover:scale-110 transition-transform">{c.flag}</span>
-                                <div className="flex flex-col">
-                                  <span className="text-xs font-semibold">{c.name}</span>
-                                  <span className="text-[10px] text-text-secondary group-hover:text-primary/70">{c.code}</span>
-                                </div>
-                                <span className="text-xs font-mono text-text-secondary ml-auto group-hover:text-primary">{c.prefix}</span>
-                              </button>
-                            ))
-                          ) : (
-                            <div className="px-4 py-8 text-xs text-text-secondary text-center italic flex flex-col items-center gap-2">
-                              <Globe className="w-8 h-8 opacity-20" />
-                              No countries found
-                            </div>
-                          )}
+                        <div className="max-h-64 overflow-y-auto custom-scrollbar py-2">
+                          {filteredCountries.map(c => (
+                            <button
+                              key={c.code}
+                              onClick={() => {
+                                setSelectedCountry(c);
+                                setShowCountrySelect(false);
+                                setCountrySearch('');
+                              }}
+                              className="w-full flex items-center gap-3 px-5 py-3 hover:bg-slate-50 transition-colors text-left"
+                            >
+                              <img 
+                                src={getFlagUrl(c.code)}
+                                alt={c.name}
+                                className="w-5 h-auto rounded-sm shadow-sm"
+                              />
+                              <div className="flex flex-col">
+                                <span className="text-xs font-bold text-text-dark">{c.name}</span>
+                                <span className="text-[10px] text-text-light uppercase tracking-tighter">{c.prefix}</span>
+                              </div>
+                            </button>
+                          ))}
                         </div>
                       </motion.div>
                     )}
                   </AnimatePresence>
                 </div>
-                <div className="h-4 w-[1px] bg-white/10" />
-                <div className="text-[10px] font-bold text-primary uppercase tracking-wider">
-                  $0.02 / min
-                </div>
               </div>
 
-              <div className="text-4xl font-bold tracking-tighter h-10 overflow-hidden text-ellipsis whitespace-nowrap">
-                {number || <span className="text-white/10">(555) 000-0000</span>}
-              </div>
-              <div className="h-4">
-                <AnimatePresence>
-                  {error ? (
-                    <motion.div
-                      initial={{ opacity: 0, y: -5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -5 }}
-                      className="text-[10px] text-red-400 font-bold uppercase tracking-wider"
-                    >
-                      {error}
-                    </motion.div>
-                  ) : (
-                    <div className="text-xs text-text-secondary flex items-center justify-center gap-1">
-                      <Globe className="w-3 h-3" />
-                      <span>Validation: {number.length > 0 ? (number.length >= 10 ? 'Valid Format' : 'Too Short') : 'Enter Number'}</span>
-                    </div>
-                  )}
-                </AnimatePresence>
+              <div className="flex flex-col items-center">
+                <div className="text-4xl sm:text-5xl font-extrabold tracking-[-0.04em] text-text-dark mb-4 h-14 overflow-hidden text-ellipsis whitespace-nowrap">
+                  {number || <span className="text-slate-200 font-medium">0000 000 000</span>}
+                </div>
+                
+                <div className="h-4">
+                  <AnimatePresence>
+                    {error ? (
+                      <motion.div
+                        initial={{ opacity: 0, y: 5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 5 }}
+                        className="text-[10px] text-red-500 font-black uppercase tracking-widest"
+                      >
+                        {error}
+                      </motion.div>
+                    ) : (
+                      <div className="text-[10px] text-text-light font-bold uppercase tracking-[0.1em] flex items-center gap-1.5">
+                        <Globe className="w-3 h-3" />
+                        <span>$0.02 Per Minute Connection</span>
+                      </div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </div>
             </motion.div>
           ) : (
             <motion.div
               key="history"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="h-full"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              className="h-full flex flex-col"
             >
-              <div className="flex justify-between items-center mb-4">
-                <span className="text-sm font-bold uppercase tracking-widest text-primary">Recent Calls</span>
-                <button onClick={() => setShowHistory(false)} className="text-text-secondary hover:text-white">
-                  <X className="w-4 h-4" />
+              <div className="flex justify-between items-center mb-6">
+                <span className="text-xs font-black uppercase tracking-[0.2em] text-text-dark">Call History</span>
+                <button onClick={() => setShowHistory(false)} className="p-2 hover:bg-slate-100 rounded-full transition-colors">
+                  <X className="w-5 h-5 text-text-light" />
                 </button>
               </div>
-              <div className="space-y-3 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
-                {history.map(item => (
-                  <div key={item.id} className="flex justify-between items-center p-2 rounded-lg hover:bg-white/5 transition-colors">
-                    <div className="text-left">
-                      <div className="text-sm font-medium">{item.number}</div>
-                      <div className="text-[10px] text-text-secondary">{item.timestamp.toLocaleDateString()}</div>
+              <div className="space-y-3 max-h-[200px] overflow-y-auto pr-2 custom-scrollbar">
+                {history.length > 0 ? (
+                  history.map(item => (
+                    <div key={item.id} className="flex justify-between items-center p-3 rounded-2xl bg-slate-50 border border-slate-100">
+                      <div className="text-left">
+                        <div className="text-sm font-bold text-text-dark">{item.number}</div>
+                        <div className="text-[10px] text-text-light font-bold">{item.timestamp.toLocaleDateString()}</div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-xs font-black text-primary-blue">{item.duration}</div>
+                      </div>
                     </div>
-                    <div className="text-right">
-                      <div className="text-xs font-mono">{item.duration}</div>
-                    </div>
-                  </div>
-                ))}
+                  ))
+                ) : (
+                  <div className="py-10 text-text-light text-xs font-medium">No recent calls found</div>
+                )}
               </div>
             </motion.div>
           )}
@@ -290,59 +285,69 @@ export default function BrowserDialer() {
 
       {/* Dial Pad */}
       {!showHistory && (
-        <div className="p-6 pt-0 grid grid-cols-3 gap-6 place-items-center">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'].map((digit) => (
+        <div className="p-8 pt-2">
+          <div className="grid grid-cols-3 gap-y-5 gap-x-8 mb-10 place-items-center">
+            {[
+              { n: '1', l: '' }, { n: '2', l: 'ABC' }, { n: '3', l: 'DEF' },
+              { n: '4', l: 'GHI' }, { n: '5', l: 'JKL' }, { n: '6', l: 'MNO' },
+              { n: '7', l: 'PQRS' }, { n: '8', l: 'TUV' }, { n: '9', l: 'WXYZ' },
+              { n: '*', l: '' }, { n: '0', l: '+' }, { n: '#', l: '' }
+            ].map((digit) => (
+              <button
+                key={digit.n}
+                onClick={() => handleDigit(digit.n)}
+                className="w-16 h-16 sm:w-20 sm:h-20 rounded-full flex flex-col items-center justify-center transition-all hover:bg-slate-50 active:scale-90 border border-transparent hover:border-slate-100 group"
+              >
+                <span className="text-3xl sm:text-4xl font-bold text-text-dark group-hover:text-primary-blue transition-colors">
+                  {digit.n}
+                </span>
+                {digit.l && (
+                  <span className="text-[10px] font-bold text-slate-300 group-hover:text-primary-blue/40 uppercase tracking-tighter">
+                    {digit.l}
+                  </span>
+                )}
+              </button>
+            ))}
+          </div>
+          
+          <div className="flex items-center justify-between px-4">
             <button
-              key={digit}
-              onClick={() => handleDigit(digit.toString())}
-              className="w-16 h-16 rounded-full bg-white/5 hover:bg-white/10 active:bg-primary active:text-black transition-all flex flex-col items-center justify-center group"
+              onClick={() => setShowHistory(true)}
+              className="w-14 h-14 rounded-full flex items-center justify-center text-text-light hover:bg-slate-50 hover:text-text-dark transition-all border border-slate-100"
+              title="History"
             >
-              <span className="text-2xl font-semibold">{digit}</span>
-              {digit === 0 && <span className="text-[10px] text-text-secondary group-active:text-black/60">+</span>}
+              <History className="w-6 h-6" />
             </button>
-          ))}
-          
-          <button
-            onClick={() => setShowHistory(true)}
-            className="w-16 h-16 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors"
-          >
-            <History className="w-6 h-6 text-text-secondary" />
-          </button>
-          
-          <button
-            onClick={handleCall}
-            disabled={!number}
-            className={cn(
-              "w-16 h-16 rounded-full flex items-center justify-center transition-all",
-              number ? "bg-primary text-black shadow-[0_0_20px_rgba(187,255,0,0.3)] hover:scale-105" : "bg-white/5 text-white/20 cursor-not-allowed"
-            )}
-          >
-            <Phone className="w-6 h-6 fill-current" />
-          </button>
+            
+            <button
+              onClick={handleCall}
+              disabled={!number}
+              className={cn(
+                "w-20 h-20 rounded-full flex items-center justify-center transition-all shadow-xl group",
+                number 
+                  ? "bg-emerald-500 hover:bg-emerald-600 text-white shadow-emerald-500/30 scale-110 active:scale-95" 
+                  : "bg-slate-100 text-slate-300 cursor-not-allowed border border-slate-200 shadow-none"
+              )}
+            >
+              <Phone className="w-8 h-8 fill-current" />
+            </button>
 
-          <div className="flex gap-2">
             <button
               onClick={handleDelete}
-              className="w-12 h-12 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors"
-              title="Delete"
+              onDoubleClick={handleClear}
+              className="w-14 h-14 rounded-full flex items-center justify-center text-text-light hover:bg-red-50 hover:text-red-500 transition-all border border-slate-100 group"
+              title="Delete (Double click to clear)"
             >
-              <Delete className="w-5 h-5 text-text-secondary" />
-            </button>
-            <button
-              onClick={handleClear}
-              className="w-12 h-12 rounded-full bg-white/5 hover:bg-red-500/20 flex items-center justify-center transition-colors"
-              title="Clear All"
-            >
-              <Trash2 className="w-5 h-5 text-red-400" />
+              <Delete className="w-6 h-6" />
             </button>
           </div>
         </div>
       )}
 
-      {/* Footer Info */}
-      <div className="p-4 bg-black/20 text-center border-t border-white/5">
-        <p className="text-[10px] text-text-secondary uppercase tracking-[0.2em]">
-          Encrypted VoIP Connection Secure
+      {/* Footer */}
+      <div className="py-4 bg-slate-50/80 text-center border-t border-slate-100">
+        <p className="text-[9px] font-black text-text-light uppercase tracking-[0.3em]">
+          End-to-End Secure Connection
         </p>
       </div>
     </div>

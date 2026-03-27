@@ -62,8 +62,8 @@ export default function Navbar({
   return (
     <nav 
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-4 md:px-6 py-3 border-b border-black/[0.05] dark:border-white/[0.05]",
-        isScrolled ? "bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg py-2" : "bg-transparent"
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-4 md:px-6 py-3 border-b border-black/[0.05] ",
+        isScrolled ? "bg-white/80  backdrop-blur-lg py-2" : "bg-transparent"
       )}
     >
       <div className="max-w-6xl mx-auto flex items-center justify-between">
@@ -72,12 +72,12 @@ export default function Navbar({
           onClick={onLogoClick || (() => window.scrollTo({ top: 0, behavior: 'smooth' }))} 
           className="flex items-center gap-2 group relative"
         >
-          <div className="w-8 h-8 md:w-10 md:h-10 bg-primary-blue rounded-xl flex items-center justify-center shadow-lg shadow-primary-blue/30 group-hover:scale-110 transition-transform duration-500 overflow-hidden relative">
-            <Phone className="text-white w-4 h-4 md:w-5 md:h-5 fill-current relative z-10" />
+          <div className="w-8 h-8 md:w-10 md:h-10 bg-primary-blue rounded-lg md:rounded-xl flex items-center justify-center shadow-lg shadow-primary-blue/30 group-hover:scale-110 transition-transform duration-500 overflow-hidden relative">
+            <Phone className="text-white w-3.5 h-3.5 md:w-5 md:h-5 fill-current relative z-10" />
             <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
           </div>
-          <div className="flex flex-col items-start">
-            <span className="text-lg md:text-xl font-bold tracking-tight text-[#000000] dark:text-white transition-colors">
+          <div className="flex flex-col items-start translate-y-[1px]">
+            <span className="text-base md:text-xl font-bold tracking-tight text-[#000000] transition-colors leading-none">
               Litefon
             </span>
           </div>
@@ -100,7 +100,7 @@ export default function Navbar({
                 "text-xs lg:text-sm font-medium transition-colors whitespace-nowrap",
                 link.name === 'Contact' && isContactPage 
                   ? "text-[#3B63F6] font-bold" 
-                  : "text-[#475569] hover:text-[#000000] dark:text-zinc-400 dark:hover:text-white"
+                  : "text-[#475569] hover:text-[#000000]  "
               )}
             >
               {link.name}
@@ -118,14 +118,14 @@ export default function Navbar({
                   setIsUserMenuOpen(!isUserMenuOpen);
                 }}
                 className={cn(
-                  "w-10 h-10 rounded-full bg-gray-100 dark:bg-slate-800 flex items-center justify-center border transition-all duration-200",
+                  "w-10 h-10 rounded-full bg-gray-100  flex items-center justify-center border transition-all duration-200",
                   isUserMenuOpen 
                     ? "border-primary-blue shadow-lg shadow-primary-blue/10 scale-105" 
-                    : "border-gray-200 dark:border-slate-700 hover:bg-gray-200 dark:hover:bg-slate-700"
+                    : "border-gray-200  hover:bg-gray-200 "
                 )}
                 title="User Menu"
               >
-                <User className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+                <User className="w-5 h-5 text-gray-600 " />
               </button>
 
               <AnimatePresence>
@@ -135,31 +135,31 @@ export default function Navbar({
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="absolute right-0 mt-3 w-56 bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-gray-100 dark:border-slate-800 overflow-hidden z-50"
+                    className="absolute right-0 mt-3 w-56 bg-white  rounded-2xl shadow-xl border border-gray-100  overflow-hidden z-50"
                     onClick={(e) => e.stopPropagation()}
                   >
                     <div className="p-2">
-                      <div className="px-4 py-3 border-b border-gray-50 dark:border-slate-800/50 mb-1">
-                        <p className="text-xs font-medium text-gray-400 dark:text-slate-500 uppercase tracking-wider">Account</p>
-                        <p className="text-sm font-bold text-gray-900 dark:text-white truncate mt-0.5">User Settings</p>
+                      <div className="px-4 py-3 border-b border-gray-50  mb-1">
+                        <p className="text-xs font-medium text-gray-400  uppercase tracking-wider">Account</p>
+                        <p className="text-sm font-bold text-gray-900  truncate mt-0.5">User Settings</p>
                       </div>
                       
                       <button 
-                        className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800/50 rounded-xl transition-colors group"
+                        className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600  hover:bg-gray-50  rounded-xl transition-colors group"
                         onClick={() => setIsUserMenuOpen(false)}
                       >
                         <Settings className="w-4 h-4 group-hover:rotate-45 transition-transform duration-300" />
                         Settings
                       </button>
 
-                      <div className="h-px bg-gray-50 dark:bg-slate-800/50 my-1 mx-2" />
+                      <div className="h-px bg-gray-50  my-1 mx-2" />
 
                       <button 
                         onClick={() => {
                           setIsUserMenuOpen(false);
                           onAuthClick?.('signin');
                         }}
-                        className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/10 rounded-xl transition-colors font-semibold"
+                        className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-600  hover:bg-red-50  rounded-xl transition-colors font-semibold"
                       >
                         <LogOut className="w-4 h-4" />
                         Sign Out
@@ -172,7 +172,7 @@ export default function Navbar({
           ) : (
             <button 
               onClick={() => onAuthClick?.('signin')}
-              className="text-[12px] lg:text-sm font-semibold text-[#000000] dark:text-white hover:bg-gray-50 dark:hover:bg-slate-900 transition-colors px-3 lg:px-6 py-2 lg:py-2.5 border border-[#E2E8F0] dark:border-slate-800 rounded-full bg-white dark:bg-slate-900 whitespace-nowrap"
+              className="text-[12px] lg:text-sm font-semibold text-[#000000]  hover:bg-gray-50  transition-colors px-3 lg:px-6 py-2 lg:py-2.5 border border-[#E2E8F0]  rounded-full bg-white  whitespace-nowrap"
             >
               Sign In
             </button>
@@ -189,7 +189,7 @@ export default function Navbar({
         {/* Mobile Toggle */}
         <div className="flex items-center gap-2 md:hidden">
           <button 
-            className="text-text-dark dark:text-white"
+            className="text-text-dark"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X /> : <Menu />}
@@ -204,7 +204,7 @@ export default function Navbar({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white dark:bg-slate-900 border-b border-border-gray dark:border-slate-800 overflow-hidden"
+            className="md:hidden bg-white  border-b border-border-gray  overflow-hidden"
           >
             <div className="flex flex-col p-6 gap-6">
               {navLinks.map((link) => (
@@ -226,19 +226,19 @@ export default function Navbar({
                     "text-lg font-medium text-left",
                     link.name === 'Contact' && isContactPage 
                       ? "text-primary-blue font-bold" 
-                      : "text-text-light dark:text-text-light"
+                      : "text-text-light "
                   )}
                 >
                   {link.name}
                 </button>
               ))}
-              <hr className="border-border-gray dark:border-slate-800" />
+              <hr className="border-border-gray " />
               <button 
                 onClick={() => {
                   setIsMobileMenuOpen(false);
                   onAuthClick?.('signin');
                 }}
-                className="text-left text-lg font-semibold text-text-dark dark:text-white flex items-center gap-2"
+                className="text-left text-lg font-semibold text-text-dark  flex items-center gap-2"
               >
                 {isLoggedIn ? (
                   <>
@@ -254,9 +254,9 @@ export default function Navbar({
                   setIsMobileMenuOpen(false);
                   onDialerClick?.();
                 }}
-                className="btn-primary-gradient w-full flex items-center justify-center gap-2"
+                className="w-full py-4 bg-[#3B63F6] hover:bg-[#2D4ED3] text-white rounded-2xl font-bold text-sm flex items-center justify-center gap-3 shadow-xl shadow-[#3B63F6]/25 transition-all active:scale-95"
               >
-                <Phone className="w-4 h-4" />
+                <Phone className="w-4 h-4 fill-current" />
                 Make a Call Now
               </button>
             </div>

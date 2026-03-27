@@ -73,22 +73,22 @@ export default function AuthPage({ onBack, initialMode = 'signin' }: AuthPagePro
   };
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-white dark:bg-slate-950 transition-colors duration-300">
+    <div className="flex h-screen w-full overflow-hidden bg-white  transition-colors duration-300">
       {/* Left Column: Form */}
-      <div className="relative w-full lg:w-1/2 flex flex-col p-8 md:p-12 bg-white dark:bg-slate-950">
+      <div className="relative w-full lg:w-1/2 flex flex-col p-8 md:p-12 bg-white ">
         {/* Logo & Back Button */}
         <div className="flex items-center justify-between mb-12">
           <div className="flex items-center gap-2 group cursor-pointer" onClick={onBack}>
             <div className="w-9 h-9 bg-primary-blue rounded-xl flex items-center justify-center shadow-lg shadow-primary-blue/20 group-hover:scale-110 transition-transform duration-300">
               <Phone className="text-white w-4 h-4 fill-current" />
             </div>
-            <span className="brand-litefon text-text-dark dark:text-white transition-colors">
+            <span className="brand-litefon text-text-dark  transition-colors">
               Litefon
             </span>
           </div>
           <button 
             onClick={onBack}
-            className="flex items-center gap-2 text-sm font-medium text-text-light dark:text-slate-400 hover:text-text-dark dark:hover:text-white transition-colors"
+            className="flex items-center gap-2 text-sm font-medium text-text-light  hover:text-text-dark  transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to home
@@ -103,10 +103,10 @@ export default function AuthPage({ onBack, initialMode = 'signin' }: AuthPagePro
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <h1 className="text-3xl md:text-4xl font-bold text-text-dark dark:text-white mb-2">
+            <h1 className="text-3xl md:text-4xl font-bold text-text-dark  mb-2">
               {mode === 'signin' ? 'Welcome back' : 'Get Started Now'}
             </h1>
-            <p className="text-text-light dark:text-slate-400 mb-8">
+            <p className="text-text-light  mb-8">
               {mode === 'signin' 
                 ? 'Welcome back! Please enter your details.' 
                 : 'Enter your credentials to access your account'}
@@ -116,12 +116,12 @@ export default function AuthPage({ onBack, initialMode = 'signin' }: AuthPagePro
             <div className="flex flex-col sm:flex-row gap-3 mb-8">
               <button 
                 onClick={handleGoogleLogin}
-                className="flex-1 flex items-center justify-center gap-3 px-4 py-2.5 border border-border-gray dark:border-slate-800 rounded-full text-sm font-medium text-text-dark dark:text-white hover:bg-soft-gray dark:hover:bg-slate-900 transition-colors bg-white dark:bg-slate-950"
+                className="flex-1 flex items-center justify-center gap-3 px-4 py-2.5 border border-border-gray  rounded-full text-sm font-medium text-text-dark  hover:bg-soft-gray  transition-colors bg-white "
               >
                 <img src="https://www.google.com/favicon.ico" alt="Google" className="w-4 h-4" />
                 Log in with Google
               </button>
-              <button className="flex-1 flex items-center justify-center gap-3 px-4 py-2.5 border border-border-gray dark:border-slate-800 rounded-full text-sm font-medium text-text-dark dark:text-white hover:bg-soft-gray dark:hover:bg-slate-900 transition-colors bg-white dark:bg-slate-950">
+              <button className="flex-1 flex items-center justify-center gap-3 px-4 py-2.5 border border-border-gray  rounded-full text-sm font-medium text-text-dark  hover:bg-soft-gray  transition-colors bg-white ">
                 <img src="https://www.apple.com/favicon.ico" alt="Apple" className="w-4 h-4" />
                 Log in with Apple
               </button>
@@ -129,42 +129,42 @@ export default function AuthPage({ onBack, initialMode = 'signin' }: AuthPagePro
 
             {/* Divider */}
             <div className="relative flex items-center mb-8">
-              <div className="flex-grow border-t border-border-gray dark:border-slate-800"></div>
-              <span className="flex-shrink mx-4 text-xs text-text-light dark:text-slate-500 uppercase tracking-widest">or</span>
-              <div className="flex-grow border-t border-border-gray dark:border-slate-800"></div>
+              <div className="flex-grow border-t border-border-gray "></div>
+              <span className="flex-shrink mx-4 text-xs text-text-light  uppercase tracking-widest">or</span>
+              <div className="flex-grow border-t border-border-gray "></div>
             </div>
 
             {/* Form Fields */}
             <form className="space-y-5" onSubmit={handleAuth}>
               {mode === 'signup' && (
                 <div>
-                  <label className="block text-sm font-medium text-text-dark dark:text-white mb-1.5">Name</label>
+                  <label className="block text-sm font-medium text-text-dark  mb-1.5">Name</label>
                   <input 
                     type="text" 
                     placeholder="Enter your name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-border-gray dark:border-slate-800 bg-white dark:bg-slate-900 text-text-dark dark:text-white focus:outline-none focus:border-primary-blue transition-colors"
+                    className="w-full px-4 py-3 rounded-xl border border-border-gray  bg-white  text-text-dark  focus:outline-none focus:border-primary-blue transition-colors"
                   />
                 </div>
               )}
               
               <div>
-                <label className="block text-sm font-medium text-text-dark dark:text-white mb-1.5">Email address</label>
+                <label className="block text-sm font-medium text-text-dark  mb-1.5">Email address</label>
                 <input 
                   type="email" 
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full px-4 py-3 rounded-xl border border-border-gray dark:border-slate-800 bg-white dark:bg-slate-900 text-text-dark dark:text-white focus:outline-none focus:border-primary-blue transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border border-border-gray  bg-white  text-text-dark  focus:outline-none focus:border-primary-blue transition-colors"
                 />
               </div>
 
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <label className="block text-sm font-medium text-text-dark dark:text-white">Password</label>
+                  <label className="block text-sm font-medium text-text-dark ">Password</label>
                   <a href="#" className="text-xs font-semibold text-primary-blue hover:underline">Forgot password?</a>
                 </div>
                 <input 
@@ -173,13 +173,13 @@ export default function AuthPage({ onBack, initialMode = 'signin' }: AuthPagePro
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="w-full px-4 py-3 rounded-xl border border-border-gray dark:border-slate-800 bg-white dark:bg-slate-900 text-text-dark dark:text-white focus:outline-none focus:border-primary-blue transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border border-border-gray  bg-white  text-text-dark  focus:outline-none focus:border-primary-blue transition-colors"
                 />
               </div>
 
               {error && (
-                <div className="p-3 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/30">
-                  <p className="text-xs text-red-600 dark:text-red-400 font-medium">
+                <div className="p-3 rounded-lg bg-red-50  border border-red-100 ">
+                  <p className="text-xs text-red-600  font-medium">
                     {error}
                   </p>
                 </div>
@@ -189,9 +189,9 @@ export default function AuthPage({ onBack, initialMode = 'signin' }: AuthPagePro
                 <input 
                   type="checkbox" 
                   id="remember" 
-                  className="w-4 h-4 rounded border-border-gray dark:border-slate-800 text-primary-blue focus:ring-primary-blue bg-white dark:bg-slate-900"
+                  className="w-4 h-4 rounded border-border-gray  text-primary-blue focus:ring-primary-blue bg-white "
                 />
-                <label htmlFor="remember" className="text-sm text-text-light dark:text-slate-400">
+                <label htmlFor="remember" className="text-sm text-text-light ">
                   {mode === 'signin' ? 'Remember for 30 days' : 'I agree to the Terms & Privacy'}
                 </label>
               </div>
@@ -206,7 +206,7 @@ export default function AuthPage({ onBack, initialMode = 'signin' }: AuthPagePro
               </button>
             </form>
 
-            <p className="mt-8 text-center text-sm text-text-light dark:text-slate-400">
+            <p className="mt-8 text-center text-sm text-text-light ">
               {mode === 'signin' ? "Don't have an account?" : "Already have an account?"}{' '}
               <button 
                 onClick={toggleMode}
@@ -220,14 +220,14 @@ export default function AuthPage({ onBack, initialMode = 'signin' }: AuthPagePro
 
         {/* Footer */}
         <div className="mt-auto pt-8 text-center lg:text-left">
-          <p className="text-xs text-text-light/50 dark:text-slate-600">© 2026 Litefon, All rights Reserved</p>
+          <p className="text-xs text-text-light/50 ">© 2026 Litefon, All rights Reserved</p>
         </div>
       </div>
 
       {/* Right Column: Testimonial Grid */}
-      <div className="hidden lg:flex w-1/2 bg-[#F9FAFB] dark:bg-slate-900 relative overflow-hidden p-12 border-l border-border-gray dark:border-slate-800">
+      <div className="hidden lg:flex w-1/2 bg-[#F9FAFB]  relative overflow-hidden p-12 border-l border-border-gray ">
         {/* Decorative Gradient Overlay for depth */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/10 to-white/20 dark:via-slate-900/10 dark:to-slate-900/20 pointer-events-none z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/10 to-white/20   pointer-events-none z-10" />
         
         <div className="grid grid-cols-2 gap-6 w-full relative z-0">
           {/* Column 1 */}
@@ -302,9 +302,9 @@ export default function AuthPage({ onBack, initialMode = 'signin' }: AuthPagePro
 
 const TestimonialCard: React.FC<{ name: string, role: string, quote: string, avatar: string }> = ({ name, role, quote, avatar }) => {
   return (
-    <div className="bg-white dark:bg-slate-800 p-6 rounded-[2rem] shadow-sm border border-black/[0.03] dark:border-white/[0.03] flex flex-col gap-4">
-      <Quote className="w-6 h-6 text-text-light/20 dark:text-slate-600" />
-      <p className="text-sm text-text-medium dark:text-slate-300 leading-relaxed">
+    <div className="bg-white  p-6 rounded-[2rem] shadow-sm border border-black/[0.03]  flex flex-col gap-4">
+      <Quote className="w-6 h-6 text-text-light/20 " />
+      <p className="text-sm text-text-medium  leading-relaxed">
         "{quote}"
       </p>
       <div className="flex items-center justify-between mt-2">
@@ -316,8 +316,8 @@ const TestimonialCard: React.FC<{ name: string, role: string, quote: string, ava
             referrerPolicy="no-referrer"
           />
           <div className="flex flex-col">
-            <span className="text-xs font-bold text-text-dark dark:text-white">{name}</span>
-            <span className="text-[10px] text-text-light dark:text-slate-500">{role}</span>
+            <span className="text-xs font-bold text-text-dark ">{name}</span>
+            <span className="text-[10px] text-text-light ">{role}</span>
           </div>
         </div>
         <div className="flex gap-0.5">

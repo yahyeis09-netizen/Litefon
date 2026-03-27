@@ -21,7 +21,7 @@ interface ContactPageProps {
 
 export default function ContactPage({ onBack, onAuthClick }: ContactPageProps) {
   return (
-    <div className="min-h-screen bg-bg-light dark:bg-slate-950 flex flex-col transition-colors duration-300">
+    <div className="min-h-screen bg-bg-light  flex flex-col transition-colors duration-300">
       <Navbar onAuthClick={onAuthClick} onContactClick={() => {}} isContactPage={true} onLogoClick={onBack} />
       
       <main className="flex-grow flex items-center justify-center py-16 px-6 md:px-12 lg:px-24">
@@ -29,75 +29,75 @@ export default function ContactPage({ onBack, onAuthClick }: ContactPageProps) {
           
           {/* Left Column (Information Stack) */}
           <div className="flex flex-col gap-8">
-            <h1 className="text-5xl md:text-7xl font-bold text-text-dark dark:text-white tracking-tight leading-tight">
+            <h1 className="text-5xl md:text-7xl font-bold text-text-dark  tracking-tight leading-tight">
               Let's collaborate
             </h1>
-            <p className="text-text-light dark:text-slate-400 text-xl leading-relaxed max-w-md">
+            <p className="text-text-light  text-xl leading-relaxed max-w-md">
               Reach out and let's explore how we can bring your ideas to life. 
               Whether you're ready to begin or just have questions.
             </p>
           </div>
 
           {/* Right Column (Form Layout) */}
-          <div className="bg-white dark:bg-slate-900 p-8 md:p-12 rounded-[3rem] border border-border-gray/50 dark:border-slate-800 shadow-xl shadow-black/[0.02]">
+          <div className="bg-white  p-8 md:p-12 rounded-[3rem] border border-border-gray/50  shadow-xl shadow-black/[0.02]">
             <div className="flex flex-col gap-6">
               <div className="relative">
-                <User className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-text-light/50 dark:text-slate-600" />
+                <User className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-text-light/50 " />
                 <input 
                   type="text" 
                   placeholder="Name" 
-                  className="w-full pl-14 pr-6 py-4 rounded-full border border-border-gray dark:border-slate-800 bg-white dark:bg-slate-950 text-text-dark dark:text-white focus:outline-none focus:border-primary-blue transition-colors"
+                  className="w-full pl-14 pr-6 py-4 rounded-full border border-border-gray  bg-white  text-text-dark  focus:outline-none focus:border-primary-blue transition-colors"
                 />
               </div>
 
               <div className="relative">
-                <Mail className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-text-light/50 dark:text-slate-600" />
+                <Mail className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-text-light/50 " />
                 <input 
                   type="email" 
                   placeholder="Email" 
-                  className="w-full pl-14 pr-6 py-4 rounded-full border border-border-gray dark:border-slate-800 bg-white dark:bg-slate-950 text-text-dark dark:text-white focus:outline-none focus:border-primary-blue transition-colors"
+                  className="w-full pl-14 pr-6 py-4 rounded-full border border-border-gray  bg-white  text-text-dark  focus:outline-none focus:border-primary-blue transition-colors"
                 />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="relative">
-                  <Building2 className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-text-light/50 dark:text-slate-600" />
+                  <Building2 className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-text-light/50 " />
                   <input 
                     type="text" 
                     placeholder="Company name" 
-                    className="w-full pl-14 pr-6 py-4 rounded-full border border-border-gray dark:border-slate-800 bg-white dark:bg-slate-950 text-text-dark dark:text-white focus:outline-none focus:border-primary-blue transition-colors"
+                    className="w-full pl-14 pr-6 py-4 rounded-full border border-border-gray  bg-white  text-text-dark  focus:outline-none focus:border-primary-blue transition-colors"
                   />
                 </div>
                 <div className="relative">
-                  <Phone className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-text-light/50 dark:text-slate-600" />
+                  <Phone className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-text-light/50 " />
                   <input 
                     type="tel" 
                     placeholder="Phone" 
-                    className="w-full pl-14 pr-6 py-4 rounded-full border border-border-gray dark:border-slate-800 bg-white dark:bg-slate-950 text-text-dark dark:text-white focus:outline-none focus:border-primary-blue transition-colors"
+                    className="w-full pl-14 pr-6 py-4 rounded-full border border-border-gray  bg-white  text-text-dark  focus:outline-none focus:border-primary-blue transition-colors"
                   />
                 </div>
               </div>
 
               <div className="relative">
-                <DollarSign className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-text-light/50 dark:text-slate-600" />
+                <DollarSign className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-text-light/50 " />
                 <select 
                   defaultValue=""
-                  className="w-full pl-14 pr-12 py-4 rounded-full border border-border-gray dark:border-slate-800 bg-white dark:bg-slate-950 focus:outline-none focus:border-primary-blue transition-colors appearance-none text-text-light dark:text-slate-400"
+                  className="w-full pl-14 pr-12 py-4 rounded-full border border-border-gray  bg-white  focus:outline-none focus:border-primary-blue transition-colors appearance-none text-text-light "
                 >
                   <option value="" disabled>Select a budget...</option>
                   <option value="small">$5k - $10k</option>
                   <option value="medium">$10k - $25k</option>
                   <option value="large">$25k+</option>
                 </select>
-                <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 w-5 h-5 text-text-light/50 dark:text-slate-600 pointer-events-none" />
+                <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 w-5 h-5 text-text-light/50  pointer-events-none" />
               </div>
 
               <div className="relative">
-                <MessageSquare className="absolute left-6 top-6 w-5 h-5 text-text-light/50 dark:text-slate-600" />
+                <MessageSquare className="absolute left-6 top-6 w-5 h-5 text-text-light/50 " />
                 <textarea 
                   placeholder="What can we help you with?" 
                   rows={6}
-                  className="w-full pl-14 pr-6 py-6 rounded-3xl border border-border-gray dark:border-slate-800 bg-white dark:bg-slate-950 text-text-dark dark:text-white focus:outline-none focus:border-primary-blue transition-colors resize-none"
+                  className="w-full pl-14 pr-6 py-6 rounded-3xl border border-border-gray  bg-white  text-text-dark  focus:outline-none focus:border-primary-blue transition-colors resize-none"
                 />
               </div>
 
