@@ -914,7 +914,7 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                       dialedNumber.length > 10 ? "text-[28px] sm:text-[32px]" : "text-[32px] sm:text-[41px]"
                     )}>
                       {dialedNumber || (
-                        showWelcomeText ? <span className="text-[20px] sm:text-[24px] font-medium leading-tight block">Welcome!<br/><span className="text-[14px] sm:text-[18px]">Enter a number to call</span></span> : <span className="text-[20px] sm:text-[24px] block">&nbsp;</span>
+                        <span className="text-[20px] sm:text-[24px] block">&nbsp;</span>
                       )}
                     </span>
                   </div>
