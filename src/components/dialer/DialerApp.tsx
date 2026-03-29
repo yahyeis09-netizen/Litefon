@@ -906,8 +906,8 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                 )}
 
                 {/* Number Display */}
-                <div className="flex flex-col items-center justify-end min-h-[50px] mb-1 px-4 text-center shrink-0">
-                  <div className="w-full text-center min-h-[40px] flex items-center justify-center">
+                <div className={cn("flex flex-col items-center justify-end px-4 text-center shrink-0 transition-all", (showCreditReminder && balance <= 0) ? "min-h-[50px] mb-1" : "min-h-[90px] mb-4 md:mb-4 mt-2")}>
+                  <div className={cn("w-full text-center flex items-center justify-center transition-all", (showCreditReminder && balance <= 0) ? "min-h-[40px]" : "min-h-[60px]")}>
                     <span className={cn(
                       "font-bold tracking-tight break-all transition-all",
                       dialedNumber ? "text-text-dark" : "text-text-light/50",
@@ -970,7 +970,7 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                 </div>
 
                 {/* Numeric Keypad Grid */}
-                <div className="grid grid-cols-3 gap-x-6 sm:gap-x-8 gap-y-2 sm:gap-y-3 max-w-[280px] sm:max-w-[300px] mx-auto mb-2">
+                <div className={cn("grid grid-cols-3 mx-auto transition-all max-w-[280px] sm:max-w-[300px]", (showCreditReminder && balance <= 0) ? "gap-x-6 sm:gap-x-8 gap-y-2 sm:gap-y-3 mb-2" : "gap-x-6 sm:gap-x-8 gap-y-3 sm:gap-y-4 mb-2 sm:mb-4")}>
                   {[
                     { n: '1', l: ' ' }, { n: '2', l: 'ABC' }, { n: '3', l: 'DEF' },
                     { n: '4', l: 'GHI' }, { n: '5', l: 'JKL' }, { n: '6', l: 'MNO' },
@@ -981,8 +981,9 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                       key={key.n}
                       onClick={() => handleKeyPress(key.n)}
                       className={cn(
-                        "w-[56px] h-[56px] sm:w-[60px] sm:h-[60px] md:w-[54px] md:h-[54px] rounded-full flex flex-col items-center justify-center active:scale-95 transition-all mx-auto shadow-sm",
-                        "bg-white border border-border-gray hover:bg-soft-gray"
+                        "rounded-full flex flex-col items-center justify-center active:scale-95 transition-all mx-auto shadow-sm",
+                        "bg-white border border-border-gray hover:bg-soft-gray",
+                        (showCreditReminder && balance <= 0) ? "w-[56px] h-[56px] sm:w-[60px] sm:h-[60px] md:w-[54px] md:h-[54px]" : "w-[60px] h-[60px] sm:w-[63px] sm:h-[63px] md:w-[54px] md:h-[54px]"
                       )}
                     >
                       <span className="text-[20px] sm:text-[23px] md:text-[20px] font-bold leading-none text-text-dark">{key.n}</span>
@@ -992,7 +993,7 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                 </div>
 
                 {/* Bottom Action Row */}
-                <div className="flex items-center justify-center px-12 relative mt-0 pb-4">
+                <div className={cn("flex items-center justify-center px-12 relative transition-all", (showCreditReminder && balance <= 0) ? "mt-0 pb-4" : "mt-2 pb-6")}>
                   <button 
                     onClick={toggleCall}
                     className={cn(
