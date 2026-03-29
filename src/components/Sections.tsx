@@ -152,7 +152,7 @@ export function HowItWorks() {
           <p className="text-text-light  max-w-2xl mx-auto">Get started with Litefon in three simple steps. No contracts or complex setups.</p>
         </div>
 
-        <div className="relative flex flex-col md:flex-row justify-between items-start gap-12">
+        <div className="relative flex flex-col md:flex-row justify-between items-center md:items-start gap-12">
           {/* Connecting Line */}
           <div className="hidden md:block absolute top-12 left-0 right-0 h-px border-t border-dashed border-border-gray  z-0" />
           
