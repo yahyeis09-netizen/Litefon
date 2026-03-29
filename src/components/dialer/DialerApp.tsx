@@ -869,7 +869,7 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                   <motion.div 
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-blue-50 border border-blue-100 rounded-xl p-3 mb-2 relative shadow-sm mx-2 sm:mx-0 shrink-0"
+                    className="bg-blue-50 border border-blue-100 rounded-xl p-3 relative shadow-sm mx-2 sm:mx-0 shrink-0"
                   >
                     <div className="flex items-start gap-3">
                       <div className="bg-primary-blue rounded-full p-1.5 shrink-0 mt-0.5">
@@ -906,8 +906,8 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                 )}
 
                 {/* Number Display */}
-                <div className="flex flex-col items-center justify-end min-h-[90px] mb-4 md:mb-4 mt-2 px-4 text-center shrink-0">
-                  <div className="w-full text-center min-h-[60px] flex items-center justify-center">
+                <div className="flex flex-col items-center justify-end min-h-[70px] mb-4 md:mb-4 px-4 text-center shrink-0">
+                  <div className="w-full text-center min-h-[50px] flex items-center justify-center">
                     <span className={cn(
                       "font-bold tracking-tight break-all transition-all",
                       dialedNumber ? "text-text-dark" : "text-text-light/50",
