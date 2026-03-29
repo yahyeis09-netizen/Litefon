@@ -66,6 +66,10 @@ export default function App() {
   };
 
   const handleDialer = () => {
+    if (!isLoggedIn) {
+      handleAuth('signin');
+      return;
+    }
     setView('dialer');
     window.scrollTo(0, 0);
   };
@@ -147,21 +151,21 @@ export default function App() {
         onAuthClick={handleAuth} 
         onContactClick={handleContact} 
         onBlogClick={handleBlog} 
-        onDialerClick={() => setView('dialer')} 
+        onDialerClick={handleDialer} 
         onRatesClick={handleRates}
         onTeamClick={handleTeam}
         isLoggedIn={isLoggedIn}
       />
       <main className="flex-grow">
         <Hero 
-          onDialerClick={() => setView('dialer')} 
+          onDialerClick={handleDialer} 
           onRatesClick={handleRates}
           onContactClick={handleContact}
         />
         <HowItWorks />
         <Features />
         <ComparisonSection />
-        <RateTableSection onDialerClick={() => setView('dialer')} />
+        <RateTableSection onDialerClick={handleDialer} />
         <CountryRates onRatesClick={handleRates} />
         <BuiltForBusiness onGetStarted={() => setView('team')} />
         <Testimonials onShowMoreClick={handleShowMoreReviews} />
@@ -170,7 +174,7 @@ export default function App() {
       </main>
       <Footer 
         onRatesClick={handleRates}
-        onDialerClick={() => setView('dialer')}
+        onDialerClick={handleDialer}
         onBlogClick={handleBlog}
         onContactClick={handleContact}
       />

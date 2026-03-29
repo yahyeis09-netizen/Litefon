@@ -621,8 +621,10 @@ interface DialerAppProps {
 
 export default function DialerApp({ onBack }: DialerAppProps) {
   const [activeTab, setActiveTab] = useState<'dialpad' | 'rates' | 'buy' | 'billing' | 'history'>('dialpad');
-  const [balance, setBalance] = useState(25.00);
+  const [balance, setBalance] = useState(0.00);
   const [dialedNumber, setDialedNumber] = useState('');
+  const [showCreditReminder, setShowCreditReminder] = useState(true);
+  const [showWelcomeText, setShowWelcomeText] = useState(true);
   const [selectedCountry, setSelectedCountry] = useState<Country>(countries[0]);
   const [minutes, setMinutes] = useState(10);
   const [isCountryMenuOpen, setIsCountryMenuOpen] = useState(false);
@@ -810,7 +812,7 @@ export default function DialerApp({ onBack }: DialerAppProps) {
         {/* Balance Header (Compact) - Only show on Dialpad */}
         {activeTab === 'dialpad' && (
           <div className={cn(
-            "px-4 sm:px-6 py-3 flex items-center justify-between border transition-colors max-w-md mx-auto w-full relative mt-2 rounded-2xl shadow-sm",
+            "px-4 sm:px-6 py-3 flex items-center justify-between border transition-colors max-w-[92%] sm:max-w-md mx-auto w-full relative mt-4 rounded-2xl shadow-sm gap-2",
             "bg-white border-border-gray"
           )}>
             {/* Left: Country Selector */}
@@ -861,17 +863,58 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                 initial={{ opacity: 0 }} 
                 animate={{ opacity: 1 }} 
                 exit={{ opacity: 0 }}
-                className="flex-grow flex flex-col p-4 pt-2 max-w-[447px] mx-auto w-full overflow-y-auto no-scrollbar"
+                className="flex-grow flex flex-col p-2 sm:p-4 pt-2 max-w-[447px] mx-auto w-full overflow-y-auto no-scrollbar"
               >
+                {showCreditReminder && balance <= 0 && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="bg-blue-50 border border-blue-100 rounded-xl p-3 mb-2 relative shadow-sm mx-2 sm:mx-0 shrink-0"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="bg-primary-blue rounded-full p-1.5 shrink-0 mt-0.5">
+                        <Info className="w-3.5 h-3.5 text-white" />
+                      </div>
+                      <div>
+                        <h4 className="text-[13px] font-bold text-text-dark mb-1">Add Credit to Call</h4>
+                        <p className="text-[11px] leading-snug text-text-light mb-3">You need to add credit to your balance to make international calls.</p>
+                        <div className="flex items-center gap-3">
+                          <button 
+                            onClick={() => {
+                              setActiveTab('billing');
+                              setCreditMessage("Select a package to continue.");
+                              setTimeout(() => setCreditMessage(null), 3000);
+                            }}
+                            className="text-[11px] font-bold bg-primary-blue text-white px-3 py-1.5 rounded-lg flex items-center gap-1 hover:bg-secondary-blue transition-colors shadow-sm shadow-primary-blue/20"
+                          >
+                            Next <ArrowRight className="w-3 h-3" />
+                          </button>
+                          <button 
+                            onClick={() => {
+                              setShowCreditReminder(false);
+                              setShowWelcomeText(false);
+                            }}
+                            className="text-[11px] font-bold text-text-light hover:text-text-dark transition-colors"
+                          >
+                            Skip
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+
                 {/* Number Display */}
-                <div className="flex flex-col items-center justify-end min-h-[100px] mb-4 md:mb-4 mt-2">
-                  <div className="w-full text-center">
+                <div className="flex flex-col items-center justify-end min-h-[90px] mb-4 md:mb-4 mt-2 px-4 text-center shrink-0">
+                  <div className="w-full text-center min-h-[60px] flex items-center justify-center">
                     <span className={cn(
-                      "text-[32px] sm:text-[41px] font-bold tracking-tight break-all",
-                      "text-text-dark",
-                      dialedNumber.length > 10 ? "text-2xl sm:text-[32px]" : "text-[32px] sm:text-[41px]"
+                      "font-bold tracking-tight break-all transition-all",
+                      dialedNumber ? "text-text-dark" : "text-text-light/50",
+                      dialedNumber.length > 10 ? "text-[28px] sm:text-[32px]" : "text-[32px] sm:text-[41px]"
                     )}>
-                      {dialedNumber || ''}
+                      {dialedNumber || (
+                        showWelcomeText ? <span className="text-[20px] sm:text-[24px] font-medium leading-tight block">Welcome!<br/><span className="text-[14px] sm:text-[18px]">Enter a number to call</span></span> : <span className="text-[20px] sm:text-[24px] block">&nbsp;</span>
+                      )}
                     </span>
                   </div>
                   <div className="flex justify-center mt-2 mb-2 relative">
@@ -926,7 +969,7 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                 </div>
 
                 {/* Numeric Keypad Grid */}
-                <div className="grid grid-cols-3 gap-x-8 gap-y-4 max-w-[300px] mx-auto mb-4">
+                <div className="grid grid-cols-3 gap-x-6 sm:gap-x-8 gap-y-3 sm:gap-y-4 max-w-[280px] sm:max-w-[300px] mx-auto mb-2 sm:mb-4">
                   {[
                     { n: '1', l: ' ' }, { n: '2', l: 'ABC' }, { n: '3', l: 'DEF' },
                     { n: '4', l: 'GHI' }, { n: '5', l: 'JKL' }, { n: '6', l: 'MNO' },
