@@ -881,9 +881,10 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                         <div className="flex items-center gap-3">
                           <button 
                             onClick={() => {
-                              setActiveTab('billing');
-                              setCreditMessage("Select a package to continue.");
-                              setTimeout(() => setCreditMessage(null), 3000);
+                              setShowCreditReminder(false);
+                              setShowWelcomeText(false);
+                              setCreditMessage("You can top up credits anytime from the Billing tab.");
+                              setTimeout(() => setCreditMessage(null), 4000);
                             }}
                             className="text-[11px] font-bold bg-primary-blue text-white px-3 py-1.5 rounded-lg flex items-center gap-1 hover:bg-secondary-blue transition-colors shadow-sm shadow-primary-blue/20"
                           >

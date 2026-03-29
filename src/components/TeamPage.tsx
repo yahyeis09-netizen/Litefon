@@ -33,7 +33,7 @@ const countries = [
   {
     name: 'Canada',
     region: 'North America',
-    flag: 'https://images.unsplash.com/photo-1517935703635-2717079c21fe?auto=format&fit=crop&q=80&w=800',
+    flag: 'https://flagcdn.com/ca.svg',
   },
   {
     name: 'Germany',

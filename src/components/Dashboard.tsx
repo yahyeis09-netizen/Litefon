@@ -14,7 +14,7 @@ import {
   Plus, 
   Wallet, 
   ChevronDown, 
-  MoreHorizontal, 
+  Menu, 
   Trash2, 
   Edit2,
   CheckCircle2,
@@ -413,12 +413,6 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
         <nav className="hidden xl:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
           <NavItem icon={Home} label="Home" onClick={onBack} />
           <NavItem 
-            icon={LayoutDashboard} 
-            label="Dashboard" 
-            active={activeTab === 'dashboard'} 
-            onClick={() => setActiveTab('dashboard')} 
-          />
-          <NavItem 
             icon={Users} 
             label="Employee" 
             active={activeTab === 'team'} 
@@ -497,9 +491,9 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
           {/* Mobile Nav Toggle */}
           <button 
             onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
-            className="xl:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg"
+            className="xl:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
           >
-            <MoreHorizontal className="w-6 h-6" />
+            <Menu className="w-6 h-6 text-slate-700" />
           </button>
         </div>
       </header>
@@ -508,19 +502,13 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
       <AnimatePresence>
         {isMobileNavOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="xl:hidden bg-white border-b border-slate-200 overflow-hidden z-40"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="xl:hidden absolute top-[64px] md:top-[80px] left-0 right-0 bg-white border-b border-slate-200 shadow-xl z-40 overflow-hidden"
           >
-            <div className="p-4 grid grid-cols-2 gap-2">
+            <div className="p-4 flex flex-col gap-2 relative z-50">
               <NavItem icon={Home} label="Home" onClick={() => { onBack(); setIsMobileNavOpen(false); }} />
-              <NavItem 
-                icon={LayoutDashboard} 
-                label="Dashboard" 
-                active={activeTab === 'dashboard'} 
-                onClick={() => { setActiveTab('dashboard'); setIsMobileNavOpen(false); }} 
-              />
               <NavItem 
                 icon={Users} 
                 label="Employee" 
@@ -675,8 +663,8 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
                     <table className="w-full text-left border-collapse">
                       <thead>
                         <tr className="bg-slate-50/50 border-b border-slate-100">
-                          <th className="p-4 w-12 text-center">
-                            <input type="checkbox" className="w-4 h-4 rounded border-slate-300 text-[#3B82F6]" />
+                          <th className="p-4 w-12 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">
+                            #
                           </th>
                           <th className="p-4 text-xs font-bold text-slate-400 uppercase tracking-wider">Name</th>
                           <th className="p-4 text-xs font-bold text-slate-400 uppercase tracking-wider">Credit Spent</th>
@@ -687,10 +675,10 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
                         </tr>
                       </thead>
                       <tbody>
-                        {filteredEmployees.map((emp) => (
+                        {filteredEmployees.map((emp, index) => (
                           <tr key={emp.id} className="border-b border-slate-50 hover:bg-slate-50/50 transition-colors h-[64px]">
-                            <td className="p-4 text-center">
-                              <input type="checkbox" className="w-4 h-4 rounded border-slate-300 text-[#3B82F6]" />
+                            <td className="p-4 text-center font-bold text-slate-500 text-sm">
+                              {index + 1}
                             </td>
                             <td className="p-4">
                               <div className="flex items-center gap-3">
