@@ -906,8 +906,8 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                 )}
 
                 {/* Number Display */}
-                <div className="flex flex-col items-center justify-end min-h-[70px] mb-4 md:mb-4 px-4 text-center shrink-0">
-                  <div className="w-full text-center min-h-[50px] flex items-center justify-center">
+                <div className="flex flex-col items-center justify-end min-h-[50px] mb-1 px-4 text-center shrink-0">
+                  <div className="w-full text-center min-h-[40px] flex items-center justify-center">
                     <span className={cn(
                       "font-bold tracking-tight break-all transition-all",
                       dialedNumber ? "text-text-dark" : "text-text-light/50",
@@ -970,7 +970,7 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                 </div>
 
                 {/* Numeric Keypad Grid */}
-                <div className="grid grid-cols-3 gap-x-6 sm:gap-x-8 gap-y-3 sm:gap-y-4 max-w-[280px] sm:max-w-[300px] mx-auto mb-2 sm:mb-4">
+                <div className="grid grid-cols-3 gap-x-6 sm:gap-x-8 gap-y-2 sm:gap-y-3 max-w-[280px] sm:max-w-[300px] mx-auto mb-2">
                   {[
                     { n: '1', l: ' ' }, { n: '2', l: 'ABC' }, { n: '3', l: 'DEF' },
                     { n: '4', l: 'GHI' }, { n: '5', l: 'JKL' }, { n: '6', l: 'MNO' },
@@ -981,7 +981,7 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                       key={key.n}
                       onClick={() => handleKeyPress(key.n)}
                       className={cn(
-                        "w-[60px] h-[60px] sm:w-[63px] sm:h-[63px] md:w-[54px] md:h-[54px] rounded-full flex flex-col items-center justify-center active:scale-95 transition-all mx-auto shadow-sm",
+                        "w-[56px] h-[56px] sm:w-[60px] sm:h-[60px] md:w-[54px] md:h-[54px] rounded-full flex flex-col items-center justify-center active:scale-95 transition-all mx-auto shadow-sm",
                         "bg-white border border-border-gray hover:bg-soft-gray"
                       )}
                     >
@@ -992,7 +992,7 @@ export default function DialerApp({ onBack }: DialerAppProps) {
                 </div>
 
                 {/* Bottom Action Row */}
-                <div className="flex items-center justify-center px-12 relative mt-2 pb-6">
+                <div className="flex items-center justify-center px-12 relative mt-0 pb-4">
                   <button 
                     onClick={toggleCall}
                     className={cn(
