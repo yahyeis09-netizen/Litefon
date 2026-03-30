@@ -42,16 +42,7 @@ interface Employee {
   department: string;
 }
 
-const initialEmployees: Employee[] = [
-  { id: '1024', name: 'John Miller', email: 'j.miller@company.com', avatar: 'https://i.pravatar.cc/150?u=john', creditSpent: '$124.50', overallCalls: 45, role: 'Product Designer', department: 'Marketing' },
-  { id: '1025', name: 'Anna Kowalski', email: 'anna.kowalski@corp.io', avatar: 'https://i.pravatar.cc/150?u=anna', creditSpent: '$89.20', overallCalls: 32, role: 'HR Manager', department: 'HR' },
-  { id: '2682', name: 'David Chen', email: 'dchen@dev.company.com', avatar: 'https://i.pravatar.cc/150?u=david', creditSpent: '$210.00', overallCalls: 78, role: 'Frontend Developer', department: 'Engineering' },
-  { id: '2193', name: 'Maria Lopez', email: 'maria-lopez@marketing.co', avatar: 'https://i.pravatar.cc/150?u=maria', creditSpent: '$45.00', overallCalls: 12, role: 'Content Manager', department: 'Marketing' },
-  { id: '2683', name: 'Alex Turner', email: 'alex_turner@backend.company.com', avatar: 'https://i.pravatar.cc/150?u=alex', creditSpent: '$156.75', overallCalls: 54, role: 'Backend Developer', department: 'Engineering' },
-  { id: '2122', name: 'Sophie Martin', email: 'sophie.m@designhub.io', avatar: 'https://i.pravatar.cc/150?u=sophie', creditSpent: '$67.30', overallCalls: 28, role: 'UI/UX Designer', department: 'Design' },
-  { id: '1735', name: 'Daniel Novak', email: 'd.novak@finance.company.com', avatar: 'https://i.pravatar.cc/150?u=daniel', creditSpent: '$34.50', overallCalls: 15, role: 'Financial Analyst', department: 'Finance' },
-  { id: '1439', name: 'Emily Brown', email: 'emily.brown+sm@company.com', avatar: 'https://i.pravatar.cc/150?u=emily', creditSpent: '$92.10', overallCalls: 41, role: 'SMM Specialist', department: 'Marketing' },
-];
+const initialEmployees: Employee[] = [];
 
 // --- Sub-Components ---
 
@@ -83,133 +74,133 @@ const BillingView = ({ balance, onTopUp }: { balance: number; onTopUp: (amount: 
                 key={pkg.amount}
                 onClick={() => setSelected(pkg.amount)}
                 className={cn(
-                  "relative h-24 rounded-2xl border-2 transition-all flex flex-col items-center justify-center",
+                  \"relative h-24 rounded-2xl border-2 transition-all flex flex-col items-center justify-center\",
                   selected === pkg.amount
-                    ? "bg-[#3B82F6]/5 border-[#3B82F6] text-[#3B82F6]"
-                    : "bg-white border-slate-100 hover:border-slate-200 text-slate-600"
+                    ? \"bg-[#3B82F6]/5 border-[#3B82F6] text-[#3B82F6]\"
+                    : \"bg-white border-slate-100 hover:border-slate-200 text-slate-600\"
                 )}
               >
                 {pkg.popular && (
-                  <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-emerald-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider whitespace-nowrap">
+                  <span className=\"absolute -top-2.5 left-1/2 -translate-x-1/2 bg-emerald-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider whitespace-nowrap\">
                     Most Popular
                   </span>
                 )}
                 {pkg.bonus && (
-                  <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-[#3B82F6] text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider whitespace-nowrap">
+                  <span className=\"absolute -top-2.5 left-1/2 -translate-x-1/2 bg-[#3B82F6] text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider whitespace-nowrap\">
                     {pkg.bonus}
                   </span>
                 )}
-                <span className="text-2xl font-bold">${pkg.amount}</span>
+                <span className=\"text-2xl font-bold\">${pkg.amount}</span>
               </button>
             ))}
           </div>
 
-          <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100 flex items-center gap-3">
-            <input type="checkbox" id="auto-topup" className="w-4 h-4 rounded border-slate-300 text-[#3B82F6] focus:ring-[#3B82F6]" />
-            <label htmlFor="auto-topup" className="text-sm font-medium text-slate-700">Enable Auto Top-up</label>
+          <div className=\"bg-slate-50 rounded-2xl p-4 border border-slate-100 flex items-center gap-3\">
+            <input type=\"checkbox\" id=\"auto-topup\" className=\"w-4 h-4 rounded border-slate-300 text-[#3B82F6] focus:ring-[#3B82F6]\" />
+            <label htmlFor=\"auto-topup\" className=\"text-sm font-medium text-slate-700\">Enable Auto Top-up</label>
           </div>
         </div>
 
         {/* Right Pane: Payment Detail */}
-        <div className="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
-          <div className="mb-8">
-            <h2 className="text-[17px] font-bold text-slate-900 mb-2">Payment Detail</h2>
-            <p className="text-sm text-slate-500">Complete your purchase by filling your payment detail</p>
+        <div className=\"bg-white rounded-2xl border border-slate-200 p-8 shadow-sm\">
+          <div className=\"mb-8\">
+            <h2 className=\"text-[17px] font-bold text-slate-900 mb-2\">Payment Detail</h2>
+            <p className=\"text-sm text-slate-500\">Complete your purchase by filling your payment detail</p>
           </div>
 
-          <div className="space-y-6">
+          <div className=\"space-y-6\">
             <div>
-              <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Email address</label>
+              <label className=\"block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2\">Email address</label>
               <input 
-                type="email" 
-                className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all"
-                placeholder="hello@squareui.com"
+                type=\"email\" 
+                className=\"w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all\"
+                placeholder=\"hello@squareui.com\"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Card number</label>
-              <div className="relative">
+              <label className=\"block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2\">Card number</label>
+              <div className=\"relative\">
                 <input 
-                  type="text" 
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all"
-                  placeholder="42 35 65 64 67"
+                  type=\"text\" 
+                  className=\"w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all\"
+                  placeholder=\"42 35 65 64 67\"
                 />
-                <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" className="h-3" />
+                <div className=\"absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2\">
+                  <img src=\"https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg\" alt=\"Visa\" className=\"h-3\" />
                 </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className=\"grid grid-cols-2 gap-4\">
               <div>
-                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Expiration Date</label>
+                <label className=\"block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2\">Expiration Date</label>
                 <input 
-                  type="text" 
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all"
-                  placeholder="MM / YY"
+                  type=\"text\" 
+                  className=\"w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all\"
+                  placeholder=\"MM / YY\"
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-1">
-                  Security Code <Info className="w-3 h-3" />
+                <label className=\"block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-1\">
+                  Security Code <Info className=\"w-3 h-3\" />
                 </label>
                 <input 
-                  type="text" 
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all"
-                  placeholder="CVC"
+                  type=\"text\" 
+                  className=\"w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all\"
+                  placeholder=\"CVC\"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Cardholder Name</label>
+              <label className=\"block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2\">Cardholder Name</label>
               <input 
-                type="text" 
-                className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all"
-                placeholder="William Ashford"
+                type=\"text\" 
+                className=\"w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all\"
+                placeholder=\"William Ashford\"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Billing Address</label>
-              <div className="space-y-3">
-                <select className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all">
+              <label className=\"block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2\">Billing Address</label>
+              <div className=\"space-y-3\">
+                <select className=\"w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all\">
                   <option>United States</option>
                   <option>United Kingdom</option>
                   <option>Canada</option>
                 </select>
-                <div className="grid grid-cols-2 gap-3">
+                <div className=\"grid grid-cols-2 gap-3\">
                   <input 
-                    type="text" 
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all"
-                    placeholder="Zip code"
+                    type=\"text\" 
+                    className=\"w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all\"
+                    placeholder=\"Zip code\"
                   />
                   <input 
-                    type="text" 
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all"
-                    placeholder="City"
+                    type=\"text\" 
+                    className=\"w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all\"
+                    placeholder=\"City\"
                   />
                 </div>
               </div>
             </div>
 
-            <div className="pt-6 border-t border-dashed border-slate-200">
-              <div className="flex justify-between items-center mb-6">
-                <span className="text-lg font-bold text-slate-900">Total</span>
-                <span className="text-2xl font-bold text-[#3B82F6]">${selected}.00</span>
+            <div className=\"pt-6 border-t border-dashed border-slate-200\">
+              <div className=\"flex justify-between items-center mb-6\">
+                <span className=\"text-lg font-bold text-slate-900\">Total</span>
+                <span className=\"text-2xl font-bold text-[#3B82F6]\">${selected}.00</span>
               </div>
               <button 
                 onClick={() => onTopUp(selected)}
-                className="w-full py-4 bg-[#3B82F6] text-white rounded-xl font-bold hover:bg-[#2563EB] transition-all shadow-lg shadow-[#3B82F6]/20"
+                className=\"w-full py-4 bg-[#3B82F6] text-white rounded-xl font-bold hover:bg-[#2563EB] transition-all shadow-lg shadow-[#3B82F6]/20\"
               >
                 Pay ${selected}.00
               </button>
             </div>
 
-            <div className="flex items-center justify-center gap-2 text-slate-400">
-              <ShieldCheck className="w-4 h-4" />
-              <span className="text-xs">Payments are secured and encrypted</span>
+            <div className=\"flex items-center justify-center gap-2 text-slate-400\">
+              <ShieldCheck className=\"w-4 h-4\" />
+              <span className=\"text-xs\">Payments are secured and encrypted</span>
             </div>
           </div>
         </div>
@@ -223,90 +214,90 @@ const SettingsView = () => {
   const [userPhoto, setUserPhoto] = useState('https://i.pravatar.cc/150?u=johndoe');
 
   return (
-    <div className="max-w-4xl space-y-8">
+    <div className=\"max-w-4xl space-y-8\">
       {/* Company Profile */}
-      <div className="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
-        <div className="flex items-center gap-3 mb-8">
-          <Building2 className="w-6 h-6 text-[#3B82F6]" />
-          <h3 className="text-xl font-bold text-slate-900">Company Profile</h3>
+      <div className=\"bg-white rounded-2xl border border-slate-200 p-8 shadow-sm\">
+        <div className=\"flex items-center gap-3 mb-8\">
+          <Building2 className=\"w-6 h-6 text-[#3B82F6]\" />
+          <h3 className=\"text-xl font-bold text-slate-900\">Company Profile</h3>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-8">
-          <div className="flex flex-col items-center gap-4">
-            <div className="relative group">
+        <div className=\"flex flex-col md:flex-row gap-8\">
+          <div className=\"flex flex-col items-center gap-4\">
+            <div className=\"relative group\">
               <img 
                 src={companyPhoto} 
-                alt="Company Logo" 
-                className="w-32 h-32 rounded-[24px] object-cover border-4 border-slate-50"
-                referrerPolicy="no-referrer"
+                alt=\"Company Logo\" 
+                className=\"w-32 h-32 rounded-[24px] object-cover border-4 border-slate-50\"
+                referrerPolicy=\"no-referrer\"
               />
-              <button className="absolute inset-0 bg-black/40 rounded-[24px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
-                <Camera className="w-6 h-6" />
+              <button className=\"absolute inset-0 bg-black/40 rounded-[24px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white\">
+                <Camera className=\"w-6 h-6\" />
               </button>
             </div>
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Company Logo</p>
+            <p className=\"text-xs font-bold text-slate-400 uppercase tracking-wider\">Company Logo</p>
           </div>
 
-          <div className="flex-grow grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Company Name</label>
-              <input type="text" defaultValue="Litefon Inc." className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all" />
+          <div className=\"flex-grow grid grid-cols-1 md:grid-cols-2 gap-6\">
+            <div className=\"space-y-2\">
+              <label className=\"text-xs font-bold text-slate-500 uppercase tracking-wider\">Company Name</label>
+              <input type=\"text\" defaultValue=\"Litefon Inc.\" className=\"w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all\" />
             </div>
-            <div className="space-y-2">
-              <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Tax ID</label>
-              <input type="text" defaultValue="TX-99283-001" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all" />
+            <div className=\"space-y-2\">
+              <label className=\"text-xs font-bold text-slate-500 uppercase tracking-wider\">Tax ID</label>
+              <input type=\"text\" defaultValue=\"TX-99283-001\" className=\"w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all\" />
             </div>
-            <div className="md:col-span-2 space-y-2">
-              <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Business Address</label>
-              <input type="text" defaultValue="123 Innovation Way, San Francisco, CA 94103" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all" />
+            <div className=\"md:col-span-2 space-y-2\">
+              <label className=\"text-xs font-bold text-slate-500 uppercase tracking-wider\">Business Address</label>
+              <input type=\"text\" defaultValue=\"123 Innovation Way, San Francisco, CA 94103\" className=\"w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all\" />
             </div>
           </div>
         </div>
       </div>
 
       {/* My Account */}
-      <div className="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
-        <div className="flex items-center gap-3 mb-8">
-          <User className="w-6 h-6 text-[#3B82F6]" />
-          <h3 className="text-xl font-bold text-slate-900">My Account</h3>
+      <div className=\"bg-white rounded-2xl border border-slate-200 p-8 shadow-sm\">
+        <div className=\"flex items-center gap-3 mb-8\">
+          <User className=\"w-6 h-6 text-[#3B82F6]\" />
+          <h3 className=\"text-xl font-bold text-slate-900\">My Account</h3>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-8">
-          <div className="flex flex-col items-center gap-4">
-            <div className="relative group">
+        <div className=\"flex flex-col md:flex-row gap-8\">
+          <div className=\"flex flex-col items-center gap-4\">
+            <div className=\"relative group\">
               <img 
                 src={userPhoto} 
-                alt="User Avatar" 
-                className="w-32 h-32 rounded-full object-cover border-4 border-slate-50"
-                referrerPolicy="no-referrer"
+                alt=\"User Avatar\" 
+                className=\"w-32 h-32 rounded-full object-cover border-4 border-slate-50\"
+                referrerPolicy=\"no-referrer\"
               />
-              <button className="absolute inset-0 bg-black/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
-                <Camera className="w-6 h-6" />
+              <button className=\"absolute inset-0 bg-black/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white\">
+                <Camera className=\"w-6 h-6\" />
               </button>
             </div>
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Profile Photo</p>
+            <p className=\"text-xs font-bold text-slate-400 uppercase tracking-wider\">Profile Photo</p>
           </div>
 
-          <div className="flex-grow grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Full Name</label>
-              <input type="text" defaultValue="John Doe" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all" />
+          <div className=\"flex-grow grid grid-cols-1 md:grid-cols-2 gap-6\">
+            <div className=\"space-y-2\">
+              <label className=\"text-xs font-bold text-slate-500 uppercase tracking-wider\">Full Name</label>
+              <input type=\"text\" defaultValue=\"John Doe\" className=\"w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all\" />
             </div>
-            <div className="space-y-2">
-              <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Email Address</label>
-              <input type="email" defaultValue="john@litefon.com" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all" />
+            <div className=\"space-y-2\">
+              <label className=\"text-xs font-bold text-slate-500 uppercase tracking-wider\">Email Address</label>
+              <input type=\"email\" defaultValue=\"john@litefon.com\" className=\"w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all\" />
             </div>
-            <div className="md:col-span-2 space-y-2">
-              <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">New Password</label>
-              <input type="password" placeholder="••••••••" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all" />
+            <div className=\"md:col-span-2 space-y-2\">
+              <label className=\"text-xs font-bold text-slate-500 uppercase tracking-wider\">New Password</label>
+              <input type=\"password\" placeholder=\"••••••••\" className=\"w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all\" />
             </div>
           </div>
         </div>
       </div>
 
-      <div className="flex justify-end">
-        <button className="flex items-center gap-2 px-8 py-4 bg-[#3B82F6] text-white rounded-xl font-bold hover:bg-[#2563EB] transition-all shadow-lg shadow-[#3B82F6]/20">
-          <Save className="w-5 h-5" />
+      <div className=\"flex justify-end\">
+        <button className=\"flex items-center gap-2 px-8 py-4 bg-[#3B82F6] text-white rounded-xl font-bold hover:bg-[#2563EB] transition-all shadow-lg shadow-[#3B82F6]/20\">
+          <Save className=\"w-5 h-5\" />
           Save Changes
         </button>
       </div>
@@ -322,9 +313,13 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
   const [isBalanceMenuOpen, setIsBalanceMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
-  const [isAddTeamMenuOpen, setIsAddTeamMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [isCompanyModalOpen, setIsCompanyModalOpen] = useState(false);
+  const [isAddMemberModalOpen, setIsAddMemberModalOpen] = useState(false);
+  const [companyDetails, setCompanyDetails] = useState({ name: '', taxId: '', address: '' });
   const [employees, setEmployees] = useState<Employee[]>(initialEmployees);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isSearchingGmail, setIsSearchingGmail] = useState(false);
+  const [gmailSearchQuery, setGmailSearchQuery] = useState('');
   const fileInputRef = React.useRef<HTMLInputElement>(null);
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -385,76 +380,76 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
     <button
       onClick={onClick}
       className={cn(
-        "flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-200",
+        \"flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-200\",
         active 
-          ? "bg-[#3B82F6]/10 text-[#3B82F6]" 
-          : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
+          ? \"bg-[#3B82F6]/10 text-[#3B82F6]\" 
+          : \"text-slate-500 hover:bg-slate-50 hover:text-slate-900\"
       )}
     >
-      <Icon className={cn("w-4 h-4", active ? "text-[#3B82F6]" : "text-slate-400")} />
-      <span className="text-sm font-medium whitespace-nowrap">{label}</span>
+      <Icon className={cn(\"w-4 h-4\", active ? \"text-[#3B82F6]\" : \"text-slate-400\")} />
+      <span className=\"text-sm font-medium whitespace-nowrap\">{label}</span>
     </button>
   );
 
   return (
-    <div className="fixed inset-0 z-[100] flex flex-col bg-bg-main font-sans overflow-hidden">
+    <div className=\"fixed inset-0 z-[100] flex flex-col bg-bg-main font-sans overflow-hidden\">
       {/* Horizontal Navigation Bar */}
-      <header className="h-16 md:h-20 bg-white border-b border-slate-200 px-4 md:px-8 flex items-center justify-between shrink-0 z-50">
-        <div className="flex items-center gap-4 md:gap-8">
-          <div className="flex items-center gap-2 mr-2 md:mr-4">
-            <div className="w-8 h-8 bg-[#3B82F6] rounded-lg flex items-center justify-center">
-              <Phone className="text-white w-4 h-4 fill-current" />
+      <header className=\"h-16 md:h-20 bg-white border-b border-slate-200 px-4 md:px-8 flex items-center justify-between shrink-0 z-50\">
+        <div className=\"flex items-center gap-4 md:gap-8\">
+          <div className=\"flex items-center gap-2 mr-2 md:mr-4\">
+            <div className=\"w-8 h-8 bg-[#3B82F6] rounded-lg flex items-center justify-center\">
+              <Phone className=\"text-white w-4 h-4 fill-current\" />
             </div>
-            <span className="text-lg md:text-xl font-bold text-slate-900 lowercase">litefon</span>
+            <span className=\"text-lg md:text-xl font-bold text-slate-900 lowercase\">litefon</span>
           </div>
         </div>
 
         {/* Desktop Navigation - Centered */}
-        <nav className="hidden xl:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
-          <NavItem icon={Home} label="Home" onClick={onBack} />
+        <nav className=\"hidden xl:flex items-center gap-1 absolute left-1/2 -translate-x-1/2\">
+          <NavItem icon={Home} label=\"Home\" onClick={onBack} />
           <NavItem 
             icon={Users} 
-            label="Employee" 
+            label=\"Employee\" 
             active={activeTab === 'team'} 
             onClick={() => setActiveTab('team')} 
           />
           <NavItem 
             icon={History} 
-            label="History" 
+            label=\"History\" 
             active={activeTab === 'history'} 
             onClick={() => setActiveTab('history')} 
           />
           <NavItem 
             icon={FileText} 
-            label="Invoices" 
+            label=\"Invoices\" 
             active={activeTab === 'invoices'} 
             onClick={() => setActiveTab('invoices')} 
           />
           <NavItem 
             icon={CreditCard} 
-            label="Billing" 
+            label=\"Billing\" 
             active={activeTab === 'billing'} 
             onClick={() => setActiveTab('billing')} 
           />
         </nav>
 
-        <div className="flex items-center gap-2 md:gap-6">
-          <div className="relative">
+        <div className=\"flex items-center gap-2 md:gap-6\">
+          <div className=\"relative\">
             <button 
               onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
-              className="flex items-center gap-2 md:gap-3 p-1 md:p-2 rounded-xl transition-all hover:bg-slate-50"
+              className=\"flex items-center gap-2 md:gap-3 p-1 md:p-2 rounded-xl transition-all hover:bg-slate-50\"
             >
               <img 
-                src="https://i.pravatar.cc/150?u=johndoe" 
-                alt="User" 
-                className="w-8 h-8 md:w-9 md:h-9 rounded-full object-cover border border-slate-100"
-                referrerPolicy="no-referrer"
+                src=\"https://i.pravatar.cc/150?u=johndoe\" 
+                alt=\"User\" 
+                className=\"w-8 h-8 md:w-9 md:h-9 rounded-full object-cover border border-slate-100\"
+                referrerPolicy=\"no-referrer\"
               />
-              <div className="hidden sm:block text-left">
-                <p className="text-xs font-bold text-slate-900 leading-tight">John Doe</p>
-                <p className="text-[10px] text-slate-500 leading-tight">john@litefon.com</p>
+              <div className=\"hidden sm:block text-left\">
+                <p className=\"text-xs font-bold text-slate-900 leading-tight\">John Doe</p>
+                <p className=\"text-[10px] text-slate-500 leading-tight\">john@litefon.com</p>
               </div>
-              <ChevronDown className={cn("w-4 h-4 text-slate-400 transition-transform", isProfileMenuOpen && "rotate-180")} />
+              <ChevronDown className={cn(\"w-4 h-4 text-slate-400 transition-transform\", isProfileMenuOpen && \"rotate-180\")} />
             </button>
 
             <AnimatePresence>
@@ -463,24 +458,24 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
-                  className="absolute top-full right-0 mt-2 w-56 bg-white rounded-2xl border border-slate-200 shadow-xl z-50 overflow-hidden"
+                  className=\"absolute top-full right-0 mt-2 w-56 bg-white rounded-2xl border border-slate-200 shadow-xl z-50 overflow-hidden\"
                 >
                   <button 
                     onClick={() => {
                       setActiveTab('settings');
                       setIsProfileMenuOpen(false);
                     }}
-                    className="w-full px-4 py-3 text-left text-sm font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-3"
+                    className=\"w-full px-4 py-3 text-left text-sm font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-3\"
                   >
-                    <Settings className="w-4 h-4 text-slate-400" />
+                    <Settings className=\"w-4 h-4 text-slate-400\" />
                     Settings
                   </button>
-                  <div className="h-px bg-slate-100" />
+                  <div className=\"h-px bg-slate-100\" />
                   <button 
                     onClick={onBack}
-                    className="w-full px-4 py-3 text-left text-sm font-medium text-red-600 hover:bg-red-50 flex items-center gap-3"
+                    className=\"w-full px-4 py-3 text-left text-sm font-medium text-red-600 hover:bg-red-50 flex items-center gap-3\"
                   >
-                    <LogOut className="w-4 h-4" />
+                    <LogOut className=\"w-4 h-4\" />
                     Log out
                   </button>
                 </motion.div>
@@ -491,9 +486,9 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
           {/* Mobile Nav Toggle */}
           <button 
             onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
-            className="xl:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
+            className=\"xl:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors\"
           >
-            <Menu className="w-6 h-6 text-slate-700" />
+            <Menu className=\"w-6 h-6 text-slate-700\" />
           </button>
         </div>
       </header>
@@ -505,31 +500,31 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="xl:hidden absolute top-[64px] md:top-[80px] left-0 right-0 bg-white border-b border-slate-200 shadow-xl z-40 overflow-hidden"
+            className=\"xl:hidden absolute top-[64px] md:top-[80px] left-0 right-0 bg-white border-b border-slate-200 shadow-xl z-40 overflow-hidden\"
           >
-            <div className="p-4 flex flex-col gap-2 relative z-50">
-              <NavItem icon={Home} label="Home" onClick={() => { onBack(); setIsMobileNavOpen(false); }} />
+            <div className=\"p-4 flex flex-col gap-2 relative z-50\">
+              <NavItem icon={Home} label=\"Home\" onClick={() => { onBack(); setIsMobileNavOpen(false); }} />
               <NavItem 
                 icon={Users} 
-                label="Employee" 
+                label=\"Employee\" 
                 active={activeTab === 'team'} 
                 onClick={() => { setActiveTab('team'); setIsMobileNavOpen(false); }} 
               />
               <NavItem 
                 icon={History} 
-                label="History" 
+                label=\"History\" 
                 active={activeTab === 'history'} 
                 onClick={() => { setActiveTab('history'); setIsMobileNavOpen(false); }} 
               />
               <NavItem 
                 icon={FileText} 
-                label="Invoices" 
+                label=\"Invoices\" 
                 active={activeTab === 'invoices'} 
                 onClick={() => { setActiveTab('invoices'); setIsMobileNavOpen(false); }} 
               />
               <NavItem 
                 icon={CreditCard} 
-                label="Billing" 
+                label=\"Billing\" 
                 active={activeTab === 'billing'} 
                 onClick={() => { setActiveTab('billing'); setIsMobileNavOpen(false); }} 
               />
@@ -539,40 +534,40 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
       </AnimatePresence>
 
       {/* Main Content */}
-      <main className="flex-grow flex flex-col min-w-0 overflow-hidden">
+      <main className=\"flex-grow flex flex-col min-w-0 overflow-hidden\">
         {/* Content Area */}
-        <div className="flex-grow p-4 md:p-8 overflow-y-auto custom-scrollbar">
-          <AnimatePresence mode="wait">
+        <div className=\"flex-grow p-4 md:p-8 overflow-y-auto custom-scrollbar\">
+          <AnimatePresence mode=\"wait\">
             {activeTab === 'team' && (
               <motion.div
-                key="team"
+                key=\"team\"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="space-y-8"
+                className=\"space-y-8\"
               >
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-4">
+                <div className=\"flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-4\">
                   <div>
-                    <h1 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">Employee</h1>
-                    <p className="text-xs md:text-sm text-slate-500">Manage your team members and roles.</p>
+                    <h1 className=\"text-2xl md:text-3xl font-bold text-slate-900 mb-2\">Employee</h1>
+                    <p className=\"text-xs md:text-sm text-slate-500\">Manage your team members and roles.</p>
                   </div>
-                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+                  <div className=\"flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto\">
                     {/* Balance Widget */}
-                    <div className="relative w-full sm:w-auto">
+                    <div className=\"relative w-full sm:w-auto\">
                       <button 
                         onClick={() => setIsBalanceMenuOpen(!isBalanceMenuOpen)}
                         className={cn(
-                          "flex items-center justify-between sm:justify-center gap-3 w-full sm:w-auto px-4 py-2.5 rounded-xl border transition-all",
+                          \"flex items-center justify-between sm:justify-center gap-3 w-full sm:w-auto px-4 py-2.5 rounded-xl border transition-all\",
                           balance === 0 
-                            ? "bg-red-50 border-red-200 text-red-600" 
-                            : "bg-blue-50 border-blue-200 text-blue-600"
+                            ? \"bg-red-50 border-red-200 text-red-600\" 
+                            : \"bg-blue-50 border-blue-200 text-blue-600\"
                         )}
                       >
-                        <div className="flex items-center gap-3">
-                          <Wallet className="w-5 h-5" />
-                          <span className="font-bold">${balance.toFixed(2)}</span>
+                        <div className=\"flex items-center gap-3\">
+                          <Wallet className=\"w-5 h-5\" />
+                          <span className=\"font-bold\">${balance.toFixed(2)}</span>
                         </div>
-                        <ChevronDown className={cn("w-4 h-4 transition-transform", isBalanceMenuOpen && "rotate-180")} />
+                        <ChevronDown className={cn(\"w-4 h-4 transition-transform\", isBalanceMenuOpen && \"rotate-180\")} />
                       </button>
                       
                       <AnimatePresence>
@@ -581,16 +576,16 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 10 }}
-                            className="absolute sm:right-0 mt-2 w-full sm:w-48 bg-white rounded-xl border border-slate-200 shadow-xl z-50 overflow-hidden"
+                            className=\"absolute sm:right-0 mt-2 w-full sm:w-48 bg-white rounded-xl border border-slate-200 shadow-xl z-50 overflow-hidden\"
                           >
                             <button 
                               onClick={() => {
                                 setActiveTab('billing');
                                 setIsBalanceMenuOpen(false);
                               }}
-                              className="w-full px-4 py-3 text-left text-sm font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2"
+                              className=\"w-full px-4 py-3 text-left text-sm font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2\"
                             >
-                              <Plus className="w-4 h-4" />
+                              <Plus className=\"w-4 h-4\" />
                               Add Credit
                             </button>
                           </motion.div>
@@ -599,125 +594,110 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
                     </div>
 
                     <button 
-                      onClick={() => setIsAddTeamMenuOpen(!isAddTeamMenuOpen)}
-                      className="relative flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-2.5 bg-[#3B82F6] text-white rounded-xl font-bold hover:bg-[#2563EB] transition-all shadow-lg shadow-[#3B82F6]/20"
+                      onClick={() => setIsCompanyModalOpen(true)}
+                      className=\"flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-2.5 bg-[#3B82F6] text-white rounded-xl font-bold hover:bg-[#2563EB] transition-all shadow-lg shadow-[#3B82F6]/20\"
                     >
-                      <Plus className="w-5 h-5" />
+                      <Plus className=\"w-5 h-5\" />
                       Add team
-                      
-                      <input 
-                        type="file" 
-                        ref={fileInputRef} 
-                        onChange={handleFileUpload} 
-                        accept=".csv" 
-                        className="hidden" 
-                      />
-
-                      <AnimatePresence>
-                        {isAddTeamMenuOpen && (
-                          <motion.div
-                            initial={{ opacity: 0, scale: 0.95, y: 10 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.95, y: 10 }}
-                            className="absolute top-full sm:right-0 mt-2 w-full sm:w-48 bg-white rounded-xl border border-slate-200 shadow-xl z-50 overflow-hidden"
-                          >
-                            <button 
-                              onClick={(e) => { e.stopPropagation(); fileInputRef.current?.click(); setIsAddTeamMenuOpen(false); }}
-                              className="w-full px-4 py-3 text-left text-sm font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2"
-                            >
-                              <FileText className="w-4 h-4 text-slate-400" />
-                              Upload CSV
-                            </button>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
                     </button>
                   </div>
                 </div>
 
-                <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                  <div className="p-4 border-b border-slate-100 flex items-center justify-between">
-                    <div className="relative w-full sm:w-auto">
-                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                <div className=\"bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden\">
+                  <div className=\"p-4 border-b border-slate-100 flex items-center justify-between\">
+                    <div className=\"relative w-full sm:w-auto\">
+                      <Search className=\"absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400\" />
                       <input 
-                         type="text" 
-                         placeholder="Search..." 
+                         type=\"text\" 
+                         placeholder=\"Search...\" 
                          value={searchQuery}
                          onChange={(e) => setSearchQuery(e.target.value)}
-                         className="pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-[#3B82F6] transition-all w-full md:w-64"
+                         className=\"pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-[#3B82F6] transition-all w-full md:w-64\"
                        />
                     </div>
-                    <div className="flex items-center gap-2">
-                      <button className="px-4 py-2 text-sm font-bold text-slate-600 border border-slate-200 rounded-xl hover:bg-slate-50 transition-all flex items-center gap-2">
-                        <FileText className="w-4 h-4" />
+                    <div className=\"flex items-center gap-2\">
+                      <button className=\"px-4 py-2 text-sm font-bold text-slate-600 border border-slate-200 rounded-xl hover:bg-slate-50 transition-all flex items-center gap-2\">
+                        <FileText className=\"w-4 h-4\" />
                         Export
                       </button>
-                      <button className="px-4 py-2 text-sm font-bold text-slate-600 border border-slate-200 rounded-xl hover:bg-slate-50 transition-all flex items-center gap-2">
-                        <Settings className="w-4 h-4" />
+                      <button className=\"px-4 py-2 text-sm font-bold text-slate-600 border border-slate-200 rounded-xl hover:bg-slate-50 transition-all flex items-center gap-2\">
+                        <Settings className=\"w-4 h-4\" />
                         Filters
                       </button>
                     </div>
                   </div>
 
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-left border-collapse">
-                      <thead>
-                        <tr className="bg-slate-50/50 border-b border-slate-100">
-                          <th className="p-4 w-12 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">
-                            #
-                          </th>
-                          <th className="p-4 text-xs font-bold text-slate-400 uppercase tracking-wider">Name</th>
-                          <th className="p-4 text-xs font-bold text-slate-400 uppercase tracking-wider">Credit Spent</th>
-                          <th className="p-4 text-xs font-bold text-slate-400 uppercase tracking-wider">Overall Calls</th>
-                          <th className="p-4 text-xs font-bold text-slate-400 uppercase tracking-wider">Department</th>
-                          <th className="p-4 text-xs font-bold text-slate-400 uppercase tracking-wider">Role</th>
-                          <th className="p-4 text-xs font-bold text-slate-400 uppercase tracking-wider text-right">Actions</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {filteredEmployees.map((emp, index) => (
-                          <tr key={emp.id} className="border-b border-slate-50 hover:bg-slate-50/50 transition-colors h-[64px]">
-                            <td className="p-4 text-center font-bold text-slate-500 text-sm">
-                              {index + 1}
-                            </td>
-                            <td className="p-4">
-                              <div className="flex items-center gap-3">
-                                <img src={emp.avatar} alt={emp.name} className="w-10 h-10 rounded-full object-cover" referrerPolicy="no-referrer" />
-                                <div>
-                                  <p className="text-sm font-bold text-slate-900">{emp.name}</p>
-                                  <p className="text-xs text-slate-400">{emp.email}</p>
-                                </div>
-                              </div>
-                            </td>
-                            <td className="p-4 text-sm font-medium text-slate-600">{emp.creditSpent}</td>
-                            <td className="p-4 text-sm font-medium text-slate-600">{emp.overallCalls}</td>
-                            <td className="p-4">
-                              <span className={cn(
-                                "px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider",
-                                emp.department === 'Marketing' ? "bg-pink-100 text-pink-700" :
-                                emp.department === 'Engineering' ? "bg-blue-100 text-blue-700" :
-                                emp.department === 'HR' ? "bg-cyan-100 text-cyan-700" :
-                                emp.department === 'Design' ? "bg-indigo-100 text-indigo-700" :
-                                "bg-emerald-100 text-emerald-700"
-                              )}>
-                                {emp.department}
-                              </span>
-                            </td>
-                            <td className="p-4 text-sm text-slate-500">{emp.role}</td>
-                            <td className="p-4 text-right">
-                              <div className="flex items-center justify-end gap-2">
-                                <button className="p-2 text-slate-400 hover:text-red-500 transition-colors">
-                                  <Trash2 className="w-4 h-4" />
-                                </button>
-                                <button className="p-2 text-slate-400 hover:text-[#3B82F6] transition-colors">
-                                  <Edit2 className="w-4 h-4" />
-                                </button>
-                              </div>
-                            </td>
+                   <div className=\"overflow-x-auto min-h-[400px] flex flex-col\">
+                    {filteredEmployees.length > 0 ? (
+                      <table className=\"w-full text-left border-collapse\">
+                        <thead>
+                          <tr className=\"bg-slate-50/50 border-b border-slate-100\">
+                            <th className=\"p-4 w-12 text-center text-xs font-bold text-slate-400 uppercase tracking-wider\">
+                              #
+                            </th>
+                            <th className=\"p-4 text-xs font-bold text-slate-400 uppercase tracking-wider\">Name</th>
+                            <th className=\"p-4 text-xs font-bold text-slate-400 uppercase tracking-wider\">Credit Spent</th>
+                            <th className=\"p-4 text-xs font-bold text-slate-400 uppercase tracking-wider\">Overall Calls</th>
+                            <th className=\"p-4 text-xs font-bold text-slate-400 uppercase tracking-wider\">Department</th>
+                            <th className=\"p-4 text-xs font-bold text-slate-400 uppercase tracking-wider\">Role</th>
+                            <th className=\"p-4 text-xs font-bold text-slate-400 uppercase tracking-wider text-right\">Actions</th>
                           </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                        </thead>
+                        <tbody>
+                          {filteredEmployees.map((emp, index) => (
+                            <tr key={emp.id} className=\"border-b border-slate-50 hover:bg-slate-50/50 transition-colors h-[64px]\">
+                              <td className=\"p-4 text-center font-bold text-slate-500 text-sm\">
+                                {index + 1}
+                              </td>
+                              <td className=\"p-4\">
+                                <div className=\"flex items-center gap-3\">
+                                  <img src={emp.avatar} alt={emp.name} className=\"w-10 h-10 rounded-full object-cover\" referrerPolicy=\"no-referrer\" />
+                                  <div>
+                                    <p className=\"text-sm font-bold text-slate-900\">{emp.name}</p>
+                                    <p className=\"text-xs text-slate-400\">{emp.email}</p>
+                                  </div>
+                                </div>
+                              </td>
+                              <td className=\"p-4 text-sm font-medium text-slate-600\">{emp.creditSpent}</td>
+                              <td className=\"p-4 text-sm font-medium text-slate-600\">{emp.overallCalls}</td>
+                              <td className=\"p-4\">
+                                <span className={cn(
+                                  \"px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider\",
+                                  emp.department === 'Marketing' ? \"bg-pink-100 text-pink-700\" :
+                                  emp.department === 'Engineering' ? \"bg-blue-100 text-blue-700\" :
+                                  emp.department === 'HR' ? \"bg-cyan-100 text-cyan-700\" :
+                                  emp.department === 'Design' ? \"bg-indigo-100 text-indigo-700\" :
+                                  \"bg-emerald-100 text-emerald-700\"
+                                )}>
+                                  {emp.department}
+                                </span>
+                              </td>
+                              <td className=\"p-4 text-sm text-slate-500\">{emp.role}</td>
+                              <td className=\"p-4 text-right\">
+                                <div className=\"flex items-center justify-end gap-2\">
+                                  <button className=\"p-2 text-slate-400 hover:text-red-500 transition-colors\">
+                                    <Trash2 className=\"w-4 h-4\" />
+                                  </button>
+                                  <button className=\"p-2 text-slate-400 hover:text-[#3B82F6] transition-colors\">
+                                    <Edit2 className=\"w-4 h-4\" />
+                                  </button>
+                                </div>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    ) : (
+                      <div className=\"flex-grow flex flex-col items-center justify-center p-12 text-center\">
+                        <div className=\"w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mb-4\">
+                          <Users className=\"w-8 h-8 text-slate-300\" />
+                        </div>
+                        <h3 className=\"text-lg font-bold text-slate-900 mb-1\">No team members yet</h3>
+                        <p className=\"text-sm text-slate-500 max-w-xs\">
+                          {searchQuery ? \"No members found matching your search. Note: only users with active accounts can be found.\" : \"Click 'Add team' to set up your company profile and start adding members.\"}
+                        </p>
+                      </div>
+                    )}
                   </div>
 
 
@@ -727,14 +707,14 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
 
             {activeTab === 'billing' && (
               <motion.div
-                key="billing"
+                key=\"billing\"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
               >
-                <div className="mb-8">
-                  <h1 className="text-3xl font-bold text-slate-900 mb-2">Billing</h1>
-                  <p className="text-slate-500">Manage your subscription, payment methods, and top up your credits.</p>
+                <div className=\"mb-8\">
+                  <h1 className=\"text-3xl font-bold text-slate-900 mb-2\">Billing</h1>
+                  <p className=\"text-slate-500\">Manage your subscription, payment methods, and top up your credits.</p>
                 </div>
                 <BillingView balance={balance} onTopUp={handleTopUp} />
               </motion.div>
@@ -742,14 +722,14 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
 
             {activeTab === 'settings' && (
               <motion.div
-                key="settings"
+                key=\"settings\"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
               >
-                <div className="mb-8">
-                  <h1 className="text-3xl font-bold text-slate-900 mb-2">Settings</h1>
-                  <p className="text-slate-500">Configure your company profile and personal account settings.</p>
+                <div className=\"mb-8\">
+                  <h1 className=\"text-3xl font-bold text-slate-900 mb-2\">Settings</h1>
+                  <p className=\"text-slate-500\">Configure your company profile and personal account settings.</p>
                 </div>
                 <SettingsView />
               </motion.div>
@@ -757,22 +737,231 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
 
             {['dashboard', 'history', 'invoices'].includes(activeTab) && (
               <motion.div
-                key="placeholder"
+                key=\"placeholder\"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="flex flex-col items-center justify-center h-full text-center py-20"
+                className=\"flex flex-col items-center justify-center h-full text-center py-20\"
               >
-                <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mb-6">
-                  <LayoutDashboard className="w-10 h-10 text-slate-300" />
+                <div className=\"w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mb-6\">
+                  <LayoutDashboard className=\"w-10 h-10 text-slate-300\" />
                 </div>
-                <h2 className="text-[21px] font-bold text-slate-900 mb-2 capitalize">{activeTab} View</h2>
-                <p className="text-slate-500 max-w-md">This section is currently under development. Check back soon for more features!</p>
+                <h2 className=\"text-[21px] font-bold text-slate-900 mb-2 capitalize\">{activeTab} View</h2>
+                <p className=\"text-slate-500 max-w-md\">This section is currently under development. Check back soon for more features!</p>
               </motion.div>
             )}
           </AnimatePresence>
         </div>
       </main>
+      {/* --- Modals --- */}
+      
+      {/* Company Profile Modal */}
+      <AnimatePresence>
+        {isCompanyModalOpen && (
+          <div className=\"fixed inset-0 z-[200] flex items-center justify-center p-4\">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsCompanyModalOpen(false)}
+              className=\"absolute inset-0 bg-slate-900/60 backdrop-blur-sm\"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className=\"relative w-full max-w-2xl bg-white rounded-[32px] shadow-2xl overflow-hidden\"
+            >
+              <div className=\"p-8 md:p-12\">
+                <div className=\"flex items-center gap-4 mb-8\">
+                  <div className=\"w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center\">
+                    <Building2 className=\"w-6 h-6 text-[#3B82F6]\" />
+                  </div>
+                  <div>
+                    <h2 className=\"text-2xl font-bold text-slate-900\">Company Profile</h2>
+                    <p className=\"text-slate-500\">Fill out your information to create your team dashboard.</p>
+                  </div>
+                </div>
+
+                <div className=\"space-y-6\">
+                  <div className=\"grid md:grid-cols-2 gap-6\">
+                    <div className=\"space-y-2\">
+                      <label className=\"text-xs font-bold text-slate-500 uppercase tracking-wider\">Company Name</label>
+                      <input 
+                        type=\"text\" 
+                        value={companyDetails.name}
+                        onChange={(e) => setCompanyDetails(prev => ({ ...prev, name: e.target.value }))}
+                        placeholder=\"e.g. Acme Corp\" 
+                        className=\"w-full px-5 py-4 rounded-2xl border border-slate-200 focus:border-[#3B82F6] focus:ring-4 focus:ring-[#3B82F6]/5 outline-none transition-all\" 
+                      />
+                    </div>
+                    <div className=\"space-y-2\">
+                      <label className=\"text-xs font-bold text-slate-500 uppercase tracking-wider\">Tax ID / Registration</label>
+                      <input 
+                        type=\"text\" 
+                        value={companyDetails.taxId}
+                        onChange={(e) => setCompanyDetails(prev => ({ ...prev, taxId: e.target.value }))}
+                        placeholder=\"e.g. 12-3456789\" 
+                        className=\"w-full px-5 py-4 rounded-2xl border border-slate-200 focus:border-[#3B82F6] focus:ring-4 focus:ring-[#3B82F6]/5 outline-none transition-all\" 
+                      />
+                    </div>
+                  </div>
+                  <div className=\"space-y-2\">
+                    <label className=\"text-xs font-bold text-slate-500 uppercase tracking-wider\">Business Address</label>
+                    <textarea 
+                      value={companyDetails.address}
+                      onChange={(e) => setCompanyDetails(prev => ({ ...prev, address: e.target.value }))}
+                      placeholder=\"Street, City, State, ZIP\"
+                      rows={3}
+                      className=\"w-full px-5 py-4 rounded-2xl border border-slate-200 focus:border-[#3B82F6] focus:ring-4 focus:ring-[#3B82F6]/5 outline-none transition-all resize-none\"
+                    />
+                  </div>
+                </div>
+
+                <div className=\"mt-12 flex gap-4\">
+                  <button 
+                    onClick={() => setIsCompanyModalOpen(false)}
+                    className=\"flex-1 px-8 py-4 rounded-2xl font-bold text-slate-600 hover:bg-slate-50 transition-all\"
+                  >
+                    Cancel
+                  </button>
+                  <button 
+                    disabled={!companyDetails.name || !companyDetails.taxId}
+                    onClick={() => {
+                      setIsCompanyModalOpen(false);
+                      setIsAddMemberModalOpen(true);
+                    }}
+                    className=\"flex-1 px-8 py-4 bg-[#3B82F6] text-white rounded-2xl font-bold hover:bg-[#2563EB] disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-xl shadow-blue-500/20\"
+                  >
+                    Continue to Add Members
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Add Members Modal */}
+      <AnimatePresence>
+        {isAddMemberModalOpen && (
+          <div className=\"fixed inset-0 z-[200] flex items-center justify-center p-4\">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsAddMemberModalOpen(false)}
+              className=\"absolute inset-0 bg-slate-900/60 backdrop-blur-sm\"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className=\"relative w-full max-w-xl bg-white rounded-[32px] shadow-2xl overflow-hidden\"
+            >
+              <div className=\"p-8 md:p-10\">
+                <div className=\"text-center mb-10\">
+                  <h2 className=\"text-2xl font-bold text-slate-900 mb-2\">Add Team Members</h2>
+                  <p className=\"text-slate-500\">Choose how you want to add your colleagues. Note: members must have an active Litefon account.</p>
+                </div>
+
+                <div className=\"grid gap-4\">
+                  <button 
+                    onClick={() => {
+                      fileInputRef.current?.click();
+                      setIsAddMemberModalOpen(false);
+                    }}
+                    className=\"flex items-center gap-6 p-6 rounded-[24px] border-2 border-slate-100 hover:border-[#3B82F6] hover:bg-blue-50/50 transition-all text-left group\"
+                  >
+                    <div className=\"w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform\">
+                      <FileText className=\"w-7 h-7 text-emerald-600\" />
+                    </div>
+                    <div>
+                      <h3 className=\"font-bold text-slate-900\">Upload CSV File</h3>
+                      <p className=\"text-sm text-slate-500\">Import multiple members at once using a CSV template.</p>
+                    </div>
+                  </button>
+
+                  <button 
+                    onClick={() => setIsSearchingGmail(true)}
+                    className=\"flex items-center gap-6 p-6 rounded-[24px] border-2 border-slate-100 hover:border-[#3B82F6] hover:bg-blue-50/50 transition-all text-left group\"
+                  >
+                    <div className=\"w-14 h-14 bg-red-50 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform\">
+                      <Search className=\"w-7 h-7 text-red-600\" />
+                    </div>
+                    <div>
+                      <h3 className=\"font-bold text-slate-900\">Search Gmail / Directory</h3>
+                      <p className=\"text-sm text-slate-500\">Find and invite existing users directly via email.</p>
+                    </div>
+                  </button>
+                </div>
+
+                {isSearchingGmail && (
+                  <motion.div 
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    className=\"mt-8 pt-8 border-t border-slate-100 space-y-4\"
+                  >
+                    <div className=\"relative\">
+                      <Search className=\"absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400\" />
+                      <input 
+                        type=\"text\" 
+                        value={gmailSearchQuery}
+                        onChange={(e) => setGmailSearchQuery(e.target.value)}
+                        placeholder=\"Type email address...\" 
+                        className=\"w-full pl-12 pr-4 py-4 rounded-2xl border border-slate-200 focus:border-[#3B82F6] outline-none transition-all\"
+                      />
+                    </div>
+                    {gmailSearchQuery && (
+                      <div className=\"bg-slate-50 rounded-2xl p-4 text-center\">
+                        <p className=\"text-sm text-slate-600 italic\"> Searching for registered users with account...</p>
+                        <button 
+                          onClick={() => {
+                            setEmployees(prev => [...prev, {
+                              id: Math.random().toString(36).substr(2, 9),
+                              name: gmailSearchQuery.split('@')[0],
+                              email: gmailSearchQuery,
+                              avatar: `https://i.pravatar.cc/150?u=${gmailSearchQuery}`,
+                              creditSpent: '$0.00',
+                              overallCalls: 0,
+                              role: 'Member',
+                              department: 'General'
+                            }]);
+                            setIsSearchingGmail(false);
+                            setGmailSearchQuery('');
+                            setIsAddMemberModalOpen(false);
+                            alert('User added to team!');
+                          }}
+                          className=\"mt-3 text-sm font-bold text-[#3B82F6] hover:underline\"
+                        >
+                          Found user! Add to team
+                        </button>
+                      </div>
+                    )}
+                  </motion.div>
+                )}
+
+                <div className=\"mt-8 flex justify-center\">
+                  <button 
+                    onClick={() => setIsAddMemberModalOpen(false)}
+                    className=\"text-sm font-bold text-slate-400 hover:text-slate-600\"
+                  >
+                    Discard and Close
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      <input 
+        type=\"file\" 
+        ref={fileInputRef} 
+        onChange={handleFileUpload} 
+        accept=\".csv\" 
+        className=\"hidden\" 
+      />
     </div>
   );
 }
