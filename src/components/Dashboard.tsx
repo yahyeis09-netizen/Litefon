@@ -396,11 +396,11 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
       {/* Horizontal Navigation Bar */}
       <header className="h-16 md:h-20 bg-white border-b border-slate-200 px-4 md:px-8 flex items-center justify-between shrink-0 z-50">
         <div className="flex items-center gap-4 md:gap-8">
-          <div className="flex items-center gap-2 mr-2 md:mr-4">
-            <div className="w-8 h-8 bg-[#3B82F6] rounded-lg flex items-center justify-center">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-[#3B82F6] rounded-lg flex items-center justify-center shrink-0">
               <Phone className="text-white w-4 h-4 fill-current" />
             </div>
-            <span className="text-lg md:text-xl font-bold text-slate-900 lowercase">litefon</span>
+            <span className="text-lg md:text-xl font-bold text-slate-900 lowercase truncate">litefon</span>
           </div>
         </div>
 
@@ -445,11 +445,11 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
                 className="w-8 h-8 md:w-9 md:h-9 rounded-full object-cover border border-slate-100"
                 referrerPolicy="no-referrer"
               />
-              <div className="hidden sm:block text-left">
+              <div className="hidden lg:block text-left">
                 <p className="text-xs font-bold text-slate-900 leading-tight">John Doe</p>
                 <p className="text-[10px] text-slate-500 leading-tight">john@litefon.com</p>
               </div>
-              <ChevronDown className={cn("w-4 h-4 text-slate-400 transition-transform", isProfileMenuOpen && "rotate-180")} />
+              <ChevronDown className={cn("w-4 h-4 text-slate-400 transition-transform shrink-0", isProfileMenuOpen && "rotate-180")} />
             </button>
 
             <AnimatePresence>
@@ -502,7 +502,7 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
             exit={{ opacity: 0, y: -10 }}
             className="xl:hidden absolute top-[64px] md:top-[80px] left-0 right-0 bg-white border-b border-slate-200 shadow-xl z-40 overflow-hidden"
           >
-            <div className="p-4 flex flex-col gap-2 relative z-50">
+            <div className="p-4 flex flex-col gap-1 relative z-50 bg-white">
               <NavItem icon={Home} label="Home" onClick={() => { onBack(); setIsMobileNavOpen(false); }} />
               <NavItem 
                 icon={Users} 
@@ -604,23 +604,23 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
                 </div>
 
                 <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                  <div className="p-4 border-b border-slate-100 flex items-center justify-between">
-                    <div className="relative w-full sm:w-auto">
+                  <div className="p-4 border-b border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div className="relative w-full sm:w-auto flex-grow max-w-md">
                       <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                       <input 
                          type="text" 
-                         placeholder="Search..." 
+                         placeholder="Search employees..." 
                          value={searchQuery}
                          onChange={(e) => setSearchQuery(e.target.value)}
-                         className="pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-[#3B82F6] transition-all w-full md:w-64"
+                         className="pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-[#3B82F6] focus:ring-4 focus:ring-blue-500/5 transition-all w-full"
                        />
                     </div>
-                    <div className="flex items-center gap-2">
-                      <button className="px-4 py-2 text-sm font-bold text-slate-600 border border-slate-200 rounded-xl hover:bg-slate-50 transition-all flex items-center gap-2">
+                    <div className="flex items-center gap-2 w-full sm:w-auto">
+                      <button className="flex-1 sm:flex-none justify-center px-4 py-2.5 text-sm font-bold text-slate-600 border border-slate-200 rounded-xl hover:bg-slate-50 transition-all flex items-center gap-2">
                         <FileText className="w-4 h-4" />
                         Export
                       </button>
-                      <button className="px-4 py-2 text-sm font-bold text-slate-600 border border-slate-200 rounded-xl hover:bg-slate-50 transition-all flex items-center gap-2">
+                      <button className="flex-1 sm:flex-none justify-center px-4 py-2.5 text-sm font-bold text-slate-600 border border-slate-200 rounded-xl hover:bg-slate-50 transition-all flex items-center gap-2">
                         <Settings className="w-4 h-4" />
                         Filters
                       </button>
@@ -770,9 +770,9 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-2xl bg-white rounded-[32px] shadow-2xl overflow-hidden"
+              className="relative w-full max-w-2xl bg-white rounded-[24px] md:rounded-[32px] shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto custom-scrollbar"
             >
-              <div className="p-8 md:p-12">
+              <div className="p-6 md:p-12">
                 <div className="flex items-center gap-4 mb-8">
                   <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center">
                     <Building2 className="w-6 h-6 text-[#3B82F6]" />
@@ -857,9 +857,9 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-xl bg-white rounded-[32px] shadow-2xl overflow-hidden"
+              className="relative w-full max-w-xl bg-white rounded-[24px] md:rounded-[32px] shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto custom-scrollbar"
             >
-              <div className="p-8 md:p-10">
+              <div className="p-6 md:p-10">
                 <div className="text-center mb-10">
                   <h2 className="text-2xl font-bold text-slate-900 mb-2">Add Team Members</h2>
                   <p className="text-slate-500">Choose how you want to add your colleagues. Note: members must have an active Litefon account.</p>
@@ -871,27 +871,27 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
                       fileInputRef.current?.click();
                       setIsAddMemberModalOpen(false);
                     }}
-                    className="flex items-center gap-6 p-6 rounded-[24px] border-2 border-slate-100 hover:border-[#3B82F6] hover:bg-blue-50/50 transition-all text-left group"
+                    className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 p-4 sm:p-6 rounded-[20px] sm:rounded-[24px] border-2 border-slate-100 hover:border-[#3B82F6] hover:bg-blue-50/50 transition-all text-center sm:text-left group"
                   >
-                    <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <FileText className="w-7 h-7 text-emerald-600" />
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-emerald-50 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
+                      <FileText className="w-6 h-6 sm:w-7 sm:h-7 text-emerald-600" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-slate-900">Upload CSV File</h3>
-                      <p className="text-sm text-slate-500">Import multiple members at once using a CSV template.</p>
+                      <h3 className="font-bold text-slate-900 text-base sm:text-lg">Upload CSV File</h3>
+                      <p className="text-xs sm:text-sm text-slate-500">Import multiple members at once using a CSV template.</p>
                     </div>
                   </button>
 
                   <button 
                     onClick={() => setIsSearchingGmail(true)}
-                    className="flex items-center gap-6 p-6 rounded-[24px] border-2 border-slate-100 hover:border-[#3B82F6] hover:bg-blue-50/50 transition-all text-left group"
+                    className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 p-4 sm:p-6 rounded-[20px] sm:rounded-[24px] border-2 border-slate-100 hover:border-[#3B82F6] hover:bg-blue-50/50 transition-all text-center sm:text-left group"
                   >
-                    <div className="w-14 h-14 bg-red-50 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <Search className="w-7 h-7 text-red-600" />
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-red-50 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
+                      <Search className="w-6 h-6 sm:w-7 sm:h-7 text-red-600" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-slate-900">Search Gmail / Directory</h3>
-                      <p className="text-sm text-slate-500">Find and invite existing users directly via email.</p>
+                      <h3 className="font-bold text-slate-900 text-base sm:text-lg">Search Gmail / Directory</h3>
+                      <p className="text-xs sm:text-sm text-slate-500">Find and invite existing users directly via email.</p>
                     </div>
                   </button>
                 </div>
@@ -965,3 +965,4 @@ export default function Dashboard({ onBack, onSupportClick }: { onBack: () => vo
     </div>
   );
 }
+
