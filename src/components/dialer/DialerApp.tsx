@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { loadStripe } from '@stripe/stripe-js';
 import { 
   Home, 
   Grid, 
@@ -261,15 +262,53 @@ const ActivityView = () => {
   );
 };
 
-const BillingView = ({ balance, onTopUp }: { balance: number; onTopUp: (amount: number) => void }) => {
+const BillingView = ({ balance }: { balance: number; onTopUp: (amount: number) => void }) => {
   const packages = [
-    { amount: 5, bonus: null, popular: false },
-    { amount: 10, bonus: null, popular: false },
-    { amount: 20, bonus: null, popular: true },
-    { amount: 50, bonus: "5% BONUS", popular: false },
-    { amount: 100, bonus: "10% BONUS", popular: false },
+    { amount: 5, priceId: 'price_1TH3j6IWRl7lTpVVoaAd2iHg', bonus: null, popular: false },
+    { amount: 10, priceId: 'price_1TH3j6IWRl7lTpVVe8aPEVPQ', bonus: null, popular: false },
+    { amount: 20, priceId: 'price_1TH3j6IWRl7lTpVVvYaeZ6Gj', bonus: null, popular: true },
+    { amount: 50, priceId: 'price_1TH3j6IWRl7lTpVVutR1nWIc', bonus: "5% BONUS", popular: false },
+    { amount: 100, priceId: 'price_1TH3j6IWRl7lTpVVOUqZ0v2P', bonus: "10% BONUS", popular: false },
   ];
   const [selected, setSelected] = useState(20);
+  const [loading, setLoading] = useState(false);
+
+  const handlePayment = async () => {
+    setLoading(true);
+    const pkg = packages.find(p => p.amount === selected);
+    if (!pkg) return;
+
+    try {
+      // 1. Initialize Stripe
+      const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
+      if (!stripe) throw new Error('Stripe failed to load');
+
+      // 2. Call our local backend to create a session
+      const response = await fetch('http://localhost:3001/api/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          priceId: pkg.priceId,
+          successUrl: window.location.origin + '/?success=true',
+          cancelUrl: window.location.origin + '/?canceled=true',
+        }),
+      });
+
+      const { url } = await response.json();
+      
+      // 3. Redirect to the Stripe session URL
+      if (url) {
+        window.location.href = url;
+      } else {
+        throw new Error('No checkout URL received');
+      }
+    } catch (err) {
+      console.error('Payment Error:', err);
+      alert('Payment initialization failed. Please ensure the local server.js is running.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="flex-grow min-h-0 overflow-y-auto no-scrollbar">
@@ -349,92 +388,21 @@ const BillingView = ({ balance, onTopUp }: { balance: number; onTopUp: (amount: 
             </div>
           </div>
 
-          {/* Right Pane: Payment Form */}
+          {/* Right Pane: Checkout */}
           <div className="bg-white border-gray-200 rounded-3xl border p-6 sm:p-8 shadow-lg">
             <div className="mb-8">
-              <h2 className="text-[17px] font-bold mb-2 text-text-dark">Payment Detail</h2>
-              <p className="text-sm text-text-light">Complete your purchase by filling your payment detail</p>
+              <h2 className="text-[17px] font-bold mb-2 text-text-dark">Quick Checkout</h2>
+              <p className="text-sm text-text-light">Securely process your payment through Stripe</p>
             </div>
 
-            {/* Card Inputs */}
-            <div className="space-y-6">
-              <div>
-                <label className="block text-xs font-bold text-text-medium uppercase tracking-wider mb-2">Email address</label>
-                <input 
-                  type="email" 
-                  className="w-full px-4 py-3 rounded-xl border outline-none transition-all bg-white border-gray-200 focus:border-primary-blue"
-                  placeholder="hello@squareui.com"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-text-medium uppercase tracking-wider mb-2">Card number</label>
-                <div className="relative">
-                  <input 
-                    type="text" 
-                    className="w-full px-4 py-3 rounded-xl border outline-none transition-all bg-white border-gray-200 focus:border-primary-blue"
-                    placeholder="42 35 65 64 67"
-                  />
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" className="h-3" />
-                  </div>
+            <div className="space-y-8">
+              <div className="flex items-center justify-center p-8 bg-gray-50 rounded-2xl border border-dashed border-gray-300">
+                <div className="text-center">
+                  <CreditCard className="w-12 h-12 text-primary-blue mx-auto mb-4 opacity-50" />
+                  <p className="text-sm text-text-light font-medium">Redirecting to secure payment page</p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-bold text-text-medium uppercase tracking-wider mb-2">Expiration Date</label>
-                  <input 
-                    type="text" 
-                    className="w-full px-4 py-3 rounded-xl border outline-none transition-all bg-white border-gray-200 focus:border-primary-blue"
-                    placeholder="MM / YY"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-bold text-text-medium uppercase tracking-wider mb-2 flex items-center gap-1">
-                    Security Code <Info className="w-3 h-3" />
-                  </label>
-                  <input 
-                    type="text" 
-                    className="w-full px-4 py-3 rounded-xl border outline-none transition-all bg-white border-gray-200 focus:border-primary-blue"
-                    placeholder="CVC"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-text-medium uppercase tracking-wider mb-2">Cardholder Name</label>
-                <input 
-                  type="text" 
-                  className="w-full px-4 py-3 rounded-xl border outline-none transition-all bg-white border-gray-200 focus:border-primary-blue"
-                  placeholder="William Ashford"
-                />
-              </div>
-
-              <div className="pt-4">
-                <label className="block text-xs font-bold text-text-medium uppercase tracking-wider mb-4">Billing Address</label>
-                <div className="space-y-3">
-                  <select className="w-full px-4 py-3 rounded-xl border outline-none transition-all bg-white border-gray-200 focus:border-primary-blue">
-                    <option>United States</option>
-                    <option>United Kingdom</option>
-                    <option>Canada</option>
-                  </select>
-                  <div className="grid grid-cols-2 gap-3">
-                    <input 
-                      type="text" 
-                      className="w-full px-4 py-3 rounded-xl border outline-none transition-all bg-white border-gray-200 focus:border-primary-blue"
-                      placeholder="Zip code"
-                    />
-                    <input 
-                      type="text" 
-                      className="w-full px-4 py-3 rounded-xl border outline-none transition-all bg-white border-gray-200 focus:border-primary-blue"
-                      placeholder="City"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Summary */}
               <div className="pt-8 border-t border-dashed space-y-3 border-gray-200">
                 <div className="flex justify-between text-lg pt-2">
                   <span className="font-bold text-text-dark">Total</span>
@@ -443,15 +411,19 @@ const BillingView = ({ balance, onTopUp }: { balance: number; onTopUp: (amount: 
               </div>
 
               <button 
-                onClick={() => onTopUp(selected)}
-                className="w-full py-4 bg-primary-blue text-white rounded-2xl font-bold shadow-lg shadow-primary-blue/20 hover:bg-secondary-blue transition-all active:scale-[0.98]"
+                onClick={handlePayment}
+                disabled={loading}
+                className={cn(
+                  "w-full py-4 bg-primary-blue text-white rounded-2xl font-bold shadow-lg shadow-primary-blue/20 hover:bg-secondary-blue transition-all active:scale-[0.98]",
+                  loading && "opacity-50 cursor-not-allowed"
+                )}
               >
-                Pay ${selected}.00
+                {loading ? 'Opening Stripe...' : `Pay $${selected}.00 Now`}
               </button>
 
               <div className="flex items-center justify-center gap-2 text-text-light">
                 <ShieldCheck className="w-4 h-4" />
-                <span className="text-xs">Payments are secured and encrypted</span>
+                <span className="text-xs">Secure payments by Stripe</span>
               </div>
             </div>
           </div>
